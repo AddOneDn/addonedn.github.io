@@ -1,9 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[一道简单面试题理解JS事件机制（+1白话讲解)]]></title>
+    <url>%2F2018%2F03%2F14%2F%E4%B8%80%E9%81%93%E7%AE%80%E5%8D%95%E9%9D%A2%E8%AF%95%E9%A2%98%E7%90%86%E8%A7%A3JS%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6%EF%BC%88-1%E7%99%BD%E8%AF%9D%E8%AE%B2%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[定义 同步: 一个进程在执行某个请求的时候，若该请求需要一段时间才能返回信息，那么这个进程将会一直等待下去，直到收到返回信息才继续执行下去 异步: 进程不需要一直等下去，而是继续执行下面的操作，不管其他进程的状态。当有消息返回时系统会通知进程进行处理，这样可以提高执行的效率 线程: 线程是程序中一个单一的顺序控制流程。进程内一个相对独立的、可调度的执行单元，是系统独立调度和分派CPU的基本单位。指运行中的程序的调度单位 单线程: 单线程在程序执行时，所走的程序路径按照连续顺序排下来，前面的必须处理好，后面的才会执行。单线程就是进程里只有一个线程 问题123456789console.log(100)setTimeout(function () &#123; console.log(200)&#125;, 0)console.log(300)输出:// 100// 300// 200 解析 JS为单线程, 但是任务执行分为同步任务和异步任务 代码中console.log为同步任务, setTimeout为异步任务(这些基础东西就不过多解释了) 为了方便理解，我们可以认为JS这条单线程中有两条事件队列, 一条为同步队列(主事件大循环 Event Loop)，一条为异步队列，同步任务在同步队列中依次执行，异步任务在异步队列中依次执行，并且这两个队列是同时执行的。但是，JavaScript引擎只会执行同步队列中的任务，那么异步队列中的任务什么时候执行呢？ JavaScript引擎会不断遍历同步队列，当同步队列为空时，会将异步队列中执行完毕的异步事件的回调函数放入同步队列执行。 回顾现在让我们回来看看上面的面试题就很容易理解了，同步队列中console.log(100)和console.log(300)执行后，console.log(200)被推入同步队列执行，所以结果依次为100-&gt; 300-&gt;200 PS: setTimeout(fun, 0)中的0不是立即执行的意思, 而是同步队列为空时立即将fun推入同步队列 额外1234567var flag = 1setTimeout(function()&#123; flag = 0&#125;, 0)while(flag)&#123; console.log('running')&#125; 结果是什么? 答案为死循环，因为while(flag)中的代码将一直在同步队列中执行，而flag = 0没有机会被推入同步队列]]></content>
+      <tags>
+        <tag>前端</tag>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CSS实现文字打字动画（+1白话讲解）]]></title>
+    <url>%2F2018%2F03%2F14%2FCSS%E5%AE%9E%E7%8E%B0%E6%96%87%E5%AD%97%E6%89%93%E5%AD%97%E5%8A%A8%E7%94%BB%EF%BC%88-1%E7%99%BD%E8%AF%9D%E8%AE%B2%E8%A7%A3%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[介绍很多时候，我们会有一些奇怪的骚想法，比如让网页中的一些特定文本像敲代码一样一个一个显示出来，有一种命令行的感觉，增加设计感，很多人觉得这个效果要用很长一段JS来实现…. 正好手头有个例子，我决定用CSS实验一下 开始操作原图 emmmmmm…请忽略我的字体 想法1: 让这段文字从宽度0变成实际宽度 123456789.title&#123; ... animation: typing 6s;&#125;@keyframes typing&#123; from &#123; width: 0; &#125;&#125; emmmm, 忘记禁止折行和剪切超出部分文本了 修改1234567891011.title&#123; ... white-space: nowrap; overflow: hidden; animation: typing 6s;&#125;@keyframes typing&#123; from &#123; width: 0; &#125;&#125; 看起来还不错，但是还不够，我们希望字符能一个一个出来，想了想，Animation里面有个叫steps的东西，各位可以简单的理解(具体的这里就不介绍啦)为: 里面放多大的数字就是分多少帧执行，比如steps(5)就是将动画分成5帧执行。 就算我们能让动画一帧一帧执行，但是怎么让字符一个一个出现呢? 答案是…. 无人问津的ch单位，这是CSS3的新单位，表示”0”的宽度，到这我想真正的解决方案就出现啦！ 在等宽字体中，”0”字形的宽度和其他所有字形的宽度是一样的 修改123456789101112.title&#123; ... width: 17ch; //别忘了把空格算上! white-space: nowrap; overflow: hidden; animation: typing 6s steps(17); //steps里为你的字符数&#125;@keyframes typing&#123; from &#123; width: 0; &#125;&#125; 或许我们还需要一个闪烁的光标？那就留着下次讲好了(如果我没忘的话) 文章翻译改编于CSS揭秘]]></content>
+      <tags>
+        <tag>前端</tag>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[React Native实现NbaApp]]></title>
+    <url>%2F2018%2F03%2F13%2FReact-Native%E5%AE%9E%E7%8E%B0NbaApp%2F</url>
+    <content type="text"><![CDATA[介绍本项目为react-native构建的Nba App 设计灵感参考于:灵感来源( 其实就是参考样式 功能简单了很多,因为比较懒233333 功能 nba比分查询 球员数据查询 球队排名查询 项目地址]]></content>
+      <tags>
+        <tag>前端</tag>
+        <tag>React-Native</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[微信小程序模仿网易云音乐]]></title>
+    <url>%2F2018%2F03%2F13%2F%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%A8%A1%E4%BB%BF%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%2F</url>
+    <content type="text"><![CDATA[介绍使用微信小程序模仿网易云音乐,接口来源于: 接口地址 功能 网易云账号登录 歌单查看 每日推荐 歌曲随机,单曲,列表循环 歌词滚动 …. 项目地址 图片在github里我就不放在这啦~]]></content>
+      <tags>
+        <tag>前端</tag>
+        <tag>微信小程序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[React在线编辑简历]]></title>
+    <url>%2F2018%2F03%2F13%2FReact%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E7%AE%80%E5%8E%86%2F</url>
+    <content type="text"><![CDATA[简介闲来无事写了几个小时… 代码还有许多问题, 以及保存为pdf功能未实现 功能 任何地方点击即可修改, 项目可以增加删除 图片就长这个样子 项目地址]]></content>
+      <tags>
+        <tag>前端</tag>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2017自我总结]]></title>
+    <url>%2F2018%2F01%2F03%2F2017%E8%87%AA%E6%88%91%E6%80%BB%E7%BB%93%2F</url>
+    <content type="text"><![CDATA[不知道该说什么相比于大一，失去了很多，也获得了很多 暑假 自学了Vue全家桶 练手了数个微信小程序 自学后端nodejs 我觉得这是我做过的最正确的决定..告别了jQuery等..这些技术也为我之后学习react等技术铺平了道路,也确定了我向全栈发展的目标 开学后, 我离开了陪伴我将近整个大一的项目组。 我认为这个项目组除了微薄的工资外已经不能给我带来什么了 一些琐碎的事情以及老套的技术栈只会拖累我 氛围也失去了成立之初的热情，当然这是无可避免的 但我仍然感激这个项目组,实话实说,这里帮我度过了小白阶段,我在这的每一次项目都尽职尽责,但为了自己终究会离开 决定 放弃了许多事情, 走好自己的路, 坚持下去, 不好高骛远, 我觉得有句话说的很对：“你只要比昨天的自己更好就行,一辈子都在跟别人攀比是人生的悲剧”。 每天坚持补充前端只是, 不只是会写代码, js深入浏览器原理缓存http等等前端概念技术不断学习 机遇偶然遇见了一份xxxx的招聘信息, 看到远程实习什么什么的就心动了,于是就投了简历。 但是公司要求的react和django我并不会 但是公司给你7天时间自学作为二面结果 思考了一下, 有些机会错过了就不会来了, 于是3天入门, 提前完成任务, 也很顺利的进入公司,老板人很好还给配了macpro 但是 只有看看外面的世界才知道自己有多垃圾 项目难度比想象中大很多 团队协作方式不熟悉 代码太不规范,刚开始几行代码都要review好几次 但是你的付出终会得到回报, 一切都会慢慢变好, 永远不要轻言放弃 展望 好好工作 抓住每个适合自己的机会 拒绝每个不合适的邀请 坚持自己的道路 照顾好她]]></content>
+      <tags>
+        <tag>阅读</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[C++2016上机题及咸鱼代码]]></title>
     <url>%2F2017%2F04%2F22%2FC-2016%E4%B8%8A%E6%9C%BA%E9%A2%98%2F</url>
-    <content type="text"><![CDATA[2016年程序设计（2）实验考试题目及弱鸡代码本人C++水平较差,若嫌弃则只看题目即可 （30分）已有二进制文件“student.dat”和“a.dat”，分别存放着10个学生的基本信息。请将“student.dat”文件中第五个学生的所有基本信息连接到 “a.dat”的尾部，并将修改后的文件“a.dat”的内容输出显示在屏幕上。学生信息由以下结构体来描述：struct student{char num[11]; //学号char name[10]; // 姓名int age; // 年龄char gender; // 性别，其中M表示男生，F表示女生}; （35分）如下student类的成员：（1）请完善该类中的函数；（2）编写主函数，要求：（a）创建student类对象s1（”zhangsan”,80），创建对象s2并用s1初始化s2。（b）输出s1的name，score；输出s2的name，score；（c）利用重载函数实现计算，并在主函数输出s1，s2的分数之和。class student{private: char *name;//学生姓名 intscore;//学生分数 public: student(char *a,int b);//构造函数 student(student &amp;obj);//拷贝构造函数 ~student();//析构函数 int operator +(student &amp;right);//重载函数，返回两个student对象的分数之和 char *getName();//获取姓名 intgetScore();//获取分数 }; （35分）已知一个抽象类Shape，其定义为：class Shape // 基类{ protected: float area; //面积 public: float getarea() { return area; }//获取面积 virtual void calcarea()=0; //计算面积 virtual void show()=0; //显示基本信息 };要求：(1) 由它派生出圆类Circle，它包含数据成员半径（radius）以及相关的成员函数getradius();还包含一个构造函数，对成员radius进行初始化，并实现继承自Shape的纯虚函数。(2) 再由圆类Circle派生出圆柱类Cylinder，它包含数据成员高度（height）以及相关的成员函数getheight();还包含一个构造函数对成员height进行初始化并显式调用父类Circle类的构造函数，要求覆盖继承自Circle类的函数calcarea()和show()。圆柱类Cylinder继承自Shape类的数据成员area表示圆柱体的表面积。(3) 在main函数中用“圆——半径2.5，圆柱——底面半径2.0，高度6.0”进行测试（π取3.14），调用函数calcarea()计算面积，并调用函数show()输出对象的基本信息，要求Circle类show() 函数输出圆的半径和面积，Cylinder类的show()函数输出圆柱底面圆半径，高度以及表面积。 咸鱼题解,仅供参考和吐槽第一题123456789101112131415161718192021222324252627282930313233#include&lt;fstream&gt;using namespace std;struct student&#123; char num[11]; //学号 char name[10]; // 姓名 int age; // 年龄 char gender; // 性别，其中M表示男生，F表示女生&#125;;int main()&#123; student std[10]; fstream stu; stu.open("student.dat",ios::in|ios::binary); if(stu.fail())&#123; cout&lt;&lt;"打开a.dat文件失败"&lt;&lt;endl; exit(0); &#125; for(int i=0;i&lt;5;i++) stu.read((char*)&amp;std[i],sizeof(std[i])); stu.close(); stu.open("b.dat",ios::out|ios::binary|ios::app); stu.write((char*)&amp;std[4],sizeof(std[4])); stu.close(); stu.open("b.dat",ios::in|ios::binary); stu.read((char*)&amp;std,sizeof(std)); for(int i=0;i&lt;7;i++)&#123; stu.read((char*)&amp;std[i],sizeof(std)[i]); cout&lt;&lt;std[i].name&lt;&lt;" "&lt;&lt;std[i].age&lt;&lt;" "&lt;&lt;std[i].gender&lt;&lt;" "&lt;&lt;std[i].num&lt;&lt;endl; &#125; stu.close(); return 0;&#125; 第二题12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849#include&lt;iostream&gt;#include&lt;cstring&gt;using namespace std;class student&#123; private: char *name;//学生姓名 int score;//学生分数 public: student(char *a,int b);//构造函数 student(student &amp;obj);//拷贝构造函数 ~student();//析构函数 int operator +(student &amp;right);//重载函数，返回两个student对象的分数之和 char *getName();//获取姓名 int getScore();//获取分数&#125;;student::student(char *a,int b)&#123; name = new char[strlen(a)+1]; strcpy(name,a); score = b;&#125;student::student(student &amp;obj)&#123; name = new char[strlen(obj.name)+1]; strcpy(name,obj.name); score = obj.score;&#125;student::~student()&#123; delete []name;&#125;int student::operator+(student &amp;right)&#123; int sum; sum = this-&gt;score + right.score; return sum; &#125;char *student::getName()&#123; return name;&#125;int student::getScore()&#123; return score;&#125;int main()&#123; student s1("zhangsan",80),s2 = s1; int sum; sum = s1 + s2; cout&lt;&lt;s1.getName()&lt;&lt;" "&lt;&lt;s1.getScore()&lt;&lt;endl; cout&lt;&lt;s2.getName()&lt;&lt;" "&lt;&lt;s2.getScore()&lt;&lt;endl; cout&lt;&lt;"总分："&lt;&lt;sum; return 0;&#125; 第三题1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include&lt;iostream&gt;using namespace std;#define pai 3.14class Shape&#123; protected: float area; public: float getArea()&#123; return area; &#125; virtual void calcarea()=0; virtual void show()=0; &#125;;class Circle:public Shape&#123; protected: double radius; public: Circle(double r):Shape()&#123; radius = r; &#125; double getRadius()&#123; return radius; &#125; void calcarea()&#123; area = radius*radius*pai; &#125; void show()&#123; cout&lt;&lt;"半径: "&lt;&lt;radius&lt;&lt;endl; cout&lt;&lt;"面积："&lt;&lt;area&lt;&lt;endl; &#125;&#125;;class Cylinder:public Circle&#123; private: double height; public: Cylinder(double height,double r):Circle(r)&#123; this-&gt;height = height; &#125; void calcarea()&#123; area = radius*radius*pai*2 + 2*pai*radius*height; &#125; void show()&#123; cout&lt;&lt;"半径："&lt;&lt;radius&lt;&lt;endl; cout&lt;&lt;"高："&lt;&lt;height&lt;&lt;endl; cout&lt;&lt;"表面积："&lt;&lt;area&lt;&lt;endl; &#125; double getHeight()&#123; return height; &#125;&#125;;int main()&#123; Circle c1(2.5); Cylinder c2(6.0,2.0); c1.calcarea();c2.calcarea(); cout&lt;&lt;"圆的信息：";c1.show(); cout&lt;&lt;"--------------"&lt;&lt;endl; cout&lt;&lt;"圆柱的信息：";c2.show(); return 0;&#125; 欢迎各位在评论区吐槽交流~]]></content>
+    <content type="text"><![CDATA[2016年程序设计（2）实验考试题目及弱鸡代码本人C++水平较差,若嫌弃则只看题目即可 （30分）已有二进制文件“student.dat”和“a.dat”，分别存放着10个学生的基本信息。请将“student.dat”文件中第五个学生的所有基本信息连接到 “a.dat”的尾部，并将修改后的文件“a.dat”的内容输出显示在屏幕上。学生信息由以下结构体来描述： 123456struct student&#123; char num[11]; //学号 char name[10]; // 姓名 int age; // 年龄 char gender; // 性别，其中M表示男生，F表示女生&#125;; （35分）如下student类的成员：（1）请完善该类中的函数；（2）编写主函数，要求：（a）创建student类对象s1（”zhangsan”,80），创建对象s2并用s1初始化s2。（b）输出s1的name，score；输出s2的name，score；（c）利用重载函数实现计算，并在主函数输出s1，s2的分数之和。 123456789101112class student&#123; private: char *name;//学生姓名 intscore;//学生分数 public: student(char *a,int b);//构造函数 student(student &amp;obj);//拷贝构造函数 ~student();//析构函数 int operator +(student &amp;right);//重载函数，返回两个student对象的分数之和 char *getName();//获取姓名 intgetScore();//获取分数&#125;; （35分）已知一个抽象类Shape，其定义为： 12345678class Shape&#123; protected: float area; //面积 public: float getarea() &#123; return area; &#125;//获取面积 virtual void calcarea()=0; //计算面积 virtual void show()=0; //显示基本信息&#125;; 要求：(1) 由它派生出圆类Circle，它包含数据成员半径（radius）以及相关的成员函数getradius();还包含一个构造函数，对成员radius进行初始化，并实现继承自Shape的纯虚函数。(2) 再由圆类Circle派生出圆柱类Cylinder，它包含数据成员高度（height）以及相关的成员函数getheight();还包含一个构造函数对成员height进行初始化并显式调用父类Circle类的构造函数，要求覆盖继承自Circle类的函数calcarea()和show()。圆柱类Cylinder继承自Shape类的数据成员area表示圆柱体的表面积。(3) 在main函数中用“圆——半径2.5，圆柱——底面半径2.0，高度6.0”进行测试（π取3.14），调用函数calcarea()计算面积，并调用函数show()输出对象的基本信息，要求Circle类show() 函数输出圆的半径和面积，Cylinder类的show()函数输出圆柱底面圆半径，高度以及表面积。 咸鱼题解,仅供参考和吐槽 第一题123456789101112131415161718192021222324252627282930313233#include&lt;fstream&gt;using namespace std;struct student&#123; char num[11]; //学号 char name[10]; // 姓名 int age; // 年龄 char gender; // 性别，其中M表示男生，F表示女生&#125;;int main()&#123; student std[10]; fstream stu; stu.open("student.dat",ios::in|ios::binary); if(stu.fail())&#123; cout&lt;&lt;"打开a.dat文件失败"&lt;&lt;endl; exit(0); &#125; for(int i=0;i&lt;5;i++) stu.read((char*)&amp;std[i],sizeof(std[i])); stu.close(); stu.open("b.dat",ios::out|ios::binary|ios::app); stu.write((char*)&amp;std[4],sizeof(std[4])); stu.close(); stu.open("b.dat",ios::in|ios::binary); stu.read((char*)&amp;std,sizeof(std)); for(int i=0;i&lt;7;i++)&#123; stu.read((char*)&amp;std[i],sizeof(std)[i]); cout&lt;&lt;std[i].name&lt;&lt;" "&lt;&lt;std[i].age&lt;&lt;" "&lt;&lt;std[i].gender&lt;&lt;" "&lt;&lt;std[i].num&lt;&lt;endl; &#125; stu.close(); return 0;&#125; 第二题12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849#include&lt;iostream&gt;#include&lt;cstring&gt;using namespace std;class student&#123; private: char *name;//学生姓名 int score;//学生分数 public: student(char *a,int b);//构造函数 student(student &amp;obj);//拷贝构造函数 ~student();//析构函数 int operator +(student &amp;right);//重载函数，返回两个student对象的分数之和 char *getName();//获取姓名 int getScore();//获取分数&#125;;student::student(char *a,int b)&#123; name = new char[strlen(a)+1]; strcpy(name,a); score = b;&#125;student::student(student &amp;obj)&#123; name = new char[strlen(obj.name)+1]; strcpy(name,obj.name); score = obj.score;&#125;student::~student()&#123; delete []name;&#125;int student::operator+(student &amp;right)&#123; int sum; sum = this-&gt;score + right.score; return sum; &#125;char *student::getName()&#123; return name;&#125;int student::getScore()&#123; return score;&#125;int main()&#123; student s1("zhangsan",80),s2 = s1; int sum; sum = s1 + s2; cout&lt;&lt;s1.getName()&lt;&lt;" "&lt;&lt;s1.getScore()&lt;&lt;endl; cout&lt;&lt;s2.getName()&lt;&lt;" "&lt;&lt;s2.getScore()&lt;&lt;endl; cout&lt;&lt;"总分："&lt;&lt;sum; return 0;&#125; 第三题1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include&lt;iostream&gt;using namespace std;#define pai 3.14class Shape&#123; protected: float area; public: float getArea()&#123; return area; &#125; virtual void calcarea()=0; virtual void show()=0; &#125;;class Circle:public Shape&#123; protected: double radius; public: Circle(double r):Shape()&#123; radius = r; &#125; double getRadius()&#123; return radius; &#125; void calcarea()&#123; area = radius*radius*pai; &#125; void show()&#123; cout&lt;&lt;"半径: "&lt;&lt;radius&lt;&lt;endl; cout&lt;&lt;"面积："&lt;&lt;area&lt;&lt;endl; &#125;&#125;;class Cylinder:public Circle&#123; private: double height; public: Cylinder(double height,double r):Circle(r)&#123; this-&gt;height = height; &#125; void calcarea()&#123; area = radius*radius*pai*2 + 2*pai*radius*height; &#125; void show()&#123; cout&lt;&lt;"半径："&lt;&lt;radius&lt;&lt;endl; cout&lt;&lt;"高："&lt;&lt;height&lt;&lt;endl; cout&lt;&lt;"表面积："&lt;&lt;area&lt;&lt;endl; &#125; double getHeight()&#123; return height; &#125;&#125;;int main()&#123; Circle c1(2.5); Cylinder c2(6.0,2.0); c1.calcarea();c2.calcarea(); cout&lt;&lt;"圆的信息：";c1.show(); cout&lt;&lt;"--------------"&lt;&lt;endl; cout&lt;&lt;"圆柱的信息：";c2.show(); return 0;&#125;]]></content>
       <tags>
         <tag>C++</tag>
         <tag>上机</tag>
@@ -12,24 +65,13 @@
   <entry>
     <title><![CDATA[关于三种css垂直居中]]></title>
     <url>%2F2017%2F04%2F22%2Fcss%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%2F</url>
-    <content type="text"><![CDATA[目的写前端的时候总是忘记垂直居中…每次都要去搜代码 既然有了博客，就干脆整理一下写在这里吧 基于绝对定位123456789main&#123; position: absolute; top: 50%; left: 50%; margin-top: -3em; margin-left: -9em; width: 18em; height: 6em;&#125; 如果借助calc()函数的话…. 1234567main&#123; position: absolute; top: calc(50% - 3em); left: calc(50% - 9em); width: 18em; height: 6em;&#125; PS: 然而这种方法只局限于固定宽高的元素… 所以我们还可以选择translate()变形函数123456main&#123; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);&#125; ..缺陷自寻.. 基于视口单位123456main&#123; width: 18em; padding: 1em 1.5em; margin: 50vh auto 0; transform: translateY(-50%);&#125; ..vw,vh这里不再赘述.. PS: 只适用于在视口中居中的场景基于Flexbox12345678body&#123; display: flex; min-height: 100vh; margin: 0;&#125;main&#123; margin: auto;&#125; 或者… 1234567main&#123; display: flex; align-items: center; justify-content: center; width: 18em; height: 10em;&#125; PS: 要求你的浏览器支持Flexbox….题外话或许你可以尝试一下…1align-self: center; 参考: 《CSS揭秘》]]></content>
+    <content type="text"><![CDATA[目的写前端的时候总是忘记垂直居中…每次都要去搜代码 既然有了博客，就干脆整理一下写在这里吧 基于绝对定位123456789main&#123; position: absolute; top: 50%; left: 50%; margin-top: -3em; margin-left: -9em; width: 18em; height: 6em;&#125; 如果借助calc()函数的话…. 1234567main&#123; position: absolute; top: calc(50% - 3em); left: calc(50% - 9em); width: 18em; height: 6em;&#125; PS: 然而这种方法只局限于固定宽高的元素… 所以我们还可以选择translate()变形函数 123456main&#123; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);&#125; ..缺陷自寻.. 基于视口单位123456main&#123; width: 18em; padding: 1em 1.5em; margin: 50vh auto 0; transform: translateY(-50%);&#125; ..vw,vh这里不再赘述.. PS: 只适用于在视口中居中的场景 基于Flexbox12345678body&#123; display: flex; min-height: 100vh; margin: 0;&#125;main&#123; margin: auto;&#125; 或者… 1234567main&#123; display: flex; align-items: center; justify-content: center; width: 18em; height: 10em;&#125; PS: 要求你的浏览器支持Flexbox…. 或许你可以尝试一下…1align-self: center; 参考: 《CSS揭秘》]]></content>
       <categories>
         <category>技术</category>
       </categories>
       <tags>
-        <tag>css</tag>
         <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[addone]]></title>
-    <url>%2F2017%2F04%2F20%2Faddone%2F</url>
-    <content type="text"><![CDATA[欢迎各位来到我的简单博客 其实这里什么都没有2333333333333333]]></content>
-      <categories>
-        <category>Begin</category>
-      </categories>
-      <tags>
-        <tag>new</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -63,6 +105,17 @@
       </categories>
       <tags>
         <tag>gw</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[addone]]></title>
+    <url>%2F2017%2F04%2F20%2Faddone%2F</url>
+    <content type="text"><![CDATA[欢迎各位来到我的简单博客 其实这里什么都没有2333333333333333]]></content>
+      <categories>
+        <category>Begin</category>
+      </categories>
+      <tags>
+        <tag>new</tag>
       </tags>
   </entry>
 </search>

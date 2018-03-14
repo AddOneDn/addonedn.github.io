@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="前端,CSS," />
 
 
 
@@ -90,17 +90,23 @@
 
 
 
-<meta name="description" content="徐嘉一的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Tags">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta name="description" content="介绍很多时候，我们会有一些奇怪的骚想法，比如让网页中的一些特定文本像敲代码一样一个一个显示出来，有一种命令行的感觉，增加设计感，很多人觉得这个效果要用很长一段JS来实现…. 正好手头有个例子，我决定用CSS实验一下">
+<meta name="keywords" content="前端,CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS实现文字打字动画（+1白话讲解）">
+<meta property="og:url" content="http://yoursite.com/2018/03/14/CSS实现文字打字动画（-1白话讲解）/index.html">
 <meta property="og:site_name" content="AddOne">
-<meta property="og:description" content="徐嘉一的博客">
+<meta property="og:description" content="介绍很多时候，我们会有一些奇怪的骚想法，比如让网页中的一些特定文本像敲代码一样一个一个显示出来，有一种命令行的感觉，增加设计感，很多人觉得这个效果要用很长一段JS来实现…. 正好手头有个例子，我决定用CSS实验一下">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-14T11:01:53.246Z">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/14/16223fc3d61816de?w=2880&h=1480&f=png&s=4704018">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/14/16223fd2d0f4bd64?w=2294&h=710&f=gif&s=2901649">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/14/16223fe17b0b19f3?w=2356&h=592&f=gif&s=2808899">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/3/14/16223feb2d6a0f98?w=480&h=152&f=gif&s=273996">
+<meta property="og:updated_time" content="2018-03-14T11:52:15.273Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tags">
-<meta name="twitter:description" content="徐嘉一的博客">
+<meta name="twitter:title" content="CSS实现文字打字动画（+1白话讲解）">
+<meta name="twitter:description" content="介绍很多时候，我们会有一些奇怪的骚想法，比如让网页中的一些特定文本像敲代码一样一个一个显示出来，有一种命令行的感觉，增加设计感，很多人觉得这个效果要用很长一段JS来实现…. 正好手头有个例子，我决定用CSS实验一下">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/3/14/16223fc3d61816de?w=2880&h=1480&f=png&s=4704018">
 
 
 
@@ -128,19 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/14/CSS实现文字打字动画（-1白话讲解）/"/>
 
 
 
 
 
-  <title>
-  
-
-  
-    Tags | AddOne
-  
-</title>
+  <title> CSS实现文字打字动画（+1白话讲解） | AddOne </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -165,7 +165,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -304,25 +304,201 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline">Tags</h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/14/CSS实现文字打字动画（-1白话讲解）/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AddOneG">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AddOne">
+    </span>
 
     
-    
-      <div class="tag-cloud">
-        <div class="tag-cloud-title">
-            目前共计 12 个标签
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CSS实现文字打字动画（+1白话讲解）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-14T19:50:59+08:00">
+                2018-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/03/14/CSS实现文字打字动画（-1白话讲解）/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/03/14/CSS实现文字打字动画（-1白话讲解）/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
         </div>
-        <div class="tag-cloud-tags">
-          <a href="/tags/C/" style="font-size: 12px; color: #ccc">C++</a> <a href="/tags/CSS/" style="font-size: 12px; color: #ccc">CSS</a> <a href="/tags/JavaScript/" style="font-size: 12px; color: #ccc">JavaScript</a> <a href="/tags/React/" style="font-size: 12px; color: #ccc">React</a> <a href="/tags/React-Native/" style="font-size: 12px; color: #ccc">React-Native</a> <a href="/tags/css/" style="font-size: 12px; color: #ccc">css</a> <a href="/tags/gw/" style="font-size: 21px; color: #6f6f6f">gw</a> <a href="/tags/new/" style="font-size: 12px; color: #ccc">new</a> <a href="/tags/上机/" style="font-size: 12px; color: #ccc">上机</a> <a href="/tags/前端/" style="font-size: 30px; color: #111">前端</a> <a href="/tags/微信小程序/" style="font-size: 12px; color: #ccc">微信小程序</a> <a href="/tags/阅读/" style="font-size: 12px; color: #ccc">阅读</a>
-        </div>
-      </div>
+      </header>
     
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>很多时候，我们会有一些奇怪的骚想法，比如让网页中的一些特定文本像敲代码一样一个一个显示出来，有一种命令行的感觉，增加设计感，很多人觉得这个效果要用很长一段JS来实现…. 正好手头有个例子，我决定用CSS实验一下</p>
+<a id="more"></a>
+<h2 id="开始操作"><a href="#开始操作" class="headerlink" title="开始操作"></a>开始操作</h2><p>原图<br><img src="https://user-gold-cdn.xitu.io/2018/3/14/16223fc3d61816de?w=2880&amp;h=1480&amp;f=png&amp;s=4704018" alt=""></p>
+<blockquote>
+<p>emmmmmm…请忽略我的字体</p>
+<ul>
+<li><strong>想法1</strong>: 让这段文字从宽度0变成实际宽度</li>
+</ul>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.title</span>&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="selector-tag">animation</span>: <span class="selector-tag">typing</span> 6<span class="selector-tag">s</span>;</span><br><span class="line">&#125;</span><br><span class="line">@<span class="keyword">keyframes</span> typing&#123;</span><br><span class="line">  <span class="selector-tag">from</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/14/16223fd2d0f4bd64?w=2294&amp;h=710&amp;f=gif&amp;s=2901649" alt=""></p>
+<blockquote>
+<p>emmmm, 忘记禁止折行和剪切超出部分文本了</p>
+</blockquote>
+<p>修改<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.title</span>&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="selector-tag">white-space</span>: <span class="selector-tag">nowrap</span>;</span><br><span class="line">  <span class="selector-tag">overflow</span>: <span class="selector-tag">hidden</span>;</span><br><span class="line">  <span class="selector-tag">animation</span>: <span class="selector-tag">typing</span> 6<span class="selector-tag">s</span>;</span><br><span class="line">&#125;</span><br><span class="line">@<span class="keyword">keyframes</span> typing&#123;</span><br><span class="line">  <span class="selector-tag">from</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/14/16223fe17b0b19f3?w=2356&amp;h=592&amp;f=gif&amp;s=2808899" alt=""></p>
+<p>看起来还不错，但是还不够，我们希望字符能一个一个出来，想了想，Animation里面有个叫steps的东西，各位可以简单的理解(具体的这里就不介绍啦)为: 里面放多大的数字就是分多少帧执行，比如steps(5)就是将动画分成5帧执行。</p>
+<blockquote>
+<p>就算我们能让动画一帧一帧执行，但是怎么让字符一个一个出现呢?</p>
+</blockquote>
+<p>答案是…. 无人问津的ch单位，这是CSS3的新单位，表示”0”的宽度，到这我想真正的解决方案就出现啦！</p>
+<blockquote>
+<p>在等宽字体中，”0”字形的宽度和其他所有字形的宽度是一样的</p>
+</blockquote>
+<p>修改<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.title</span>&#123;</span><br><span class="line">  ...</span><br><span class="line">  width: 17ch; //别忘了把空格算上!</span><br><span class="line">  <span class="selector-tag">white-space</span>: <span class="selector-tag">nowrap</span>;</span><br><span class="line">  <span class="selector-tag">overflow</span>: <span class="selector-tag">hidden</span>;</span><br><span class="line">  animation: typing 6s steps(17);  //steps里为你的字符数</span><br><span class="line">&#125;</span><br><span class="line">@<span class="keyword">keyframes</span> typing&#123;</span><br><span class="line">  <span class="selector-tag">from</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/3/14/16223feb2d6a0f98?w=480&amp;h=152&amp;f=gif&amp;s=273996" alt=""></p>
+<blockquote>
+<p>或许我们还需要一个闪烁的光标？那就留着下次讲好了(如果我没忘的话)</p>
+</blockquote>
+<blockquote>
+<p>文章翻译改编于CSS揭秘</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+            <a href="/tags/CSS/" rel="tag"># CSS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/13/React-Native实现NbaApp/" rel="next" title="React Native实现NbaApp">
+                <i class="fa fa-chevron-left"></i> React Native实现NbaApp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/14/一道简单面试题理解JS事件机制（-1白话讲解/" rel="prev" title="一道简单面试题理解JS事件机制（+1白话讲解) ">
+                一道简单面试题理解JS事件机制（+1白话讲解)  <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -361,8 +537,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -476,6 +661,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始操作"><span class="nav-number">2.</span> <span class="nav-text">开始操作</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -582,6 +783,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 

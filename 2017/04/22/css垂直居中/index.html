@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="css,前端," />
+  <meta name="keywords" content="前端,css," />
 
 
 
@@ -91,14 +91,14 @@
 
 
 <meta name="description" content="目的写前端的时候总是忘记垂直居中…每次都要去搜代码 既然有了博客，就干脆整理一下写在这里吧">
-<meta name="keywords" content="css,前端">
+<meta name="keywords" content="前端,css">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于三种css垂直居中">
 <meta property="og:url" content="http://yoursite.com/2017/04/22/css垂直居中/index.html">
 <meta property="og:site_name" content="AddOne">
 <meta property="og:description" content="目的写前端的时候总是忘记垂直居中…每次都要去搜代码 既然有了博客，就干脆整理一下写在这里吧">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-14T11:01:53.244Z">
+<meta property="og:updated_time" content="2018-03-14T11:41:52.545Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于三种css垂直居中">
 <meta name="twitter:description" content="目的写前端的时候总是忘记垂直居中…每次都要去搜代码 既然有了博客，就干脆整理一下写在这里吧">
@@ -109,7 +109,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Muse',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
@@ -311,7 +311,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/22/css垂直居中/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XuJiayi">
+      <meta itemprop="name" content="AddOneG">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -417,15 +417,27 @@
 <h1 id="基于绝对定位"><a href="#基于绝对定位" class="headerlink" title="基于绝对定位"></a>基于绝对定位</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">main</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">margin-top</span>: -<span class="number">3em</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: -<span class="number">9em</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">18em</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">6em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果借助calc()函数的话….</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">main</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="built_in">calc</span>(50% - 3em);</span><br><span class="line">    <span class="attribute">left</span>: <span class="built_in">calc</span>(50% - 9em);</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">18em</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">6em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h6 id="PS-然而这种方法只局限于固定宽高的元素…-所以我们还可以选择translate-变形函数"><a href="#PS-然而这种方法只局限于固定宽高的元素…-所以我们还可以选择translate-变形函数" class="headerlink" title="PS: 然而这种方法只局限于固定宽高的元素… 所以我们还可以选择translate()变形函数"></a>PS: 然而这种方法只局限于固定宽高的元素… 所以我们还可以选择translate()变形函数</h6><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">main</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(-50%, -50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>PS: 然而这种方法只局限于固定宽高的元素… 所以我们还可以选择translate()变形函数</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">main</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(-50%, -50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>..缺陷自寻..</p>
 <h1 id="基于视口单位"><a href="#基于视口单位" class="headerlink" title="基于视口单位"></a>基于视口单位</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">main</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">18em</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">1em</span> <span class="number">1.5em</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">50vh</span> auto <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>..vw,vh这里不再赘述..</p>
-<h6 id="PS-只适用于在视口中居中的场景"><a href="#PS-只适用于在视口中居中的场景" class="headerlink" title="PS: 只适用于在视口中居中的场景"></a>PS: 只适用于在视口中居中的场景</h6><h1 id="基于Flexbox"><a href="#基于Flexbox" class="headerlink" title="基于Flexbox"></a>基于Flexbox</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">100vh</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">main</span>&#123;</span><br><span class="line">    <span class="attribute">margin</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>PS: 只适用于在视口中居中的场景</p>
+</blockquote>
+<h1 id="基于Flexbox"><a href="#基于Flexbox" class="headerlink" title="基于Flexbox"></a>基于Flexbox</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">100vh</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">main</span>&#123;</span><br><span class="line">    <span class="attribute">margin</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>或者…</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">main</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">    <span class="attribute">justify-content</span>: center;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">18em</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">10em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h6 id="PS-要求你的浏览器支持Flexbox…"><a href="#PS-要求你的浏览器支持Flexbox…" class="headerlink" title="PS: 要求你的浏览器支持Flexbox…."></a>PS: 要求你的浏览器支持Flexbox….</h6><h2 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h2><p>或许你可以尝试一下…<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">align-self</span>: <span class="selector-tag">center</span>;</span><br></pre></td></tr></table></figure></p>
-<h6 id="参考-《CSS揭秘》"><a href="#参考-《CSS揭秘》" class="headerlink" title="参考: 《CSS揭秘》"></a>参考: 《CSS揭秘》</h6>
+<blockquote>
+<p>PS: 要求你的浏览器支持Flexbox….</p>
+</blockquote>
+<p>或许你可以尝试一下…<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">align-self</span>: <span class="selector-tag">center</span>;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>参考: 《CSS揭秘》</p>
+</blockquote>
+
       
     </div>
 
@@ -454,9 +466,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/css/" rel="tag"># css</a>
-          
             <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+            <a href="/tags/css/" rel="tag"># css</a>
           
         </div>
       
@@ -469,8 +481,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/20/addone/" rel="next" title="addone">
-                <i class="fa fa-chevron-left"></i> addone
+              <a href="/2017/04/20/gwyhArticle1/" rel="next" title="某位小少女的作文-1">
+                <i class="fa fa-chevron-left"></i> 某位小少女的作文-1
               </a>
             
           </div>
@@ -549,10 +561,10 @@
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
-               alt="XuJiayi" />
-          <p class="site-author-name" itemprop="name">XuJiayi</p>
+               alt="AddOneG" />
+          <p class="site-author-name" itemprop="name">AddOneG</p>
            
-              <p class="site-description motion-element" itemprop="description">徐嘉一的咸鱼博客</p>
+              <p class="site-description motion-element" itemprop="description">徐嘉一的博客</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -560,7 +572,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -582,7 +594,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -596,20 +608,11 @@
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/AddOneDn/addonedn.github.io" target="_blank" title="GitHub">
+                <a href="https://github.com/AddOneDn" target="_blank" title="GitHub">
                   
                     <i class="fa fa-fw fa-github"></i>
                   
                   GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://user.qzone.qq.com/467072280/infocenter?via=toolbar" target="_blank" title="QQZone">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  QQZone
                 </a>
               </span>
             
@@ -619,6 +622,15 @@
                     <i class="fa fa-fw fa-globe"></i>
                   
                   Coding
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://juejin.im/user/5800c5b267f3560058a9f89f" target="_blank" title="Xitu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Xitu
                 </a>
               </span>
             
@@ -668,7 +680,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目的"><span class="nav-number">1.</span> <span class="nav-text">目的</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基于绝对定位"><span class="nav-number"></span> <span class="nav-text">基于绝对定位</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#PS-然而这种方法只局限于固定宽高的元素…-所以我们还可以选择translate-变形函数"><span class="nav-number">0.0.0.0.1.</span> <span class="nav-text">PS: 然而这种方法只局限于固定宽高的元素… 所以我们还可以选择translate()变形函数</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基于视口单位"><span class="nav-number"></span> <span class="nav-text">基于视口单位</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#PS-只适用于在视口中居中的场景"><span class="nav-number">0.0.0.0.1.</span> <span class="nav-text">PS: 只适用于在视口中居中的场景</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基于Flexbox"><span class="nav-number"></span> <span class="nav-text">基于Flexbox</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#PS-要求你的浏览器支持Flexbox…"><span class="nav-number">0.0.0.0.1.</span> <span class="nav-text">PS: 要求你的浏览器支持Flexbox….</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题外话"><span class="nav-number">1.</span> <span class="nav-text">题外话</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#参考-《CSS揭秘》"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">参考: 《CSS揭秘》</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目的"><span class="nav-number">1.</span> <span class="nav-text">目的</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基于绝对定位"><span class="nav-number"></span> <span class="nav-text">基于绝对定位</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基于视口单位"><span class="nav-number"></span> <span class="nav-text">基于视口单位</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基于Flexbox"><span class="nav-number"></span> <span class="nav-text">基于Flexbox</span></a></div>
             
 
           </div>
@@ -695,7 +707,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">XuJiayi</span>
+  <span class="author" itemprop="copyrightHolder">AddOneG</span>
 </div>
 
 
@@ -734,6 +746,8 @@
   
 
 
+  
+
 
 
 
@@ -761,6 +775,9 @@
 
   
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
   
