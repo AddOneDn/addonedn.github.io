@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[纯前端实现gif制作]]></title>
+    <url>%2F2018%2F03%2F24%2F%E7%BA%AF%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0gif%E5%88%B6%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[背景受在线Sorry动图制作启发，想自己用纯前端撸一个类似的东西出来，这里地址 开始操作Begin开始没有任何头绪，想着去别人源码那copy一下，发现根本用不上… Next 想法1: 用绝对定位将文字定位到gif上,然后根据gif特定时间点显示特定文字 想法2: 在特定的时间点上用canvas在gif上绘制特定的文字 Next Result想了想，上面两种想法很好实现，但是都只是把动图展示出来，不能保存成修改后的文字保存到gif里 再Next对gif的每一帧进行处理然后再拼成gif 再Next Result想了想，没什么大问题，那就开干吧 真正开始操作~怎么把处理后的图片拼接成gif是个问题，去google了一波发现gif.js这个玩意，api也很简单，把图片或者canvas传进去然后render一下就ojbk了,来个官方demo var gif = new GIF({ workers: 2, quality: 10 }); // add a image element gif.addFrame(imageElement); // or a canvas element gif.addFrame(canvasElement, {delay: 200}); // or copy the pixels from a canvas context gif.addFrame(ctx, {copy: true}); gif.on(&#39;finished&#39;, function(blob) { window.open(URL.createObjectURL(blob)); }); gif.render(); 至于如何获得gif的每一帧，我用的mac下的Gif preview 用户点击生成后用类似懒加载的方式加载图片 for(let i = 0 ; i &lt; num ; i++){ image = new Image() image.src = `xxxx${i}/xx.jpg` arr[i] = image } 请求数据量比较大，我先用mac下的Compress All对图片进行压缩，然后再用gzip进一步压缩所有文件(这都是后话了) 接下来调用canvas的drawImage，绘制arr图片数组中的图片，然后用canvas在上面绘制文字，注意绘制的过程使用函数requestAnimationFrame(这坑爬了好久)，关于此函数这里就不讲解了 function render(){ ctx.drawImage(arr[i],0,0) ...... requestAnimationFrame(render) } render() 然后一个循环把canvas都add进去 for(let j = 0 ; j &lt; num ; j++){ gif.addFrame(ctx,{delay: 167}) } 这里注意这两块代码执行的顺序，按照正常理解是draw一个add一个但是我发现不行(woc为什么?)，想了半天破罐破摔都draw完后再一股脑add进去发现竟然可以(???)… 我打印了一下执行顺序发现add竟然是在draw之前完成的 因为draw是递归调用，并且draw和add都是同步任务，按照Js单线程来看draw了一次后就轮到add的for循环执行，执行完毕后才会执行递归调用的draw 那么问题来了… 递归调用的draw还没执行，为什么for循环里就能把没绘制的元素状态”add”进去… 于是我看了一波源码 GIF.prototype.addFrame = function(image, options) { var frame, key; if (options == null) { options = {} } frame = {}; frame.transparent = this.options.transparent; for (key in frameDefaults) { frame[key] = options[key] || frameDefaults[key] } if (this.options.width == null) { this.setOption(&quot;width&quot;, image.width) } if (this.options.height == null) { this.setOption(&quot;height&quot;, image.height) } if (typeof ImageData !== &quot;undefined&quot; &amp;&amp; ImageData !== null &amp;&amp; image instanceof ImageData) { frame.data = image.data } else if (typeof CanvasRenderingContext2D !== &quot;undefined&quot; &amp;&amp; CanvasRenderingContext2D !== null &amp;&amp; image instanceof CanvasRenderingContext2D || typeof WebGLRenderingContext !== &quot;undefined&quot; &amp;&amp; WebGLRenderingContext !== null &amp;&amp; image instanceof WebGLRenderingContext) { if (options.copy) { frame.data = this.getContextData(image) } else { frame.context = image } } else if (image.childNodes != null) { if (options.copy) { frame.data = this.getImageData(image) } else { frame.image = image } } else { throw new Error(&quot;Invalid image&quot;) } return this.frames.push(frame) } instanceof 运算符用来测试一个对象在其原型链中是否存在一个构造函数的 prototype 属性很明显, 因为没有跟options copy 所以进入frame.context = image，看到context感觉是和上下文有关系，继续往下看…困了，先写到这明天看23333]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>HTML</tag>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CSS人人都能写自定义Checkbox（+1白话讲解）]]></title>
     <url>%2F2018%2F03%2F23%2FCSS%E4%BA%BA%E4%BA%BA%E9%83%BD%E8%83%BD%E5%86%99%E8%87%AA%E5%AE%9A%E4%B9%89Checkbox%EF%BC%88-1%E7%99%BD%E8%AF%9D%E8%AE%B2%E8%A7%A3%EF%BC%89%2F</url>
     <content type="text"><![CDATA[背景那一刻…无数前端开发者想起了自己曾经被Checkbox支配的恐惧…这种在绝大多数浏览器中几乎或完全不能进行样式替代的玩意让开发者们被迫选择默认样式，或者是找一些访问性极差的hack方案… 开始操作 先把基本结构搞出来 &lt;input type=&quot;checkbox&quot; id=&quot;awesome&quot; /&gt; &lt;label for=&quot;awesome&quot;&gt;Awesome!&lt;/label&gt; 可能有部分人不知道label有啥用: 当label与checkbox关联后，就可以起到触发开关的作用，并且我们可以通过对其添加一些内容(下面会讲解)来模拟checkbox的样式，再把真正的checkbox隐藏，最终达到我们的目的 添加样式 input[type=&quot;checkbox&quot;] + label::before{ content: &#39;\a0&#39;; /* 不换行空格 */ display: inline-block; /* 让元素和label处于同一行 */ vertical-align: .1em; /* 设置元素向上偏移.1em */ width: .8em; height: .8em; margin-right: .2em; /* 和label保持一定距离 */ border-radius: .2em; /* 加个圆角 */ background-color: lightcoral; text-indent: .15em; /* 设置元素内content(下文模拟的✓)的缩进 */ line-height: .65; /* 设置行高 */ } ‘+’ 选择器指相邻同胞选择器，例子中指选择紧挨在checkbox后面的label~ 对于content这个属性，这里有篇博客大家可以看一下编码 关于em这里就不再讲解啦~ 不过还是推荐大家出门拐拐拐去学习一下emmmmm. 展示 这个淡珊瑚色的框框就是我们设置的label::before 加个选中状态input[type=&quot;checkbox&quot;]:checked + label::before{ content: &#39;\2713&#39;; background: lightblue; } 展示 这个对勾的位置受到了上面样式text-indent: .15em的影响 这里用到了CSS3的checked伪对象选择器 隐藏默认的checkboxinput[type=&quot;checkbox&quot;]{ position: absolute; clip: rect(0,0,0,0); /* 剪裁绝对定位元素 */ } 展示 注意, 这里使用display:none虽然也能隐藏,但是会将checkbox从tab切换焦点的队列中删除(比如你输入完账号密码后使用tab不会使checkbox获得焦点) 结果 Html&lt;input type=&quot;checkbox&quot; id=&quot;awesome&quot; /&gt; &lt;label for=&quot;awesome&quot;&gt;Awesome!&lt;/label&gt; Cssinput[type=&quot;checkbox&quot;] + label::before{ content: &#39;\a0&#39;; display: inline-block; vertical-align: .1em; width: .8em; height: .8em; margin-right: .2em; border-radius: .2em; background-color: lightcoral; text-indent: .15em; line-height: .65; } input[type=&quot;checkbox&quot;]:checked + label::before{ content: &#39;\2713&#39;; background: lightblue; } input[type=&quot;checkbox&quot;]{ position: absolute; clip: rect(0,0,0,0); } 了解了基础操作后，相信各位能自己独立写一个自定义checkbox啦，各位也可以自由修改content或者添加动画做出酷炫的效果~]]></content>
@@ -167,6 +179,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[addone]]></title>
+    <url>%2F2017%2F04%2F20%2Faddone%2F</url>
+    <content type="text"><![CDATA[欢迎各位来到我的简单博客 其实这里什么都没有2333333333333333]]></content>
+      <categories>
+        <category>关于我</category>
+      </categories>
+      <tags>
+        <tag>我</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[某位小少女的散文诗-1]]></title>
     <url>%2F2017%2F04%2F20%2FgwyhArticle3%2F</url>
     <content type="text"><![CDATA[我 想我想把耳朵，贴在溪边的小树上。听小溪清脆地演奏，听小鸟欢快地啼叫。听啊，听——来到梦一般的仙境。我想把鼻子，放在鲜花上。闻鲜花的芳香，嗅生命的清爽。闻啊，闻——使我更加舒爽。我想把双手，装在飞机上。捉住柔软的白云，逮住太阳的光。玩啊，玩——蓝天是我的乐园。我想把自己，变成一条鱼。在海底，与小鱼嬉戏，与海藻玩耍。无忧无虑，尽情畅游。游啊，游——海底就是我的家。我想把自己，化为一只雄鹰。俯看长城的雄伟，再瞧草原的辽阔。飞啊，飞——见证祖国的欣荣繁茂。我想张开双臂，把祖国的山川揽入怀中。尽享山之静，水之美。我想有一百张，一千张嘴，来歌唱我的祖国——祖国，我为你骄傲！]]></content>
@@ -186,17 +209,6 @@
       </categories>
       <tags>
         <tag>她</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[addone]]></title>
-    <url>%2F2017%2F04%2F20%2Faddone%2F</url>
-    <content type="text"><![CDATA[欢迎各位来到我的简单博客 其实这里什么都没有2333333333333333]]></content>
-      <categories>
-        <category>关于我</category>
-      </categories>
-      <tags>
-        <tag>我</tag>
       </tags>
   </entry>
   <entry>
