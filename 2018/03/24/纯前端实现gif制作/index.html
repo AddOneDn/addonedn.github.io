@@ -239,7 +239,7 @@
 
     
         <meta property="article:published_time" content="Sat Mar 24 2018 22:44:27 GMT+0800">
-        <meta property="article:modified_time" content="Sun Mar 25 2018 10:04:28 GMT+0800">
+        <meta property="article:modified_time" content="Sun Mar 25 2018 12:50:21 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -262,7 +262,7 @@
     "mainEntityOfPage": "http://yoursite.com/2018/03/24/纯前端实现gif制作/index.html",
     "headline": "纯前端实现Gif制作",
     "datePublished": "Sat Mar 24 2018 22:44:27 GMT+0800",
-    "dateModified": "Sun Mar 25 2018 10:04:28 GMT+0800",
+    "dateModified": "Sun Mar 25 2018 12:50:21 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "AddOneG",
@@ -346,7 +346,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开始操作"><span class="post-toc-number">2.</span> <span class="post-toc-text">开始操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Begin"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Begin</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Next"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Next</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Next-Result"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Next Result</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#再Next"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">再Next</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#再Next-Result"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">再Next Result</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#真正开始操作"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">真正开始操作~</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开始操作"><span class="post-toc-number">2.</span> <span class="post-toc-text">开始操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Begin"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Begin</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Next"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Next</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Next-Result"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Next Result</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#再Next"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">再Next</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#再Next-Result"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">再Next Result</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#真正开始操作"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">真正开始操作~</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#启动"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">启动</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a></li></ol>
     </ul>
     
 
@@ -577,6 +577,7 @@ render()
 <blockquote>
 <p>考虑到我服务器性能和网速… 我在这整个大函数外面套了个延时器…保证用户加载完图片后才开始drawImage，不然会报错</p>
 </blockquote>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>服务器使用node.js的express搭建</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>光是最后这个想法介绍起来都能看出来我踩了很多坑….之前的想法踩了多少坑就不提了23333，并且发现不对后整个代码都要重写emmm，不过收获还是很多，同样的问题不会犯第二次了</p>
 
         
