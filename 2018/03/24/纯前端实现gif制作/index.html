@@ -43,7 +43,7 @@
     
     <title>
         
-            纯前端实现gif制作 | 
+            纯前端实现Gif制作 | 
         
         AddOne
     </title>
@@ -232,14 +232,14 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com/2018/03/24/纯前端实现gif制作/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="纯前端实现gif制作 | AddOne">
+    <meta property="og:title" content="纯前端实现Gif制作 | AddOne">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="徐嘉一的博客">
     <meta property="og:article:tag" content="HTML"> <meta property="og:article:tag" content="JS"> 
 
     
         <meta property="article:published_time" content="Sat Mar 24 2018 22:44:27 GMT+0800">
-        <meta property="article:modified_time" content="Sun Mar 25 2018 00:38:32 GMT+0800">
+        <meta property="article:modified_time" content="Sun Mar 25 2018 10:04:28 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -260,9 +260,9 @@
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "mainEntityOfPage": "http://yoursite.com/2018/03/24/纯前端实现gif制作/index.html",
-    "headline": "纯前端实现gif制作",
+    "headline": "纯前端实现Gif制作",
     "datePublished": "Sat Mar 24 2018 22:44:27 GMT+0800",
-    "dateModified": "Sun Mar 25 2018 00:38:32 GMT+0800",
+    "dateModified": "Sun Mar 25 2018 10:04:28 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "AddOneG",
@@ -346,7 +346,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开始操作"><span class="post-toc-number">2.</span> <span class="post-toc-text">开始操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Begin"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Begin</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Next"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Next</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Next-Result"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Next Result</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#再Next"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">再Next</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#再Next-Result"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">再Next Result</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#真正开始操作"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">真正开始操作~</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开始操作"><span class="post-toc-number">2.</span> <span class="post-toc-text">开始操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Begin"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Begin</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Next"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Next</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Next-Result"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Next Result</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#再Next"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">再Next</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#再Next-Result"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">再Next Result</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#真正开始操作"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">真正开始操作~</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a></li></ol>
     </ul>
     
 
@@ -365,20 +365,11 @@
                 
     <!-- Paradox Post Header -->
     
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-            <script type="text/ls-javascript" id="post-thumbnail-script">
-    var randomNum = Math.floor(Math.random() * 19 + 1);
-
-    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
-    $('.post_thumbnail-random').addClass('lazy');
-</script>
-
-        
+        <!-- Custom Thumbnail -->
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(http://p5sf6v0wz.bkt.clouddn.com/hs1.jpeg)">
     
             <p class="article-headline-p">
-                纯前端实现gif制作
+                纯前端实现Gif制作
             </p>
         </div>
 
@@ -441,7 +432,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=纯前端实现gif制作&url=http://yoursite.com/2018/03/24/纯前端实现gif制作/index.html&via=AddOneG" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=纯前端实现Gif制作&url=http://yoursite.com/2018/03/24/纯前端实现gif制作/index.html&via=AddOneG" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -459,7 +450,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=AddOne&title=纯前端实现gif制作&summary=徐嘉一的博客&pics=http://yoursite.com/img/favicon.ico&url=http://yoursite.com/2018/03/24/纯前端实现gif制作/index.html" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=AddOne&title=纯前端实现Gif制作&summary=徐嘉一的博客&pics=http://yoursite.com/img/favicon.ico&url=http://yoursite.com/2018/03/24/纯前端实现gif制作/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 QQ
             </li>
@@ -534,7 +525,7 @@ render()
   gif.addFrame(ctx,{delay: 167})
 }
 </code></pre>
-<p>这里注意这两块代码执行的顺序，按照正常理解是draw一个add一个但是我发现不行(woc为什么?)，想了半天破罐破摔都draw完后再一股脑add进去发现竟然可以(???)…</p>
+<p>这里注意这两块代码执行的顺序，按照正常理解是draw一个add一个但是我发现不行(woc为什么?)，改了半天破罐破摔都draw完后再一股脑add进去发现竟然可以(???)…</p>
 <ul>
 <li>我打印了一下执行顺序发现add竟然是在draw之前完成的<blockquote>
 <p>因为draw是递归调用，并且draw和add都是同步任务，按照Js单线程来看draw了一次后就轮到add的for循环执行，执行完毕后才会执行递归调用的draw</p>
@@ -579,8 +570,14 @@ render()
 }
 </code></pre>
 <blockquote>
-<p>instanceof 运算符用来测试一个对象在其原型链中是否存在一个构造函数的 prototype 属性<br>很明显, 因为没有跟options copy 所以进入<code>frame.context = image</code>，看到context感觉是和上下文有关系，继续往下看…困了，先写到这明天看23333</p>
+<p>instanceof 运算符用来测试一个对象在其原型链中是否存在一个构造函数的 prototype 属性</p>
 </blockquote>
+<p>很明显, 因为add时候参数没有传<code>copy</code>所以进入<code>frame.context = image</code>，看到context第一感觉是和执行上下文有关系，再打印一遍执行顺序发现<code>gif.on(&#39;finish&#39;)</code>是全部draw完后执行的，结合worker不难推出frame和canvas之间是类似引用的关系并且在子线程中不断执行…</p>
+<p>最后就很简单了…render一下就ojbk</p>
+<blockquote>
+<p>考虑到我服务器性能和网速… 我在这整个大函数外面套了个延时器…保证用户加载完图片后才开始drawImage，不然会报错</p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>光是最后这个想法介绍起来都能看出来我踩了很多坑….之前的想法踩了多少坑就不提了23333，并且发现不对后整个代码都要重写emmm，不过收获还是很多，同样的问题不会犯第二次了</p>
 
         
     
