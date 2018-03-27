@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[和setImmediate小姐那销魂的一夜情]]></title>
+    <url>%2F2018%2F03%2F27%2F%E5%92%8CSetImmediate%E5%B0%8F%E5%A7%90%E9%82%A3%E9%94%80%E9%AD%82%E7%9A%84%E4%B8%80%E5%A4%9C%E6%83%85%2F</url>
+    <content type="text"><![CDATA[背景Rex大佬看完我的那篇一道简单面试题理解JS事件机制（+1白话讲解)后推荐我加上setImmediate这个东东.. 于是这篇博客应运而生~ 简介This method is used to break up long running operations and run a callback function immediately after the browser has completed other operations such as events and display updates. 如果看不懂这段话…那么这篇文章可能不适合你 渐进先来个简单的Node.js的Event loop ┌───────────────────────┐ ┌─&gt;│ timers │ │ └──────────┬────────────┘ │ ┌──────────┴────────────┐ │ │ I/O callbacks │ │ └──────────┬────────────┘ │ ┌──────────┴────────────┐ │ │ idle, prepare │ │ └──────────┬────────────┘ ┌───────────────┐ │ ┌──────────┴────────────┐ │ incoming: │ │ │ poll │&lt;─────┤ connections, │ │ └──────────┬────────────┘ │ data, etc. │ │ ┌──────────┴────────────┐ └───────────────┘ │ │ check │ │ └──────────┬────────────┘ │ ┌──────────┴────────────┐ └──┤ close callbacks │ └───────────────────────┘ Event loop的基础知识这里不再讲解.. 想了解的可以看我上面提到的那篇博文 timers: 这个阶段执行setTimeout()和setInterval()设定的回调。 I/O callbacks: 执行几乎所有的回调，除了close回调，timer的回调，和setImmediate()的回调。 idle, prepare: 仅内部使用。 poll: 获取新的I/O事件；node会在适当条件下阻塞在这里。 check: 执行setImmediate()设定的回调。 close callbacks: 执行比如socket.on(‘close’, …)的回调。 例子setTimeout(function timeout () { console.log(&#39;timeout&#39;); },0); setImmediate(function immediate () { console.log(&#39;immediate&#39;); }); setTimeout(fn, 0)几乎等价于setTimeout(fn, 1) 结果如何? 答案是不确定，因为不能确定进行到timers的时候1ms是否已经过去，如果没过去那就执行check中的setImmediate了 另外如果在一些特定的上下文中执行，比如fs.readFile，该函数的回调执行是在poll阶段，那么接下来就一定会先执行check中的setImmediate 多次调用 setImmediate 则把回调都放入队列，在 check 阶段都会执行 setImmediate 回调里调用setImmediate ，则放到下次 event loop 未完待续]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>Node.js</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Canvas模仿草莓音乐节宣传视频]]></title>
     <url>%2F2018%2F03%2F27%2FCanvas%E6%A8%A1%E4%BB%BF%E8%8D%89%E8%8E%93%E9%9F%B3%E4%B9%90%E8%8A%82%E5%AE%A3%E4%BC%A0%E8%A7%86%E9%A2%91%2F</url>
-    <content type="text"><![CDATA[先放个图]]></content>
+    <content type="text"><![CDATA[简介在掘金上看了一篇文章，作者使用的是导出的svg，然鹅我不会，所以我就想着用canvas撸出来…顺便当复习了 代码 这里只挑一些我认为有价值的地方讲.. 想了想…canvas好像确实没啥值得讲的，主要是撸代码的时候注意绘画的坐标，要考虑健壮性…不然你会发现后期很难维护 animation-fill-mode: both这是个好东西，让最后放大的三个圆在执行动画前不显示样式以及动画结束后保持样式 代码Js太长 这里就只贴Html了 &lt;div class=&quot;main&quot;&gt; &lt;canvas id=&quot;left-dot&quot; height=&quot;500&quot; width=&quot;700&quot;&gt;&lt;/canvas&gt; &lt;canvas id=&quot;left-scroll&quot; height=&quot;600&quot; width=&quot;700&quot;&gt;&lt;/canvas&gt; &lt;canvas id=&quot;right-scroll&quot; height=&quot;600&quot; width=&quot;700&quot;&gt;&lt;/canvas&gt; &lt;canvas id=&quot;circle-out&quot; height=&quot;500&quot; width=&quot;700&quot;&gt;&lt;/canvas&gt; &lt;canvas id=&quot;circle-inner&quot; height=&quot;500&quot; width=&quot;700&quot;&gt;&lt;/canvas&gt; &lt;canvas id=&quot;circle1&quot; height=&quot;500&quot; width=&quot;700&quot;&gt;&lt;/canvas&gt; &lt;canvas id=&quot;circle2&quot; height=&quot;500&quot; width=&quot;700&quot;&gt;&lt;/canvas&gt; &lt;canvas id=&quot;circle3&quot; height=&quot;500&quot; width=&quot;700&quot;&gt;&lt;/canvas&gt; &lt;/div&gt; 成品]]></content>
       <categories>
         <category>技术</category>
       </categories>
