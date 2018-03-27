@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Canvas模仿草莓音乐节宣传视频]]></title>
+    <url>%2F2018%2F03%2F27%2FCanvas%E6%A8%A1%E4%BB%BF%E8%8D%89%E8%8E%93%E9%9F%B3%E4%B9%90%E8%8A%82%E5%AE%A3%E4%BC%A0%E8%A7%86%E9%A2%91%2F</url>
+    <content type="text"><![CDATA[先放个图]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>Canvas</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Parcel上手与React开发环境搭建]]></title>
     <url>%2F2018%2F03%2F25%2FParcel%E4%B8%8A%E6%89%8B%E4%B8%8EReact%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%2F</url>
     <content type="text"><![CDATA[背景我从不关注代码之外的东西，因为我相信有人会帮我做这些… 之前上手了Parcel感觉还OK，在这里小小的整理一哈 开始操作 安装Parcel yarn global add parcel-bundler 创建package.json再顺便加个命令 yarn init -y // package.json &quot;scripts&quot;: { &quot;start&quot;: &quot;parcel index.html&quot; } 安装Babel yarn add babel-preset-env 安装node-sass yarn add node-sass 接着创建.babelrc { &quot;preset&quot;: &quot;[env]&quot; } 安装React依赖 yarn add react yarn add react-dom yarn add --dev parcel-bundler yarn add --dev babel-preset-env yarn add --dev babel-preset-react 在.babelrc中修改 { &quot;presets&quot;: [&quot;env&quot;, &quot;react&quot;] } 再整理一下目录…现在应该是这样的(关键的) node_modules src components containers App.js App.scss .babelrc index.html package.json index.html &lt;!DOCTYPE html&gt; &lt;html lang=&quot;en&quot;&gt; &lt;head&gt; &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt; &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt; &lt;title&gt;Parcel-React&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;div id=&quot;root&quot;&gt;&lt;/div&gt; &lt;script src=&quot;./src/index.js&quot;&gt;&lt;/script&gt; &lt;/body&gt; &lt;/html&gt; index.js import React from &#39;react&#39;; import ReactDOM from &#39;react-dom&#39;; import App from &#39;./App&#39;; ReactDOM.render(&lt;App /&gt;, document.getElementById(&#39;root&#39;)); App.js import React, { Component } from &#39;react&#39;; import &#39;./App.scss&#39;; class App extends Component { render() { return ( &lt;div className=&quot;App&quot;&gt; &lt;h1&gt;Hello Parcel-React&lt;/h1&gt; &lt;/div&gt; ); } } export default App; App.scss $color-red: red; $color-black: black; h1{ color: $color-red; cursor: pointer; &amp;:hover{ color: $color-black; } } package.json { &quot;name&quot;: &quot;parcel-test1&quot;, &quot;version&quot;: &quot;1.0.0&quot;, &quot;main&quot;: &quot;index.js&quot;, &quot;license&quot;: &quot;MIT&quot;, &quot;scripts&quot;: { &quot;start&quot;: &quot;parcel index.html&quot; }, &quot;dependencies&quot;: { &quot;babel-preset-env&quot;: &quot;^1.6.1&quot;, &quot;node-sass&quot;: &quot;^4.8.3&quot;, &quot;react&quot;: &quot;^16.2.0&quot;, &quot;react-dom&quot;: &quot;^16.2.0&quot; }, &quot;devDependencies&quot;: { &quot;babel-core&quot;: &quot;^6.26.0&quot;, &quot;babel-preset-react&quot;: &quot;^6.24.1&quot;, &quot;parcel-bundler&quot;: &quot;^1.6.2&quot; } } 最后npm run一哈 舒服了，终于可以不用手脚架了，自己动手丰衣足食 我特么为啥不去用手脚架= =]]></content>
@@ -93,8 +105,8 @@
       </categories>
       <tags>
         <tag>前端</tag>
-        <tag>面试</tag>
         <tag>浏览器</tag>
+        <tag>面试</tag>
       </tags>
   </entry>
   <entry>
@@ -106,8 +118,8 @@
       </categories>
       <tags>
         <tag>前端</tag>
-        <tag>JavaScript</tag>
         <tag>面试</tag>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
