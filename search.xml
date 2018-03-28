@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[深入React知识点]]></title>
     <url>%2F2018%2F03%2F28%2FReact-Native%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9%2F</url>
-    <content type="text"><![CDATA[背景自己对React方面还没有一个系统的整理，并且自己ReactNative方面比较薄弱，毕竟平时很少用ReactNative进行开发，接触的相关项目也比较少，所以在这里对React的一些知识点进行一些总结，顺便提一下ReactNative方面的知识 开始以下内容基本为个人理解，如有错误欢迎指出 ReactNative相比于原生App的优势和劣势优势 节省编译时间，开发效率快 学习成本极低(对于我) 组件化 热更新 劣势 不太稳定 内存占用较高 React的生命周期详情可以看我写的这篇React生命周期简明宝典 关于setState一个简化的setState调用图 首先，setState是异步执行的 这里涉及到React的事务机制，比较高级，本人能力有限这里就不误人子弟了，有兴趣的同学可以去自学一波 如果你写代码的时候发现你set的data并没有立即生效，那么它们很可能被batch update了 setState并不负责更新数据，它只是把state和callback放入_pendingStateQueue和_pendingCallback中，并且把要更新的组件放入dirtyComponents序列 再来个详细一点的图 本人目前只能理解到这里了…这个知识点就先到这了]]></content>
+    <content type="text"><![CDATA[背景自己对React方面还没有一个系统的整理，并且自己ReactNative方面比较薄弱，毕竟平时很少用ReactNative进行开发，接触的相关项目也比较少，所以在这里对React的一些知识点进行一些总结，顺便提一下ReactNative方面的知识 开始以下内容基本为个人理解，如有错误欢迎指出 ReactNative相比于原生App的优势和劣势优势 节省编译时间，开发效率快 学习成本极低(对于我) 组件化 热更新 劣势 不太稳定 内存占用较高 React的生命周期详情可以看我写的这篇React生命周期简明宝典 关于setState setState() schedules an update to a component’s state object. When state changes, the component responds by re-rendering 一个简化的setState调用图 首先，setState是异步执行的 这里涉及到React的事务机制，比较高级，本人能力有限这里就不误人子弟了，有兴趣的同学可以去自学一波 如果你写代码的时候发现你set的data并没有立即生效，那么它们很可能被batch update了 setState并不负责更新数据，它只是把state和callback放入_pendingStateQueue和_pendingCallback中，并且把要更新的组件放入dirtyComponents序列 再来个详细一点的图 本人目前只能理解到这里了…这个知识点就先到这了 关于state(状态)和props(属性)stateReact 把组件看成是一个状态机（State Machines）。通过与用户的交互，实现不同状态，然后渲染 UI，让用户界面和数据保持一致，在React里只需要更新state，然后根据新的state进行渲染 初始值来源于getInitalState（constructor) 只能在组件内部进行setState 代表组件内部自身的状态，只能在自身组件中存在 未完待续]]></content>
       <categories>
         <category>技术</category>
       </categories>
