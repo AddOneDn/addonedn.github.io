@@ -21,14 +21,14 @@
       </categories>
       <tags>
         <tag>前端</tag>
-        <tag>React-Native</tag>
         <tag>React</tag>
+        <tag>React-Native</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[Webpack配置讲解]]></title>
     <url>%2F2018%2F03%2F28%2FWebpack%E9%85%8D%E7%BD%AE%E8%AE%B2%E8%A7%A3%2F</url>
-    <content type="text"><![CDATA[背景之前讲了讲Parcel搭建React环境…想了想不讲一哈Webpack还真有点过意不去 这周末之前争取整理出来吧..]]></content>
+    <content type="text"><![CDATA[背景之前讲了讲Parcel搭建React环境…想了想不讲一哈Webpack还真有点过意不去 开始安装npm install webpack webpack-cli -g # 或者 yarn global add webpack webpack-cli 配置创建package.json文件 npm install webpack -D # 或者 yarn add webpack -D 添加npm scripts &quot;scripts&quot;: { &quot;build&quot;: &quot;webpack --mode production&quot; }, &quot;devDependencies&quot;: { &quot;webpack&quot;: &quot;^4.1.1&quot;, &quot;webpack-cli&quot;: &quot;^2.0.12&quot;, } 入口随意创建./src/index.js，此为webpack默认入口文件，若想更改可以对webpack配置文件进行修改 module.exports = { entry: &#39;./src/index.js&#39; } // 上述配置等同于 module.exports = { entry: { main: &#39;./src/index.js&#39; } } // 或者配置多个入口 module.exports = { entry: { foo: &#39;./src/page-foo.js&#39;, bar: &#39;./src/page-bar.js&#39;, // ... } } // 使用数组来对多个文件进行打包 module.exports = { entry: { main: [ &#39;./src/foo.js&#39;, &#39;./src/bar.js&#39; ] } } loader 我们可以把 loader 理解为是一个转换器，负责把某种文件格式的内容转换成 webpack 可以支持打包的模块 在module.rules中进行修改 module: { // ... rules: [ { test: /\.jsx?/, // 匹配文件路径的正则表达式，通常我们都是匹配文件类型后缀 include: [ path.resolve(__dirname, &#39;src&#39;) // 指定哪些路径下的文件需要经过 loader 处理 ], use: &#39;babel-loader&#39;, // 指定使用的 loader }, ], } 关于loader的安装可以查看网址 plugin 模块代码转换的工作由 loader 来处理，除此之外的其他任何工作都可以交由 plugin 来完成，只需在配置中通过 plugins 字段添加新的 plugin 即可 const UglifyPlugin = require(&#39;uglifyjs-webpack-plugin&#39;) module.exports = { plugins: [ new UglifyPlugin() ], } 输出 webpack 的输出即指 webpack 最终构建出来的静态文件，使用output字段进行修改 module.exports = { // ... output: { path: path.resolve(__dirname, &#39;dist&#39;), filename: &#39;bundle.js&#39;, }, } // 或者多个入口生成不同文件 module.exports = { entry: { foo: &#39;./src/foo.js&#39;, bar: &#39;./src/bar.js&#39;, }, output: { filename: &#39;[name].js&#39;, path: __dirname + &#39;/dist&#39;, }, } // 路径中使用 hash，每次构建时会有一个不同 hash 值，避免发布新版本时线上使用浏览器缓存 module.exports = { // ... output: { filename: &#39;[name].js&#39;, path: __dirname + &#39;/dist/[hash]&#39;, }, } 小结创建一个简单的配置文件webpack.config.js const path = require(&#39;path&#39;) const UglifyPlugin = require(&#39;uglifyjs-webpack-plugin&#39;) module.exports = { entry: &#39;./src/index.js&#39;, output: { path: path.resolve(__dirname, &#39;dist&#39;), filename: &#39;bundle.js&#39;, }, module: { rules: [ { test: /\.jsx?/, include: [ path.resolve(__dirname, &#39;src&#39;) ], use: &#39;babel-loader&#39;, }, ], }, // 代码模块路径解析的配置 resolve: { modules: [ &quot;node_modules&quot;, path.resolve(__dirname, &#39;src&#39;) ], extensions: [&quot;.wasm&quot;, &quot;.mjs&quot;, &quot;.js&quot;, &quot;.json&quot;, &quot;.jsx&quot;], }, plugins: [ new UglifyPlugin(), // 使用 uglifyjs-webpack-plugin 来压缩 JS 代码 // 如果你留意了我们一开始直接使用 webpack 构建的结果，你会发现默认已经使用了 JS 代码压缩的插件 // 这其实也是我们命令中的 --mode production 的效果，后续的小节会介绍 webpack 的 mode 参数 ], } 简单的webpack搭建就到这里]]></content>
       <categories>
         <category>技术</category>
       </categories>
@@ -64,7 +64,7 @@
   <entry>
     <title><![CDATA[Parcel上手与React开发环境搭建]]></title>
     <url>%2F2018%2F03%2F25%2FParcel%E4%B8%8A%E6%89%8B%E4%B8%8EReact%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%2F</url>
-    <content type="text"><![CDATA[背景我从不关注代码之外的东西，因为我相信有人会帮我做这些… 之前上手了Parcel感觉还OK，在这里小小的整理一哈 开始操作 安装Parcel yarn global add parcel-bundler 创建package.json再顺便加个命令 yarn init -y // package.json &quot;scripts&quot;: { &quot;start&quot;: &quot;parcel index.html&quot; } 安装Babel yarn add babel-preset-env 安装node-sass yarn add node-sass 接着创建.babelrc { &quot;preset&quot;: [&quot;env&quot;] } 安装React依赖 yarn add react yarn add react-dom yarn add --dev parcel-bundler yarn add --dev babel-preset-env yarn add --dev babel-preset-react 在.babelrc中修改 { &quot;presets&quot;: [&quot;env&quot;, &quot;react&quot;] } 再整理一下目录…现在应该是这样的(关键的) node_modules src components containers App.js App.scss .babelrc index.html package.json index.html &lt;!DOCTYPE html&gt; &lt;html lang=&quot;en&quot;&gt; &lt;head&gt; &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt; &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt; &lt;title&gt;Parcel-React&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;div id=&quot;root&quot;&gt;&lt;/div&gt; &lt;script src=&quot;./src/index.js&quot;&gt;&lt;/script&gt; &lt;/body&gt; &lt;/html&gt; index.js import React from &#39;react&#39;; import ReactDOM from &#39;react-dom&#39;; import App from &#39;./App&#39;; ReactDOM.render(&lt;App /&gt;, document.getElementById(&#39;root&#39;)); App.js import React, { Component } from &#39;react&#39;; import &#39;./App.scss&#39;; class App extends Component { render() { return ( &lt;div className=&quot;App&quot;&gt; &lt;h1&gt;Hello Parcel-React&lt;/h1&gt; &lt;/div&gt; ); } } export default App; App.scss $color-red: red; $color-black: black; h1{ color: $color-red; cursor: pointer; &amp;:hover{ color: $color-black; } } package.json { &quot;name&quot;: &quot;parcel-test1&quot;, &quot;version&quot;: &quot;1.0.0&quot;, &quot;main&quot;: &quot;index.js&quot;, &quot;license&quot;: &quot;MIT&quot;, &quot;scripts&quot;: { &quot;start&quot;: &quot;parcel index.html&quot; }, &quot;dependencies&quot;: { &quot;babel-preset-env&quot;: &quot;^1.6.1&quot;, &quot;node-sass&quot;: &quot;^4.8.3&quot;, &quot;react&quot;: &quot;^16.2.0&quot;, &quot;react-dom&quot;: &quot;^16.2.0&quot; }, &quot;devDependencies&quot;: { &quot;babel-core&quot;: &quot;^6.26.0&quot;, &quot;babel-preset-react&quot;: &quot;^6.24.1&quot;, &quot;parcel-bundler&quot;: &quot;^1.6.2&quot; } } 最后npm run一哈 舒服了，终于可以不用手脚架了，自己动手丰衣足食 我特么为啥不去用手脚架= =]]></content>
+    <content type="text"><![CDATA[背景我从不关注代码之外的东西，因为我相信有人会帮我做这些… 之前上手了Parcel感觉还OK，在这里小小的整理一哈 开始操作 安装Parcel yarn global add parcel-bundler 创建package.json再顺便加个命令 yarn init -y // package.json &quot;scripts&quot;: { &quot;start&quot;: &quot;parcel index.html&quot; } 安装Babel yarn add babel-preset-env 安装node-sass yarn add node-sass 接着创建.babelrc { &quot;preset&quot;: [&quot;env&quot;] } 安装React依赖 yarn add react yarn add react-dom yarn add --dev parcel-bundler yarn add --dev babel-preset-env yarn add --dev babel-preset-react 在.babelrc中修改 { &quot;presets&quot;: [&quot;env&quot;, &quot;react&quot;] } 再整理一下目录…现在应该是这样的(关键的) node_modules src components containers App.js App.scss .babelrc index.html package.json index.html &lt;!DOCTYPE html&gt; &lt;html lang=&quot;en&quot;&gt; &lt;head&gt; &lt;meta charset=&quot;UTF-8&quot;&gt; &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt; &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt; &lt;title&gt;Parcel-React&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;div id=&quot;root&quot;&gt;&lt;/div&gt; &lt;script src=&quot;./src/index.js&quot;&gt;&lt;/script&gt; &lt;/body&gt; &lt;/html&gt; index.js import React from &#39;react&#39;; import ReactDOM from &#39;react-dom&#39;; import App from &#39;./App&#39;; ReactDOM.render(&lt;App /&gt;, document.getElementById(&#39;root&#39;)); App.js import React, { Component } from &#39;react&#39;; import &#39;./App.scss&#39;; class App extends Component { render() { return ( &lt;div className=&quot;App&quot;&gt; &lt;h1&gt;Hello Parcel-React&lt;/h1&gt; &lt;/div&gt; ); } } export default App; App.scss $color-red: red; $color-black: black; h1{ color: $color-red; cursor: pointer; &amp;:hover{ color: $color-black; } } package.json { &quot;name&quot;: &quot;parcel-test1&quot;, &quot;version&quot;: &quot;1.0.0&quot;, &quot;main&quot;: &quot;index.js&quot;, &quot;license&quot;: &quot;MIT&quot;, &quot;scripts&quot;: { &quot;start&quot;: &quot;parcel index.html&quot; }, &quot;dependencies&quot;: { &quot;babel-preset-env&quot;: &quot;^1.6.1&quot;, &quot;node-sass&quot;: &quot;^4.8.3&quot;, &quot;react&quot;: &quot;^16.2.0&quot;, &quot;react-dom&quot;: &quot;^16.2.0&quot; }, &quot;devDependencies&quot;: { &quot;babel-core&quot;: &quot;^6.26.0&quot;, &quot;babel-preset-react&quot;: &quot;^6.24.1&quot;, &quot;parcel-bundler&quot;: &quot;^1.6.2&quot; } } 最后npm run一哈 舒服了，终于可以不用手脚架了，自己动手丰衣足食 有什么其他依赖再自己yarn add或npm install就好啦]]></content>
       <categories>
         <category>技术</category>
       </categories>
@@ -253,6 +253,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[某位小少女的散文诗-1]]></title>
+    <url>%2F2017%2F04%2F20%2FgwyhArticle3%2F</url>
+    <content type="text"><![CDATA[我 想我想把耳朵，贴在溪边的小树上。听小溪清脆地演奏，听小鸟欢快地啼叫。听啊，听——来到梦一般的仙境。我想把鼻子，放在鲜花上。闻鲜花的芳香，嗅生命的清爽。闻啊，闻——使我更加舒爽。我想把双手，装在飞机上。捉住柔软的白云，逮住太阳的光。玩啊，玩——蓝天是我的乐园。我想把自己，变成一条鱼。在海底，与小鱼嬉戏，与海藻玩耍。无忧无虑，尽情畅游。游啊，游——海底就是我的家。我想把自己，化为一只雄鹰。俯看长城的雄伟，再瞧草原的辽阔。飞啊，飞——见证祖国的欣荣繁茂。我想张开双臂，把祖国的山川揽入怀中。尽享山之静，水之美。我想有一百张，一千张嘴，来歌唱我的祖国——祖国，我为你骄傲！]]></content>
+      <categories>
+        <category>我爱的人</category>
+      </categories>
+      <tags>
+        <tag>她</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[某位小少女的作文-2]]></title>
     <url>%2F2017%2F04%2F20%2FgwyhArticle2%2F</url>
     <content type="text"><![CDATA[时光匆匆轻轻地打开书本，低声诵起了朱自清的《匆匆》：“燕子去了，有再来的时候；杨柳枯了，有再青的时候；桃花谢了，有再开的时候……”多么优美，多么富于哲理的话语，我一遍又一遍地读着、读着……屈指一算，已有四千多个日夜从我身边流过，还有三个月就要小学毕业了。如果再过三千多个日夜我就该大学毕业走向社会了，成为一个来建设祖国的建设者了。如何才能做一个合格的小学生呢？如何做才能成为一个合格的建设者呢？我们这代青少年有理想，又有抱负，但不能坐享其成。有些青年靠幻想来度日：想着以后该做什么，怎样为国家做贡献，就是不开始行动，甚至相信天上会掉下馅饼来。让时间在幻想当中白白流失了。有的人，总把事情推到明天再做，要知道“明日复明日，明日何其多。我生待明日，万事成蹉跎”啊！时光冉冉，我已从嗷嗷待哺的婴儿成长到乖巧懂事的六年级学生，时间就这样溜走――早晨，当我开始洗漱时，时间从水盆里溜走；中午，当我放学回家时，时间从脚下溜走；晚上，当我观望星空时，时间从眼前溜走……“光阴似箭，日月如梭。”每时每刻，时间都从我身边溜走，而且去而不返。“一寸光阴一寸金，寸金难买寸光阴。”这使我加倍珍惜它，把握分分秒秒。直至现在，它还在催促我长大，但是我并不感谢它，因为它在催促我长大的同时，也让生命点滴流逝。我总是追赶它，渴望与它同起同作，同止同息，但是，那却是可望而不可及的。今年的春天一定在想——去年的春天寄托了什么样的理想，明年的春天又会是一个怎样的景象？这一切我都无法作答，但愿像欧阳修所说的那样：今年花胜去年红，明年花更好，更与我同！]]></content>
@@ -267,17 +278,6 @@
     <title><![CDATA[某位小少女的作文-1]]></title>
     <url>%2F2017%2F04%2F20%2FgwyhArticle1%2F</url>
     <content type="text"><![CDATA[珍爱生命 让人生更精彩一个生命从春天走过，至少它美丽过； 一个生命从夏天走过，至少它辉煌过； 一个生命从秋天走过，至少它绚烂过； 一个生命从冬天走过，至少它坚强过。吟起这首诗，我自问：“生命是什么？”它不是一场雨，雨下在地上蒸发成水汽还会再落下；它不是一棵小草，小草枯了春天还会再荣；生命是无意间爬上额间的河流，当我们懂得珍惜时，河道已很深，深深的河道里有深深的遗憾。生命犹如单行道，没有回头的机会；生命是宇宙时间，永远无法找到两个相同时刻。“人，最宝贵的东西是生命。生命属于人只有一次。”汶川地震，警察妈妈哺育受灾幼儿；玉树天灾，护士妈妈再现慈爱。珍爱生命，人生将更精彩。感悟生命从连绵上浮起，从一点一滴中渗出，在细微处藏身。生命的长河倒映着红花绿叶、飘零积雪，变迁着湖畔边丝丝色泽，并渐渐地前行。大江东去，璀璨的生命镌刻着历史的痕迹，激荡着颗颗璀璨的明珠。生活中不可能处处有鲜花，时时有掌声。在你留意生命、珍惜生命的旅程中，你会发现，当生命被生活推向极致的地方，往往会展现出一些从容之美，临乱世而不惊，处方舟而不躁，喜迎阴晴圆缺，笑傲风霜雨雪；你更会明白，只有抱着一颗常人的平常之心，去看待生命，去珍惜生命，生命才会更有意义。生命是一种神秘的力量，说它脆弱，它就像薄冰一样不堪一击；说它坚强，它又像大山一般坚韧不拔。像海伦·凯勒，她是一位双耳失聪、双目失明的残疾人，但她凭着自己的毅力和信念，凭着对生命的热爱，先后掌握了四门外语，成为哈佛大学的一名学生，你能不说这是生命所创造的奇迹吗？去追寻你的梦想，去你想去的地方，做一个你想做的人。因为，生命只有一次，亦只得一次机会去做你所想做的事。我们应让自己的生命在理智的搏击中度过，就像落叶、谢花一样，潇洒地来，潇洒地去，做到对生命无怨无悔，让生命之光永远辉煌。珍爱生命吧，哪怕生命只有一霎那，那也让它成为一种永恒！]]></content>
-      <categories>
-        <category>我爱的人</category>
-      </categories>
-      <tags>
-        <tag>她</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[某位小少女的散文诗-1]]></title>
-    <url>%2F2017%2F04%2F20%2FgwyhArticle3%2F</url>
-    <content type="text"><![CDATA[我 想我想把耳朵，贴在溪边的小树上。听小溪清脆地演奏，听小鸟欢快地啼叫。听啊，听——来到梦一般的仙境。我想把鼻子，放在鲜花上。闻鲜花的芳香，嗅生命的清爽。闻啊，闻——使我更加舒爽。我想把双手，装在飞机上。捉住柔软的白云，逮住太阳的光。玩啊，玩——蓝天是我的乐园。我想把自己，变成一条鱼。在海底，与小鱼嬉戏，与海藻玩耍。无忧无虑，尽情畅游。游啊，游——海底就是我的家。我想把自己，化为一只雄鹰。俯看长城的雄伟，再瞧草原的辽阔。飞啊，飞——见证祖国的欣荣繁茂。我想张开双臂，把祖国的山川揽入怀中。尽享山之静，水之美。我想有一百张，一千张嘴，来歌唱我的祖国——祖国，我为你骄傲！]]></content>
       <categories>
         <category>我爱的人</category>
       </categories>
