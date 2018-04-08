@@ -239,7 +239,7 @@
 
     
         <meta property="article:published_time" content="Sat Apr 07 2018 11:14:52 GMT+0800">
-        <meta property="article:modified_time" content="Sat Apr 07 2018 13:57:01 GMT+0800">
+        <meta property="article:modified_time" content="Sun Apr 08 2018 15:14:29 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -262,7 +262,7 @@
     "mainEntityOfPage": "http://yoursite.com/2018/04/07/微信小程序实现折叠展开菜单/index.html",
     "headline": "微信小程序实现折叠展开菜单",
     "datePublished": "Sat Apr 07 2018 11:14:52 GMT+0800",
-    "dateModified": "Sat Apr 07 2018 13:57:01 GMT+0800",
+    "dateModified": "Sun Apr 08 2018 15:14:29 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "AddOneG",
@@ -346,7 +346,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#先上个动图"><span class="post-toc-number">2.</span> <span class="post-toc-text">先上个动图</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码"><span class="post-toc-number">3.</span> <span class="post-toc-text">代码</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#先上个动图"><span class="post-toc-number">2.</span> <span class="post-toc-text">先上个动图</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开始正题"><span class="post-toc-number">3.</span> <span class="post-toc-text">开始正题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#上方Nav"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">上方Nav</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#下方菜单"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">下方菜单</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#动画"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">动画</span></a></li></ol></li></ol>
     </ul>
     
 
@@ -470,8 +470,73 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在这篇文章<a href="https://juejin.im/post/5aa62d3bf265da239b4112b3" target="_blank" rel="noopener">《2018年设计趋势指南》</a>中发现一款菜单不错，就想着用微信小程序实现</p>
-<h2 id="先上个动图"><a href="#先上个动图" class="headerlink" title="先上个动图"></a>先上个动图</h2><p><img src="http://p5sf6v0wz.bkt.clouddn.com/menu.gif" alt="Gif"></p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>先不讲</p>
+<h2 id="先上个动图"><a href="#先上个动图" class="headerlink" title="先上个动图"></a>先上个动图</h2><p><img src="http://p5sf6v0wz.bkt.clouddn.com/menu.gif" width="50%" height="50%"></p>
+<h2 id="开始正题"><a href="#开始正题" class="headerlink" title="开始正题"></a>开始正题</h2><h3 id="上方Nav"><a href="#上方Nav" class="headerlink" title="上方Nav"></a>上方Nav</h3><p>基本<code>flex</code>布局再加个<code>padding</code>不需要多讲吧?</p>
+<blockquote>
+<p>提一下，微信小程序里input的placeholder样式是写在<code>placeholder-style</code>里或使用<code>placeholder-class</code></p>
+</blockquote>
+<h3 id="下方菜单"><a href="#下方菜单" class="headerlink" title="下方菜单"></a>下方菜单</h3><ul>
+<li>每个小卡片遵从<code>flex</code>布局，设置<code>width: 50%</code>，别忘了<code>flex-wrap: wrap</code></li>
+<li>每个小卡片内部同为<code>flex</code>布局并设置垂直居中，想了想还是科普下:</li>
+</ul>
+<pre><code class="CSS">.main-view-item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+</code></pre>
+<blockquote>
+<p>flex真他娘的好用</p>
+</blockquote>
+<p>至于里面的图片是从<a href="http://www.iconfont.cn/" target="_blank" rel="noopener">iconfont</a>上拿的，调这几个配色的时间是我布局时间的几十倍….</p>
+<h3 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h3><blockquote>
+<p>微信小程序的动画只能用JS，常规手段不可用，来个头脑风暴hack起来</p>
+</blockquote>
+<p>观察每个卡片的折叠方向后，为每个卡片添加初始<code>rotate</code>使其反向折叠，我在这里定义了两个Class</p>
+<pre><code class="Css">.rotateX90{
+  transform: rotateX(-90deg);
+}
+.rotateY90{
+  transform: rotateY(-90deg);
+}
+</code></pre>
+<p>好了这样就看不到卡片了，然后给菜单按钮添加点击事件改变卡片的rotate就Ojbk啦</p>
+<pre><code class="Javascript">var duration = 150
+
+var item1 = wx.createAnimation({
+  duration: duration,
+  transformOrigin: &#39;0 0 0&#39;
+})
+
+item1.rotateX(90).step()
+
+this.setData({
+  item1: item1,
+  item1Style: &#39;item1Style&#39;
+})
+</code></pre>
+<p>这里注意调整<code>transformOrigin</code>来控制折叠方向，对于后面的卡片在<code>createAnimation</code>中添加<code>delay</code>字段即可(差为<code>duration</code>的等差数列)</p>
+<blockquote>
+<p>是不是很简单嗯?</p>
+</blockquote>
+<p>至于菜单的收回，代码和展开差不多，就是反过来而已，不过有些展开的顺序和<code>transformOrigin</code>需要注意，这里还是贴一个代码吧:</p>
+<pre><code class="Javascript">var duration = 150
+
+var item3 = wx.createAnimation({
+  duration: duration,
+  transformOrigin: &#39;100% 100% 0&#39;,
+  delay: duration * 2
+})
+
+item1.rotateX(90).step()
+
+this.setData({
+  item3: item3,
+  item3Style: &#39;&#39;
+})
+</code></pre>
+<p>另外我在<code>data</code>里设置了两个变量<code>isShow</code>和<code>isShowing</code>来判断菜单是否展开或者正在展开，来控制点击事件，具体实现这里就不讲了</p>
 
         
     
