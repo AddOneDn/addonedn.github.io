@@ -239,7 +239,7 @@
 
     
         <meta property="article:published_time" content="Fri Apr 13 2018 00:10:35 GMT+0800">
-        <meta property="article:modified_time" content="Fri Apr 13 2018 00:14:31 GMT+0800">
+        <meta property="article:modified_time" content="Sun Apr 15 2018 00:34:10 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -262,7 +262,7 @@
     "mainEntityOfPage": "http://yoursite.com/2018/04/13/一次简单的搜狐电话面试/index.html",
     "headline": "一次简单的搜狐电话面试",
     "datePublished": "Fri Apr 13 2018 00:10:35 GMT+0800",
-    "dateModified": "Fri Apr 13 2018 00:14:31 GMT+0800",
+    "dateModified": "Sun Apr 15 2018 00:34:10 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "AddOneG",
@@ -346,7 +346,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#小插曲"><span class="post-toc-number">2.</span> <span class="post-toc-text">小插曲</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题"><span class="post-toc-number">3.</span> <span class="post-toc-text">问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结果"><span class="post-toc-number">4.</span> <span class="post-toc-text">结果</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#小插曲"><span class="post-toc-number">2.</span> <span class="post-toc-text">小插曲</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题"><span class="post-toc-number">3.</span> <span class="post-toc-text">问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#React和Vue"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">React和Vue</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Promise"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">Promise</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结果"><span class="post-toc-number">4.</span> <span class="post-toc-text">结果</span></a></li></ol>
     </ul>
     
 
@@ -480,7 +480,27 @@
     
         <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>暑假想找一份实习，碰巧看到了学长的搜狐内推，就把自己的没有诚意的简历投了过去，过了一个多星期收到了电话面试的邮件。</p>
 <h2 id="小插曲"><a href="#小插曲" class="headerlink" title="小插曲"></a>小插曲</h2><p>本来要面我的是学长的前端Leader，结果Leader迟到了…. 然后就被学长的同事面了50分钟左右的技术面，后来Leader来了又对我进行的补面</p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>改天整理后更新</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><blockquote>
+<p>这里只挑几个重点的问题记录一下(我记得的..)</p>
+</blockquote>
+<h3 id="React和Vue"><a href="#React和Vue" class="headerlink" title="React和Vue"></a>React和Vue</h3><p><strong>相同点</strong></p>
+<ul>
+<li>都使用了<code>Virtual DOM</code></li>
+<li>组件化</li>
+</ul>
+<p><strong>不同点</strong></p>
+<ul>
+<li><code>React</code>使用<code>JSX</code>渲染页面，<code>Vue</code>使用简单的模板</li>
+<li><code>React</code>不是<code>MVVM</code>,而<code>Vue</code>是,拥有双向数据绑定,允许插值表达式</li>
+<li><code>React</code>中只能用<code>setState</code>修改状态,<code>Vue</code>中可直接修改<code>data</code></li>
+<li><code>React Native</code>与<code>Weex</code></li>
+</ul>
+<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><ul>
+<li><code>Promise</code> 本质是一个状态机。每个 <code>promise</code> 只能是 3 种状态中的一种：<code>pending</code>、<code>fulfilled</code> 或 <code>rejected</code>。状态转变只能是 <code>pending</code> -&gt; <code>fulfilled</code> 或者 <code>pending</code> -&gt; <code>rejected</code>。状态转变不可逆</li>
+<li><code>then</code> 方法可以被同一个 <code>promise</code> 调用多次</li>
+<li><code>then</code> 方法必须返回一个 <code>promise</code>。规范里没有明确说明返回一个新的 <code>promise</code> 还是复用老的 <code>promise</code>（即 <code>return this</code>），大多数实现都是返回一个新的 <code>promise</code>，而且复用老的 <code>promise</code>可能改变内部状态，这与规范也是相违背的</li>
+<li>值穿透</li>
+</ul>
 <h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>暂无</p>
 
         
