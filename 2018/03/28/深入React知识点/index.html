@@ -83,7 +83,7 @@
         
             
                 <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/tomorrow-night-eighties.min.css?2LJQzURO+Kr8r/fl/T8oMA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -513,7 +513,7 @@
 <h3 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h3><p>React 支持一种非常特殊的属性 Ref ，你可以用来绑定到 render() 输出的任何组件上</p>
 <p>这个特殊的属性允许你引用 render() 返回的相应的支撑实例（ backing instance ）。这样就可以确保在任何时间总是拿到正确的实例</p>
 <p>例如:</p>
-<pre><code class="JavaScript">var MyComponent = React.createClass({
+<pre class=" language-JavaScript"><code class="language-JavaScript">var MyComponent = React.createClass({
   handleClick: function() {
     // 使用原生的 DOM API 获取焦点
     this.refs.myInput.focus();
@@ -521,21 +521,21 @@
   render: function() {
     //  当组件插入到 DOM 后，ref 属性添加一个组件的引用于到 this.refs
     return (
-      &lt;div&gt;
-        &lt;input type=&quot;text&quot; ref=&quot;myInput&quot; /&gt;
-        &lt;input
-          type=&quot;button&quot;
-          value=&quot;点我输入框获取焦点&quot;
+      <div>
+        <input type="text" ref="myInput" />
+        <input
+          type="button"
+          value="点我输入框获取焦点"
           onClick={this.handleClick}
-        /&gt;
-      &lt;/div&gt;
+        />
+      </div>
     );
   }
 });
 
 ReactDOM.render(
-  &lt;MyComponent /&gt;,
-  document.getElementById(&#39;example&#39;)
+  <MyComponent />,
+  document.getElementById('example')
 );
 </code></pre>
 <h3 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h3><p>在某些场景下，你想在整个组件树中传递数据，但却不想手动地在每一层传递属性。你可以直接在 React 中使用<code>context</code> API解决上述问题</p>
@@ -560,14 +560,14 @@ ReactDOM.render(
 <li>Inherbitance Inversion（ii）HOC继承被包裹组件<code>WrappedComponent</code></li>
 </ul>
 <p>例子:</p>
-<pre><code class="JavaScript">// Target 是一个组件，它作为参数传给了Hoc这个函数
+<pre class=" language-JavaScript"><code class="language-JavaScript">// Target 是一个组件，它作为参数传给了Hoc这个函数
 function Hoc(Target) {
   class Wrap extends Component {
     render() {
       return (
-          &lt;div className=&#39;wrap&#39;&gt;
-            &lt;Target /&gt;
-          &lt;/div&gt;
+          <div className='wrap'>
+            <Target />
+          </div>
       );
     }
   }
@@ -756,7 +756,7 @@ function Hoc(Target) {
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">6</span></a>
+                <a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">6</span></a>
             </ul>
         </li>
         
@@ -774,7 +774,7 @@ function Hoc(Target) {
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/关于我/">关于我<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/吐槽/">吐槽<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/我爱的人/">我爱的人<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/">技术<span class="sidebar_archives-count">21</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/面试/">面试<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/关于我/">关于我<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/吐槽/">吐槽<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/我爱的人/">我爱的人<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/">技术<span class="sidebar_archives-count">22</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/面试/">面试<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -818,7 +818,7 @@ function Hoc(Target) {
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">28</span>
+                <span class="sidebar-badge">29</span>
             </a>
         </li>
         

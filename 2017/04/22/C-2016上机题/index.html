@@ -83,7 +83,7 @@
         
             
                 <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/tomorrow-night-eighties.min.css?2LJQzURO+Kr8r/fl/T8oMA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -513,7 +513,7 @@ public:
 <blockquote>
 <p>咸鱼题解,仅供参考和吐槽</p>
 </blockquote>
-<h2 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h2><pre><code class="C++">#include&lt;fstream&gt;
+<h2 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h2><pre class=" language-C++"><code class="language-C++">#include<fstream>
 using namespace std;
 
 struct student{    
@@ -526,30 +526,30 @@ struct student{
 int main(){
     student std[10];
     fstream stu;
-    stu.open(&quot;student.dat&quot;,ios::in|ios::binary);
+    stu.open("student.dat",ios::in|ios::binary);
     if(stu.fail()){
-        cout&lt;&lt;&quot;打开a.dat文件失败&quot;&lt;&lt;endl;
+        cout<<"打开a.dat文件失败"<<endl;
         exit(0);
     }
-    for(int i=0;i&lt;5;i++)
-        stu.read((char*)&amp;std[i],sizeof(std[i]));
+    for(int i=0;i<5;i++)
+        stu.read((char*)&std[i],sizeof(std[i]));
     stu.close();
-    stu.open(&quot;b.dat&quot;,ios::out|ios::binary|ios::app);
-    stu.write((char*)&amp;std[4],sizeof(std[4]));
+    stu.open("b.dat",ios::out|ios::binary|ios::app);
+    stu.write((char*)&std[4],sizeof(std[4]));
     stu.close();
-    stu.open(&quot;b.dat&quot;,ios::in|ios::binary);
-    stu.read((char*)&amp;std,sizeof(std));
-    for(int i=0;i&lt;7;i++){
-        stu.read((char*)&amp;std[i],sizeof(std)[i]);
-        cout&lt;&lt;std[i].name&lt;&lt;&quot; &quot;&lt;&lt;std[i].age&lt;&lt;&quot; &quot;&lt;&lt;std[i].gender&lt;&lt;&quot; &quot;&lt;&lt;std[i].num&lt;&lt;endl;
+    stu.open("b.dat",ios::in|ios::binary);
+    stu.read((char*)&std,sizeof(std));
+    for(int i=0;i<7;i++){
+        stu.read((char*)&std[i],sizeof(std)[i]);
+        cout<<std[i].name<<" "<<std[i].age<<" "<<std[i].gender<<" "<<std[i].num<<endl;
     }
     stu.close();
     return 0;
 }
 </code></pre>
-<h2 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h2><pre><code class="C++">
-#include &lt;iostream&gt;
-#include &lt;cstring&gt;
+<h2 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h2><pre class=" language-C++"><code class="language-C++">
+#include <iostream>
+#include <cstring>
 using namespace std;
 
 class student{
@@ -558,9 +558,9 @@ class student{
         int score;//学生分数
     public:
         student(char *a,int b);//构造函数
-        student(student &amp;obj);//拷贝构造函数
+        student(student &obj);//拷贝构造函数
         ~student();//析构函数
-        int operator +(student &amp;right);//重载函数，返回两个student对象的分数之和
+        int operator +(student &right);//重载函数，返回两个student对象的分数之和
         char *getName();//获取姓名
         int getScore();//获取分数
 };
@@ -569,7 +569,7 @@ student::student(char *a,int b){
     strcpy(name,a);
     score = b;
 }
-student::student(student &amp;obj){
+student::student(student &obj){
     name = new char[strlen(obj.name)+1];
     strcpy(name,obj.name);
     score = obj.score;
@@ -577,9 +577,9 @@ student::student(student &amp;obj){
 student::~student(){
     delete []name;
 }
-int student::operator+(student &amp;right){
+int student::operator+(student &right){
     int sum;
-    sum = this-&gt;score + right.score;
+    sum = this->score + right.score;
     return sum; 
 }
 char *student::getName(){
@@ -589,16 +589,16 @@ int student::getScore(){
     return score;
 }
 int main(){
-    student s1(&quot;zhangsan&quot;,80),s2 = s1;
+    student s1("zhangsan",80),s2 = s1;
     int sum;
     sum = s1 + s2;
-    cout&lt;&lt;s1.getName()&lt;&lt;&quot; &quot;&lt;&lt;s1.getScore()&lt;&lt;endl;
-    cout&lt;&lt;s2.getName()&lt;&lt;&quot; &quot;&lt;&lt;s2.getScore()&lt;&lt;endl;
-    cout&lt;&lt;&quot;总分：&quot;&lt;&lt;sum;
+    cout<<s1.getName()<<" "<<s1.getScore()<<endl;
+    cout<<s2.getName()<<" "<<s2.getScore()<<endl;
+    cout<<"总分："<<sum;
     return 0;
 }
 </code></pre>
-<h2 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h2><pre><code class="C++">#include&lt;iostream&gt;
+<h2 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h2><pre class=" language-C++"><code class="language-C++">#include<iostream>
 using namespace std;
 #define pai 3.14
 class Shape{
@@ -625,8 +625,8 @@ class Circle:public Shape{
             area = radius*radius*pai;
         }
         void show(){
-            cout&lt;&lt;&quot;半径: &quot;&lt;&lt;radius&lt;&lt;endl;
-            cout&lt;&lt;&quot;面积：&quot;&lt;&lt;area&lt;&lt;endl;
+            cout<<"半径: "<<radius<<endl;
+            cout<<"面积："<<area<<endl;
         }
 };
 class Cylinder:public Circle{
@@ -634,15 +634,15 @@ class Cylinder:public Circle{
         double height;
     public:
         Cylinder(double height,double r):Circle(r){
-            this-&gt;height = height;
+            this->height = height;
         }
         void calcarea(){
             area = radius*radius*pai*2 + 2*pai*radius*height;
         }
         void show(){
-            cout&lt;&lt;&quot;半径：&quot;&lt;&lt;radius&lt;&lt;endl;
-            cout&lt;&lt;&quot;高：&quot;&lt;&lt;height&lt;&lt;endl;
-            cout&lt;&lt;&quot;表面积：&quot;&lt;&lt;area&lt;&lt;endl;
+            cout<<"半径："<<radius<<endl;
+            cout<<"高："<<height<<endl;
+            cout<<"表面积："<<area<<endl;
         }
         double getHeight(){
             return height;
@@ -652,9 +652,9 @@ int main(){
     Circle c1(2.5);
     Cylinder c2(6.0,2.0);
     c1.calcarea();c2.calcarea();
-    cout&lt;&lt;&quot;圆的信息：&quot;;c1.show();
-    cout&lt;&lt;&quot;--------------&quot;&lt;&lt;endl;
-    cout&lt;&lt;&quot;圆柱的信息：&quot;;c2.show();
+    cout<<"圆的信息：";c1.show();
+    cout<<"--------------"<<endl;
+    cout<<"圆柱的信息：";c2.show();
     return 0;
 }
 </code></pre>
@@ -837,7 +837,7 @@ int main(){
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">6</span></a>
+                <a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">6</span></a>
             </ul>
         </li>
         
@@ -855,7 +855,7 @@ int main(){
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/关于我/">关于我<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/吐槽/">吐槽<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/我爱的人/">我爱的人<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/">技术<span class="sidebar_archives-count">21</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/面试/">面试<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/关于我/">关于我<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/吐槽/">吐槽<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/我爱的人/">我爱的人<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/">技术<span class="sidebar_archives-count">22</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/面试/">面试<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -899,7 +899,7 @@ int main(){
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">28</span>
+                <span class="sidebar-badge">29</span>
             </a>
         </li>
         

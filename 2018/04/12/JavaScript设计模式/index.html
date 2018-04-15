@@ -83,7 +83,7 @@
         
             
                 <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/tomorrow-night-eighties.min.css?2LJQzURO+Kr8r/fl/T8oMA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -478,7 +478,7 @@
 <li>工具类对象</li>
 <li>频繁访问数据库或文件的对象。</li>
 </ul>
-<pre><code class="Javascript">class CreateUser {
+<pre class=" language-Javascript"><code class="language-Javascript">class CreateUser {
     constructor(name) {
         this.name = name;
         this.getName();
@@ -498,8 +498,8 @@ var ProxyMode = (function() {
     }
 })();
 // 测试单体模式的实例
-var a = new ProxyMode(&quot;aaa&quot;);
-var b = new ProxyMode(&quot;bbb&quot;);
+var a = new ProxyMode("aaa");
+var b = new ProxyMode("bbb");
 // 因为单体模式是只实例化一次，所以下面的实例是相等的
 console.log(a === b);    //true
 </code></pre>
@@ -512,15 +512,15 @@ console.log(a === b);    //true
 <li>需要在不同情况下使用不同的策略(算法)，或者策略还可能在未来用其它方式来实现。</li>
 <li>对客户隐藏具体策略(算法)的实现细节，彼此完全独立。</li>
 </ul>
-<pre><code class="Javascript">/*策略类*/
+<pre class=" language-Javascript"><code class="language-Javascript">/*策略类*/
 var levelOBJ = {
-    &quot;A&quot;: function(money) {
+    "A": function(money) {
         return money * 4;
     },
-    &quot;B&quot; : function(money) {
+    "B" : function(money) {
         return money * 3;
     },
-    &quot;C&quot; : function(money) {
+    "C" : function(money) {
         return money * 2;
     } 
 };
@@ -528,7 +528,7 @@ var levelOBJ = {
 var calculateBouns =function(level,money) {
     return levelOBJ[level](money);
 };
-console.log(calculateBouns(&#39;A&#39;,10000)); // 40000
+console.log(calculateBouns('A',10000)); // 40000
 </code></pre>
 <h3 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h3><blockquote>
 <p>代理模式的定义：为一个对象提供一个代用品或占位符，以便控制对它的访问。</p>
@@ -539,8 +539,8 @@ console.log(calculateBouns(&#39;A&#39;,10000)); // 40000
 <li>当一个类需要对不同的调用者提供不同的调用权限时，可以使用代理类来实现（代理类不一定只有一个，我们可以建立多个代理类来实现，也可以在一个代理类中进行权限判断来进行不同权限的功能调用）</li>
 <li>当我们要扩展某个类的某个功能时，可以使用代理模式，在代理类中进行简单扩展（只针对简单扩展，可在引用委托类的语句之前与之后进行）</li>
 </ul>
-<pre><code class="Javascript">var imgFunc = (function() {
-    var imgNode = document.createElement(&#39;img&#39;);
+<pre class=" language-Javascript"><code class="language-Javascript">var imgFunc = (function() {
+    var imgNode = document.createElement('img');
     document.body.appendChild(imgNode);
     return {
         setSrc: function(src) {
@@ -555,12 +555,12 @@ var proxyImage = (function() {
     }
     return {
         setSrc: function(src) {
-            imgFunc.setSrc(&#39;./loading,gif&#39;);
+            imgFunc.setSrc('./loading,gif');
             img.src = src;
         }
     }
 })();
-proxyImage.setSrc(&#39;./pic.png&#39;);
+proxyImage.setSrc('./pic.png');
 </code></pre>
 <h3 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h3><blockquote>
 <p>中介者模式的定义：通过一个中介者对象，其他所有的相关对象都通过该中介者对象来通信，而不是相互引用，当其中的一个对象发生改变时，只需要通知中介者对象即可。通过中介者模式可以解除对象与对象之间的紧耦合关系。</p>
@@ -570,17 +570,17 @@ proxyImage.setSrc(&#39;./pic.png&#39;);
 <li>当一个对象与其他的对象要进行紧密的交互，但又想服用该对象而不依赖其他的对象时</li>
 <li>想创造一个运行于多个类之间的对象，又不想生成新的子类时</li>
 </ul>
-<pre><code class="Javascript">var goods = {   //手机库存
-    &#39;red|32G&#39;: 3,
-    &#39;red|64G&#39;: 1,
-    &#39;blue|32G&#39;: 7,
-    &#39;blue|32G&#39;: 6,
+<pre class=" language-Javascript"><code class="language-Javascript">var goods = {   //手机库存
+    'red|32G': 3,
+    'red|64G': 1,
+    'blue|32G': 7,
+    'blue|32G': 6,
 };
 //中介者
 var mediator = (function() {
-    var colorSelect = document.getElementById(&#39;colorSelect&#39;);
-    var memorySelect = document.getElementById(&#39;memorySelect&#39;);
-    var numSelect = document.getElementById(&#39;numSelect&#39;);
+    var colorSelect = document.getElementById('colorSelect');
+    var memorySelect = document.getElementById('memorySelect');
+    var numSelect = document.getElementById('numSelect');
     return {
         changed: function(obj) {
             switch(obj){
@@ -615,9 +615,9 @@ numSelect.onchange = function() {
 <li>原有方法维持不变，在原有方法上再挂载其他方法来满足现有需求</li>
 <li>函数的解耦，将函数拆分成多个可复用的函数，再将拆分出来的函数挂载到某个函数上，实现相同的效果但增强了复用性</li>
 </ul>
-<pre><code class="Javascript">Function.prototype.before = function(beforefn) {
+<pre class=" language-Javascript"><code class="language-Javascript">Function.prototype.before = function(beforefn) {
     var self = this;    //保存原函数引用
-    return function(){  //返回包含了原函数和新函数的 &#39;代理函数&#39;
+    return function(){  //返回包含了原函数和新函数的 '代理函数'
         beforefn.apply(this, arguments);    //执行新函数，修正this
         return self.apply(this,arguments);  //执行原函数
     }
@@ -631,14 +631,14 @@ Function.prototype.after = function(afterfn) {
     }
 }
 var func = function() {
-    console.log(&#39;2&#39;);
+    console.log('2');
 }
 //func1和func3为挂载函数
 var func1 = function() {
-    console.log(&#39;1&#39;);
+    console.log('1');
 }
 var func3 = function() {
-    console.log(&#39;3&#39;);
+    console.log('3');
 }
 func = func.before(func1).after(func3);
 func();
@@ -826,7 +826,7 @@ func();
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">6</span></a>
+                <a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">6</span></a>
             </ul>
         </li>
         
@@ -844,7 +844,7 @@ func();
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/关于我/">关于我<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/吐槽/">吐槽<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/我爱的人/">我爱的人<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/">技术<span class="sidebar_archives-count">21</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/面试/">面试<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/关于我/">关于我<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/吐槽/">吐槽<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/我爱的人/">我爱的人<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/">技术<span class="sidebar_archives-count">22</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/面试/">面试<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -888,7 +888,7 @@ func();
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">28</span>
+                <span class="sidebar-badge">29</span>
             </a>
         </li>
         

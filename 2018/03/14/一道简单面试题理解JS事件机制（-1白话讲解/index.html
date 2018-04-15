@@ -84,7 +84,7 @@
         
             
                 <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/tomorrow-night-eighties.min.css?2LJQzURO+Kr8r/fl/T8oMA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -478,7 +478,7 @@
 <li><strong>线程</strong>: 线程是程序中一个单一的顺序控制流程。进程内一个相对独立的、可调度的执行单元，是系统独立调度和分派CPU的基本单位。指运行中的程序的调度单位</li>
 <li><strong>单线程</strong>: 单线程在程序执行时，所走的程序路径按照连续顺序排下来，前面的必须处理好，后面的才会执行。单线程就是进程里只有一个线程</li>
 </ol>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><pre><code class="Javascript">console.log(100)
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><pre class=" language-Javascript"><code class="language-Javascript">console.log(100)
 setTimeout(function () {
     console.log(200)
 }, 0)
@@ -500,12 +500,12 @@ console.log(300)
 <blockquote>
 <p>PS: setTimeout(fun, 0)中的0不是立即执行的意思, 而是同步队列为空时立即将fun推入同步队列</p>
 </blockquote>
-<h2 id="额外"><a href="#额外" class="headerlink" title="额外"></a>额外</h2><pre><code class="JavaScript">var flag = 1
+<h2 id="额外"><a href="#额外" class="headerlink" title="额外"></a>额外</h2><pre class=" language-JavaScript"><code class="language-JavaScript">var flag = 1
 setTimeout(function(){
     flag = 0
 }, 0)
 while(flag){
-    console.log(&#39;running&#39;)
+    console.log('running')
 }
 </code></pre>
 <blockquote>
@@ -691,7 +691,7 @@ while(flag){
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">6</span></a>
+                <a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">6</span></a>
             </ul>
         </li>
         
@@ -709,7 +709,7 @@ while(flag){
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/关于我/">关于我<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/吐槽/">吐槽<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/我爱的人/">我爱的人<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/">技术<span class="sidebar_archives-count">21</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/面试/">面试<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/关于我/">关于我<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/吐槽/">吐槽<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/我爱的人/">我爱的人<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/">技术<span class="sidebar_archives-count">22</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/面试/">面试<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -753,7 +753,7 @@ while(flag){
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">28</span>
+                <span class="sidebar-badge">29</span>
             </a>
         </li>
         

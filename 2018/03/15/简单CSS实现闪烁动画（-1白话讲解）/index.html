@@ -83,7 +83,7 @@
         
             
                 <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/tomorrow-night-eighties.min.css?2LJQzURO+Kr8r/fl/T8oMA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -479,7 +479,7 @@
 <ul>
 <li><strong>想法1:</strong>让元素变成透明再变回原样</li>
 </ul>
-<pre><code class="Css">.title{
+<pre class=" language-Css"><code class="language-Css">.title{
   animation: blink 1s 3;
 }
 @keyframes blink{
@@ -490,7 +490,7 @@
 </code></pre>
 <p><img src="https://user-gold-cdn.xitu.io/2018/3/15/16229a3f2843ed07?w=480&amp;h=120&amp;f=gif&amp;s=308912" alt=""><br>我们用Chrome开发者工具中的Animation看一看这个动画</p>
 <p><img src="https://user-gold-cdn.xitu.io/2018/3/15/162298539fc8eda3?w=2552&amp;h=132&amp;f=png&amp;s=32439" alt=""><br>可以发现..这个元素在变成透明之后会瞬间显现到原来的样子，很江硬，我想把他变成平滑的显现出来，于是想到了一个办法：通过修改关键帧，让其在循环周期中进行状态切换</p>
-<pre><code class="Css">.title{
+<pre class=" language-Css"><code class="language-Css">.title{
   animation: blink 1s 3;
 }
 @keyframes blink{
@@ -504,7 +504,7 @@
 <p>但是长了眼睛的读者一定能从图中发现这个动画的过程是加速的，导致这个动画看起来不是很自然</p>
 </blockquote>
 <p>读了我上一篇文章的童鞋们一定会想到steps这个东西~ 让我们来试一哈</p>
-<pre><code class="Css">.title{
+<pre class=" language-Css"><code class="language-Css">.title{
   animation: blink 1s 3 steps(1);
 }
 @keyframes blink{
@@ -520,7 +520,7 @@
 </blockquote>
 <p><img src="https://user-gold-cdn.xitu.io/2018/3/15/16229927c7645859?w=2540&amp;h=130&amp;f=png&amp;s=26700" alt=""><br>傻了吧，你的动画是一下都不会闪的</p>
 <h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>上一篇文章末尾提到了添加一个闪烁的光标，那么我们就用上面学到的知识来实现一下吧~</p>
-<pre><code class="Css">.title{
+<pre class=" language-Css"><code class="language-Css">.title{
   ...
   width: 17ch;
   white-space: nowrap;
@@ -726,7 +726,7 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">6</span></a>
+                <a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">6</span></a>
             </ul>
         </li>
         
@@ -744,7 +744,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/关于我/">关于我<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/吐槽/">吐槽<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/我爱的人/">我爱的人<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/">技术<span class="sidebar_archives-count">21</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/面试/">面试<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/关于我/">关于我<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/吐槽/">吐槽<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/我爱的人/">我爱的人<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/">技术<span class="sidebar_archives-count">22</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/面试/">面试<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -788,7 +788,7 @@
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">28</span>
+                <span class="sidebar-badge">29</span>
             </a>
         </li>
         

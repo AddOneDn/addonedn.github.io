@@ -83,7 +83,7 @@
         
             
                 <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/tomorrow-night-eighties.min.css?2LJQzURO+Kr8r/fl/T8oMA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -472,14 +472,14 @@
         <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>那一刻…无数前端开发者想起了自己曾经被Checkbox支配的恐惧…这种在绝大多数浏览器中<strong>几乎或完全不能</strong>进行样式替代的玩意让开发者们被迫选择默认样式，或者是找一些访问性极差的hack方案…</p>
 <h2 id="开始操作"><a href="#开始操作" class="headerlink" title="开始操作"></a>开始操作</h2><ul>
 <li><p>先把基本结构搞出来</p>
-<pre><code class="Html">&lt;input type=&quot;checkbox&quot; id=&quot;awesome&quot; /&gt;
-&lt;label for=&quot;awesome&quot;&gt;Awesome!&lt;/label&gt;
+<pre class=" language-Html"><code class="language-Html"><input type="checkbox" id="awesome" />
+<label for="awesome">Awesome!</label>
 </code></pre>
 <p>可能有部分人不知道label有啥用: <strong>当label与checkbox关联后，就可以起到触发开关的作用，并且我们可以通过对其添加一些内容(下面会讲解)来模拟checkbox的样式，再把真正的checkbox隐藏，最终达到我们的目的</strong></p>
 </li>
 <li><p>添加样式</p>
-<pre><code class="Css">input[type=&quot;checkbox&quot;] + label::before{
-  content: &#39;\a0&#39;; /* 不换行空格 */
+<pre class=" language-Css"><code class="language-Css">input[type="checkbox"] + label::before{
+  content: '\a0'; /* 不换行空格 */
   display: inline-block; /* 让元素和label处于同一行 */
   vertical-align: .1em; /* 设置元素向上偏移.1em */
   width: .8em;
@@ -504,8 +504,8 @@
 <p><img src="https://user-gold-cdn.xitu.io/2018/3/23/16251edd30d2cc17?w=562&amp;h=92&amp;f=png&amp;s=9789" alt=""></p>
 <p>这个淡珊瑚色的框框就是我们设置的label::before</p>
 <ul>
-<li>加个选中状态<pre><code class="Css">input[type=&quot;checkbox&quot;]:checked + label::before{
-  content: &#39;\2713&#39;;
+<li>加个选中状态<pre class=" language-Css"><code class="language-Css">input[type="checkbox"]:checked + label::before{
+  content: '\2713';
   background: lightblue;
 }
 </code></pre>
@@ -517,7 +517,7 @@
 <p>这里用到了CSS3的checked伪对象选择器</p>
 </blockquote>
 <ul>
-<li>隐藏默认的checkbox<pre><code class="Css">input[type=&quot;checkbox&quot;]{
+<li>隐藏默认的checkbox<pre class=" language-Css"><code class="language-Css">input[type="checkbox"]{
   position: absolute;
   clip: rect(0,0,0,0); /* 剪裁绝对定位元素 */
 }
@@ -528,12 +528,12 @@
 <p><img src="https://user-gold-cdn.xitu.io/2018/3/23/16251f29fd2dcb72?w=430&amp;h=96&amp;f=png&amp;s=8772" alt=""></p>
 <p>注意, 这里使用<code>display:none</code>虽然也能隐藏,但是会将checkbox从tab切换焦点的队列中删除(比如你输入完账号密码后使用tab不会使checkbox获得焦点)</p>
 <h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><ul>
-<li>Html<pre><code class="Html">&lt;input type=&quot;checkbox&quot; id=&quot;awesome&quot; /&gt;
-&lt;label for=&quot;awesome&quot;&gt;Awesome!&lt;/label&gt;
+<li>Html<pre class=" language-Html"><code class="language-Html"><input type="checkbox" id="awesome" />
+<label for="awesome">Awesome!</label>
 </code></pre>
 </li>
-<li>Css<pre><code class="Css">input[type=&quot;checkbox&quot;] + label::before{
-  content: &#39;\a0&#39;;
+<li>Css<pre class=" language-Css"><code class="language-Css">input[type="checkbox"] + label::before{
+  content: '\a0';
   display: inline-block;
   vertical-align: .1em;
   width: .8em;
@@ -544,11 +544,11 @@
   text-indent: .15em;
   line-height: .65;
 }
-input[type=&quot;checkbox&quot;]:checked + label::before{
-  content: &#39;\2713&#39;;
+input[type="checkbox"]:checked + label::before{
+  content: '\2713';
   background: lightblue;
 }
-input[type=&quot;checkbox&quot;]{
+input[type="checkbox"]{
   position: absolute;
   clip: rect(0,0,0,0);
 }
@@ -737,7 +737,7 @@ input[type=&quot;checkbox&quot;]{
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">6</span></a>
+                <a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">6</span></a>
             </ul>
         </li>
         
@@ -755,7 +755,7 @@ input[type=&quot;checkbox&quot;]{
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/关于我/">关于我<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/吐槽/">吐槽<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/我爱的人/">我爱的人<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/">技术<span class="sidebar_archives-count">21</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/面试/">面试<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/关于我/">关于我<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/吐槽/">吐槽<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/我爱的人/">我爱的人<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/">技术<span class="sidebar_archives-count">22</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/面试/">面试<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -799,7 +799,7 @@ input[type=&quot;checkbox&quot;]{
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">28</span>
+                <span class="sidebar-badge">29</span>
             </a>
         </li>
         

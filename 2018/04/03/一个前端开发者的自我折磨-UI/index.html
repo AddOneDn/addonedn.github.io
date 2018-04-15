@@ -83,7 +83,7 @@
         
             
                 <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/tomorrow-night-eighties.min.css?2LJQzURO+Kr8r/fl/T8oMA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -471,14 +471,14 @@
     
         <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>偶然看到<a href="https://www.oschina.net/translate/good-to-great-ui-animation-tips" target="_blank" rel="noopener">一篇UI优化文章</a>，发现里面几个UI交互真滴不错，就自己动手撸了一下~</p>
 <h2 id="上动图"><a href="#上动图" class="headerlink" title="上动图"></a>上动图</h2><p><img src="http://p5sf6v0wz.bkt.clouddn.com/Jietu20180403-204252.gif" alt="结果"></p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="按钮"><a href="#按钮" class="headerlink" title="按钮"></a>按钮</h3><pre><code class="Html">&lt;div class=&quot;load-div&quot;&gt;
-  &lt;div class=&quot;load-progress&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;wave-btn wave wave-small&quot;&gt;&lt;/div&gt;
-  &lt;input type=&quot;button&quot; class=&quot;load-btn load-btn-hover&quot; value=&quot;Show!&quot;&gt;
-&lt;/div&gt;
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="按钮"><a href="#按钮" class="headerlink" title="按钮"></a>按钮</h3><pre class=" language-Html"><code class="language-Html"><div class="load-div">
+  <div class="load-progress"></div>
+  <div class="wave-btn wave wave-small"></div>
+  <input type="button" class="load-btn load-btn-hover" value="Show!">
+</div>
 </code></pre>
 <p>这里起作用的有3个<code>div</code>,<code>load-progress</code>模拟进度条,<code>wave-btn</code>模拟扩散的波纹,<code>load-btn</code>即为按钮</p>
-<h4 id="扩散的波纹"><a href="#扩散的波纹" class="headerlink" title="扩散的波纹"></a>扩散的波纹</h4><pre><code class="Css">.wave {
+<h4 id="扩散的波纹"><a href="#扩散的波纹" class="headerlink" title="扩散的波纹"></a>扩散的波纹</h4><pre class=" language-Css"><code class="language-Css">.wave {
   position: absolute;
   width: 160px;
   height: 40px;
@@ -516,20 +516,20 @@
 }
 </code></pre>
 <p>使用绝对定位让波纹<code>div</code>在<code>button</code>下面避免遮盖,添加动画使<code>div</code>放大的同时变透明,通过<code>30%</code>调整到比较合适的视觉效果</p>
-<pre><code class="JavaScript">const button = document.getElementsByClassName(&#39;load-btn&#39;)[0]
+<pre class=" language-JavaScript"><code class="language-JavaScript">const button = document.getElementsByClassName('load-btn')[0]
 
-button.onmouseover = () =&gt; {
-  wave.classList.remove(&#39;wave-small&#39;)
-  wave.classList.add(&#39;wave-large&#39;)
+button.onmouseover = () => {
+  wave.classList.remove('wave-small')
+  wave.classList.add('wave-large')
 }
 
-button.onmouseout = () =&gt; {
-  wave.classList.remove(&#39;wave-large&#39;)
-  wave.classList.add(&#39;wave-small&#39;)
+button.onmouseout = () => {
+  wave.classList.remove('wave-large')
+  wave.classList.add('wave-small')
 }
 </code></pre>
 <p>因为<code>hover</code>时<code>button</code>会变大，所以用<code>js</code>进行判断添加不同大小的波纹动画</p>
-<h4 id="变化的按钮"><a href="#变化的按钮" class="headerlink" title="变化的按钮"></a>变化的按钮</h4><pre><code class="Css">.load-btn {
+<h4 id="变化的按钮"><a href="#变化的按钮" class="headerlink" title="变化的按钮"></a>变化的按钮</h4><pre class=" language-Css"><code class="language-Css">.load-btn {
   position: relative;
   width: 160px;
   height: 40px;
@@ -588,7 +588,7 @@ button.onmouseout = () =&gt; {
 }
 </code></pre>
 <p><code>hover</code>时放大且颜色变深,这个就不细讲了,点击后缩小<code>scale(1, .6)</code>,延时一段时间后变回原大小(比原来大一点)且更换颜色和文本,在<code>size-back</code>中通过调整百分比来模拟弹性</p>
-<h4 id="进度条"><a href="#进度条" class="headerlink" title="进度条"></a>进度条</h4><pre><code class="Css">.load-progress {
+<h4 id="进度条"><a href="#进度条" class="headerlink" title="进度条"></a>进度条</h4><pre class=" language-Css"><code class="language-Css">.load-progress {
   position: absolute;
   top: 8px;
   height: 100%;
@@ -612,18 +612,18 @@ button.onmouseout = () =&gt; {
 }
 </code></pre>
 <p>设置高度为<code>button</code>缩小后的高度，宽度从0到恢复模拟进度条，用透明黑色覆盖<code>button</code>来模拟进度条样式</p>
-<h3 id="展开的列表"><a href="#展开的列表" class="headerlink" title="展开的列表"></a>展开的列表</h3><pre><code class="Html">&lt;div class=&quot;list&quot;&gt;
-  &lt;div class=&quot;red&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;orange&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;yellow&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;green&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;qing&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;blue&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;purple&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
+<h3 id="展开的列表"><a href="#展开的列表" class="headerlink" title="展开的列表"></a>展开的列表</h3><pre class=" language-Html"><code class="language-Html"><div class="list">
+  <div class="red"></div>
+  <div class="orange"></div>
+  <div class="yellow"></div>
+  <div class="green"></div>
+  <div class="qing"></div>
+  <div class="blue"></div>
+  <div class="purple"></div>
+</div>
 </code></pre>
 <p>HTML不解释</p>
-<pre><code class="Css">.list div{
+<pre class=" language-Css"><code class="language-Css">.list div{
   width: 250px;
   height: 50px;
   margin-top: 10px;
@@ -645,16 +645,16 @@ button.onmouseout = () =&gt; {
 }
 </code></pre>
 <p>css没什么好讲的，这里使用<code>visibility: hidden</code>使元素隐形但是仍占据空间</p>
-<pre><code class="JavaScript">const list = document.getElementsByClassName(&#39;list&#39;)[0]
+<pre class=" language-JavaScript"><code class="language-JavaScript">const list = document.getElementsByClassName('list')[0]
 
 let i = 0
 let n = list.length
 let timer = 
-setInterval(() =&gt; {
+setInterval(() => {
   if(i == n)
     clearInterval(timer)
-  if(i &lt; n){
-    list[i].classList.add(&#39;fade-show&#39;)
+  if(i < n){
+    list[i].classList.add('fade-show')
     i++;
   }
 },50)
@@ -840,7 +840,7 @@ setInterval(() =&gt; {
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">6</span></a>
+                <a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">6</span></a>
             </ul>
         </li>
         
@@ -858,7 +858,7 @@ setInterval(() =&gt; {
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/关于我/">关于我<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/吐槽/">吐槽<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/我爱的人/">我爱的人<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/">技术<span class="sidebar_archives-count">21</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/面试/">面试<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/关于我/">关于我<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/吐槽/">吐槽<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/我爱的人/">我爱的人<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/">技术<span class="sidebar_archives-count">22</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/面试/">面试<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -902,7 +902,7 @@ setInterval(() =&gt; {
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">28</span>
+                <span class="sidebar-badge">29</span>
             </a>
         </li>
         

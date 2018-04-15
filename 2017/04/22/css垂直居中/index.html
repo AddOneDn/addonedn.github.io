@@ -84,7 +84,7 @@
         
             
                 <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/tomorrow-night-eighties.min.css?2LJQzURO+Kr8r/fl/T8oMA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -474,7 +474,7 @@
     
         <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>写前端的时候总是忘记垂直居中…每次都要去搜代码</p>
 <p>既然有了博客，就干脆整理一下写在这里吧<br><a id="more"></a></p>
-<h1 id="基于绝对定位"><a href="#基于绝对定位" class="headerlink" title="基于绝对定位"></a>基于绝对定位</h1><pre><code class="Css">main{
+<h1 id="基于绝对定位"><a href="#基于绝对定位" class="headerlink" title="基于绝对定位"></a>基于绝对定位</h1><pre class=" language-Css"><code class="language-Css">main{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -485,7 +485,7 @@
 }
 </code></pre>
 <p>如果借助calc()函数的话….</p>
-<pre><code class="Css">main{
+<pre class=" language-Css"><code class="language-Css">main{
     position: absolute;
     top: calc(50% - 3em);
     left: calc(50% - 9em);
@@ -496,7 +496,7 @@
 <blockquote>
 <p>PS: 然而这种方法只局限于固定宽高的元素… 所以我们还可以选择translate()变形函数</p>
 </blockquote>
-<pre><code class="Css">main{
+<pre class=" language-Css"><code class="language-Css">main{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -504,7 +504,7 @@
 }
 </code></pre>
 <p>..缺陷自寻..</p>
-<h1 id="基于视口单位"><a href="#基于视口单位" class="headerlink" title="基于视口单位"></a>基于视口单位</h1><pre><code class="Css">main{
+<h1 id="基于视口单位"><a href="#基于视口单位" class="headerlink" title="基于视口单位"></a>基于视口单位</h1><pre class=" language-Css"><code class="language-Css">main{
     width: 18em;
     padding: 1em 1.5em;
     margin: 50vh auto 0;
@@ -515,7 +515,7 @@
 <blockquote>
 <p>PS: 只适用于在视口中居中的场景</p>
 </blockquote>
-<h1 id="基于Flexbox"><a href="#基于Flexbox" class="headerlink" title="基于Flexbox"></a>基于Flexbox</h1><pre><code class="Css">body{
+<h1 id="基于Flexbox"><a href="#基于Flexbox" class="headerlink" title="基于Flexbox"></a>基于Flexbox</h1><pre class=" language-Css"><code class="language-Css">body{
     display: flex;
     min-height: 100vh;
     margin: 0;
@@ -525,7 +525,7 @@ main{
 }
 </code></pre>
 <p>或者…</p>
-<pre><code class="Css">main{
+<pre class=" language-Css"><code class="language-Css">main{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -537,7 +537,7 @@ main{
 <p>PS: 要求你的浏览器支持Flexbox….</p>
 </blockquote>
 <p>或许你可以尝试一下…</p>
-<pre><code class="Css">align-self: center;
+<pre class=" language-Css"><code class="language-Css">align-self: center;
 </code></pre>
 <blockquote>
 <p>参考: 《CSS揭秘》</p>
@@ -721,7 +721,7 @@ main{
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">6</span></a>
+                <a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">6</span></a>
             </ul>
         </li>
         
@@ -739,7 +739,7 @@ main{
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/关于我/">关于我<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/吐槽/">吐槽<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/我爱的人/">我爱的人<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/">技术<span class="sidebar_archives-count">21</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/面试/">面试<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/关于我/">关于我<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/吐槽/">吐槽<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/我爱的人/">我爱的人<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/">技术<span class="sidebar_archives-count">22</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/面试/">面试<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -783,7 +783,7 @@ main{
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">28</span>
+                <span class="sidebar-badge">29</span>
             </a>
         </li>
         

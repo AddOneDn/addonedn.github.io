@@ -83,7 +83,7 @@
         
             
                 <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/tomorrow-night-eighties.min.css?2LJQzURO+Kr8r/fl/T8oMA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -479,7 +479,7 @@
 <h3 id="再Next"><a href="#再Next" class="headerlink" title="再Next"></a>再Next</h3><p>对gif的每一帧进行处理然后再拼成gif</p>
 <h3 id="再Next-Result"><a href="#再Next-Result" class="headerlink" title="再Next Result"></a>再Next Result</h3><p>想了想，没什么大问题，那就开干吧</p>
 <h3 id="真正开始操作"><a href="#真正开始操作" class="headerlink" title="真正开始操作~"></a>真正开始操作~</h3><p>怎么把处理后的图片拼接成gif是个问题，去google了一波发现gif.js这个玩意，api也很简单，把图片或者canvas传进去然后render一下就ojbk了,来个官方demo</p>
-<pre><code class="JavaScript">var gif = new GIF({
+<pre class=" language-JavaScript"><code class="language-JavaScript">var gif = new GIF({
   workers: 2,
   quality: 10
 });
@@ -493,7 +493,7 @@ gif.addFrame(canvasElement, {delay: 200});
 // or copy the pixels from a canvas context
 gif.addFrame(ctx, {copy: true});
 
-gif.on(&#39;finished&#39;, function(blob) {
+gif.on('finished', function(blob) {
   window.open(URL.createObjectURL(blob));
 });
 
@@ -503,7 +503,7 @@ gif.render();
 <p>至于如何获得gif的每一帧，我用的mac下的Gif preview</p>
 </blockquote>
 <p>用户点击生成后用类似懒加载的方式加载图片</p>
-<pre><code class="JavaScript">for(let i = 0 ; i &lt; num ; i++){
+<pre class=" language-JavaScript"><code class="language-JavaScript">for(let i = 0 ; i < num ; i++){
   image = new Image()
   image.src = `xxxx${i}/xx.jpg`
   arr[i] = image
@@ -513,7 +513,7 @@ gif.render();
 <p>请求数据量比较大，我先用mac下的Compress All对图片进行压缩，然后再用gzip进一步压缩所有文件(这都是后话了)</p>
 </blockquote>
 <p>接下来调用canvas的drawImage，绘制arr图片数组中的图片，然后用canvas在上面绘制文字，注意绘制的过程使用函数<strong>requestAnimationFrame</strong>(这坑爬了好久)，关于此函数这里就不讲解了</p>
-<pre><code class="JavaScript">function render(){
+<pre class=" language-JavaScript"><code class="language-JavaScript">function render(){
   ctx.drawImage(arr[i],0,0)
   ......
   requestAnimationFrame(render)
@@ -521,7 +521,7 @@ gif.render();
 render()
 </code></pre>
 <p>然后一个循环把canvas都add进去</p>
-<pre><code class="JavaScript">for(let j = 0 ; j &lt; num ; j++){     
+<pre class=" language-JavaScript"><code class="language-JavaScript">for(let j = 0 ; j < num ; j++){     
   gif.addFrame(ctx,{delay: 167})
 }
 </code></pre>
@@ -533,7 +533,7 @@ render()
 </li>
 </ul>
 <p>那么问题来了… 递归调用的draw还没执行，为什么for循环里就能把没绘制的元素状态”add”进去… 于是我看了一波源码</p>
-<pre><code class="JavaScript">GIF.prototype.addFrame = function(image, options) {
+<pre class=" language-JavaScript"><code class="language-JavaScript">GIF.prototype.addFrame = function(image, options) {
   var frame, key;
   if (options == null) {
       options = {}
@@ -544,14 +544,14 @@ render()
       frame[key] = options[key] || frameDefaults[key]
   }
   if (this.options.width == null) {
-      this.setOption(&quot;width&quot;, image.width)
+      this.setOption("width", image.width)
   }
   if (this.options.height == null) {
-      this.setOption(&quot;height&quot;, image.height)
+      this.setOption("height", image.height)
   }
-  if (typeof ImageData !== &quot;undefined&quot; &amp;&amp; ImageData !== null &amp;&amp; image instanceof ImageData) {
+  if (typeof ImageData !== "undefined" && ImageData !== null && image instanceof ImageData) {
       frame.data = image.data
-  } else if (typeof CanvasRenderingContext2D !== &quot;undefined&quot; &amp;&amp; CanvasRenderingContext2D !== null &amp;&amp; image instanceof CanvasRenderingContext2D || typeof WebGLRenderingContext !== &quot;undefined&quot; &amp;&amp; WebGLRenderingContext !== null &amp;&amp; image instanceof WebGLRenderingContext) {
+  } else if (typeof CanvasRenderingContext2D !== "undefined" && CanvasRenderingContext2D !== null && image instanceof CanvasRenderingContext2D || typeof WebGLRenderingContext !== "undefined" && WebGLRenderingContext !== null && image instanceof WebGLRenderingContext) {
       if (options.copy) {
           frame.data = this.getContextData(image)
       } else {
@@ -564,7 +564,7 @@ render()
           frame.image = image
       }
   } else {
-      throw new Error(&quot;Invalid image&quot;)
+      throw new Error("Invalid image")
   }
   return this.frames.push(frame)
 }
@@ -758,7 +758,7 @@ render()
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">6</span></a>
+                <a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/01/">一月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">6</span></a>
             </ul>
         </li>
         
@@ -776,7 +776,7 @@ render()
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/关于我/">关于我<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/吐槽/">吐槽<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/我爱的人/">我爱的人<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/">技术<span class="sidebar_archives-count">21</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/面试/">面试<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/关于我/">关于我<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/吐槽/">吐槽<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/我爱的人/">我爱的人<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/">技术<span class="sidebar_archives-count">22</span></a></li><li><a class="sidebar_archives-link" href="/categories/技术/面试/">面试<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -820,7 +820,7 @@ render()
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">28</span>
+                <span class="sidebar-badge">29</span>
             </a>
         </li>
         
