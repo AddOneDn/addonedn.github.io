@@ -478,7 +478,7 @@
 <li><strong>线程</strong>: 线程是程序中一个单一的顺序控制流程。进程内一个相对独立的、可调度的执行单元，是系统独立调度和分派CPU的基本单位。指运行中的程序的调度单位</li>
 <li><strong>单线程</strong>: 单线程在程序执行时，所走的程序路径按照连续顺序排下来，前面的必须处理好，后面的才会执行。单线程就是进程里只有一个线程</li>
 </ol>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><pre class=" language-Javascript"><code class="language-Javascript">console.log(100)
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><pre><code class="Javascript">console.log(100)
 setTimeout(function () {
     console.log(200)
 }, 0)
@@ -500,12 +500,12 @@ console.log(300)
 <blockquote>
 <p>PS: setTimeout(fun, 0)中的0不是立即执行的意思, 而是同步队列为空时立即将fun推入同步队列</p>
 </blockquote>
-<h2 id="额外"><a href="#额外" class="headerlink" title="额外"></a>额外</h2><pre class=" language-JavaScript"><code class="language-JavaScript">var flag = 1
+<h2 id="额外"><a href="#额外" class="headerlink" title="额外"></a>额外</h2><pre><code class="JavaScript">var flag = 1
 setTimeout(function(){
     flag = 0
 }, 0)
 while(flag){
-    console.log('running')
+    console.log(&#39;running&#39;)
 }
 </code></pre>
 <blockquote>

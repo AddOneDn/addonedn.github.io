@@ -513,7 +513,7 @@ public:
 <blockquote>
 <p>咸鱼题解,仅供参考和吐槽</p>
 </blockquote>
-<h2 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h2><pre class=" language-C++"><code class="language-C++">#include<fstream>
+<h2 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h2><pre><code class="C++">#include&lt;fstream&gt;
 using namespace std;
 
 struct student{    
@@ -526,30 +526,30 @@ struct student{
 int main(){
     student std[10];
     fstream stu;
-    stu.open("student.dat",ios::in|ios::binary);
+    stu.open(&quot;student.dat&quot;,ios::in|ios::binary);
     if(stu.fail()){
-        cout<<"打开a.dat文件失败"<<endl;
+        cout&lt;&lt;&quot;打开a.dat文件失败&quot;&lt;&lt;endl;
         exit(0);
     }
-    for(int i=0;i<5;i++)
-        stu.read((char*)&std[i],sizeof(std[i]));
+    for(int i=0;i&lt;5;i++)
+        stu.read((char*)&amp;std[i],sizeof(std[i]));
     stu.close();
-    stu.open("b.dat",ios::out|ios::binary|ios::app);
-    stu.write((char*)&std[4],sizeof(std[4]));
+    stu.open(&quot;b.dat&quot;,ios::out|ios::binary|ios::app);
+    stu.write((char*)&amp;std[4],sizeof(std[4]));
     stu.close();
-    stu.open("b.dat",ios::in|ios::binary);
-    stu.read((char*)&std,sizeof(std));
-    for(int i=0;i<7;i++){
-        stu.read((char*)&std[i],sizeof(std)[i]);
-        cout<<std[i].name<<" "<<std[i].age<<" "<<std[i].gender<<" "<<std[i].num<<endl;
+    stu.open(&quot;b.dat&quot;,ios::in|ios::binary);
+    stu.read((char*)&amp;std,sizeof(std));
+    for(int i=0;i&lt;7;i++){
+        stu.read((char*)&amp;std[i],sizeof(std)[i]);
+        cout&lt;&lt;std[i].name&lt;&lt;&quot; &quot;&lt;&lt;std[i].age&lt;&lt;&quot; &quot;&lt;&lt;std[i].gender&lt;&lt;&quot; &quot;&lt;&lt;std[i].num&lt;&lt;endl;
     }
     stu.close();
     return 0;
 }
 </code></pre>
-<h2 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h2><pre class=" language-C++"><code class="language-C++">
-#include <iostream>
-#include <cstring>
+<h2 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h2><pre><code class="C++">
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
 using namespace std;
 
 class student{
@@ -558,9 +558,9 @@ class student{
         int score;//学生分数
     public:
         student(char *a,int b);//构造函数
-        student(student &obj);//拷贝构造函数
+        student(student &amp;obj);//拷贝构造函数
         ~student();//析构函数
-        int operator +(student &right);//重载函数，返回两个student对象的分数之和
+        int operator +(student &amp;right);//重载函数，返回两个student对象的分数之和
         char *getName();//获取姓名
         int getScore();//获取分数
 };
@@ -569,7 +569,7 @@ student::student(char *a,int b){
     strcpy(name,a);
     score = b;
 }
-student::student(student &obj){
+student::student(student &amp;obj){
     name = new char[strlen(obj.name)+1];
     strcpy(name,obj.name);
     score = obj.score;
@@ -577,9 +577,9 @@ student::student(student &obj){
 student::~student(){
     delete []name;
 }
-int student::operator+(student &right){
+int student::operator+(student &amp;right){
     int sum;
-    sum = this->score + right.score;
+    sum = this-&gt;score + right.score;
     return sum; 
 }
 char *student::getName(){
@@ -589,16 +589,16 @@ int student::getScore(){
     return score;
 }
 int main(){
-    student s1("zhangsan",80),s2 = s1;
+    student s1(&quot;zhangsan&quot;,80),s2 = s1;
     int sum;
     sum = s1 + s2;
-    cout<<s1.getName()<<" "<<s1.getScore()<<endl;
-    cout<<s2.getName()<<" "<<s2.getScore()<<endl;
-    cout<<"总分："<<sum;
+    cout&lt;&lt;s1.getName()&lt;&lt;&quot; &quot;&lt;&lt;s1.getScore()&lt;&lt;endl;
+    cout&lt;&lt;s2.getName()&lt;&lt;&quot; &quot;&lt;&lt;s2.getScore()&lt;&lt;endl;
+    cout&lt;&lt;&quot;总分：&quot;&lt;&lt;sum;
     return 0;
 }
 </code></pre>
-<h2 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h2><pre class=" language-C++"><code class="language-C++">#include<iostream>
+<h2 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h2><pre><code class="C++">#include&lt;iostream&gt;
 using namespace std;
 #define pai 3.14
 class Shape{
@@ -625,8 +625,8 @@ class Circle:public Shape{
             area = radius*radius*pai;
         }
         void show(){
-            cout<<"半径: "<<radius<<endl;
-            cout<<"面积："<<area<<endl;
+            cout&lt;&lt;&quot;半径: &quot;&lt;&lt;radius&lt;&lt;endl;
+            cout&lt;&lt;&quot;面积：&quot;&lt;&lt;area&lt;&lt;endl;
         }
 };
 class Cylinder:public Circle{
@@ -634,15 +634,15 @@ class Cylinder:public Circle{
         double height;
     public:
         Cylinder(double height,double r):Circle(r){
-            this->height = height;
+            this-&gt;height = height;
         }
         void calcarea(){
             area = radius*radius*pai*2 + 2*pai*radius*height;
         }
         void show(){
-            cout<<"半径："<<radius<<endl;
-            cout<<"高："<<height<<endl;
-            cout<<"表面积："<<area<<endl;
+            cout&lt;&lt;&quot;半径：&quot;&lt;&lt;radius&lt;&lt;endl;
+            cout&lt;&lt;&quot;高：&quot;&lt;&lt;height&lt;&lt;endl;
+            cout&lt;&lt;&quot;表面积：&quot;&lt;&lt;area&lt;&lt;endl;
         }
         double getHeight(){
             return height;
@@ -652,9 +652,9 @@ int main(){
     Circle c1(2.5);
     Cylinder c2(6.0,2.0);
     c1.calcarea();c2.calcarea();
-    cout<<"圆的信息：";c1.show();
-    cout<<"--------------"<<endl;
-    cout<<"圆柱的信息：";c2.show();
+    cout&lt;&lt;&quot;圆的信息：&quot;;c1.show();
+    cout&lt;&lt;&quot;--------------&quot;&lt;&lt;endl;
+    cout&lt;&lt;&quot;圆柱的信息：&quot;;c2.show();
     return 0;
 }
 </code></pre>

@@ -346,7 +346,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开始操作"><span class="post-toc-number">2.</span> <span class="post-toc-text">开始操作</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#undefined"><span class="post-toc-number"></span> <span class="post-toc-text">Hello Parcel-React</span></a>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开始操作"><span class="post-toc-number">2.</span> <span class="post-toc-text">开始操作</span></a></li></ol>
     </ul>
     
 
@@ -474,38 +474,38 @@
 <h2 id="开始操作"><a href="#开始操作" class="headerlink" title="开始操作"></a>开始操作</h2><ul>
 <li>安装Parcel</li>
 </ul>
-<pre class=" language-JavaScript"><code class="language-JavaScript">yarn global add parcel-bundler
+<pre><code class="JavaScript">yarn global add parcel-bundler
 </code></pre>
 <ul>
 <li>创建package.json再顺便加个命令</li>
 </ul>
-<pre class=" language-JavaScript"><code class="language-JavaScript">yarn init -y
+<pre><code class="JavaScript">yarn init -y
 // package.json
-"scripts": {
-  "start": "parcel index.html"
+&quot;scripts&quot;: {
+  &quot;start&quot;: &quot;parcel index.html&quot;
 }
 </code></pre>
 <ul>
 <li>安装Babel</li>
 </ul>
-<pre class=" language-JavaScript"><code class="language-JavaScript">yarn add babel-preset-env
+<pre><code class="JavaScript">yarn add babel-preset-env
 </code></pre>
 <ul>
 <li>安装node-sass</li>
 </ul>
-<pre class=" language-JavaScript"><code class="language-JavaScript">yarn add node-sass
+<pre><code class="JavaScript">yarn add node-sass
 </code></pre>
 <ul>
 <li>接着创建.babelrc</li>
 </ul>
-<pre class=" language-Json"><code class="language-Json">{
-  "preset": ["env"]
+<pre><code class="Json">{
+  &quot;preset&quot;: [&quot;env&quot;]
 }
 </code></pre>
 <ul>
 <li>安装React依赖</li>
 </ul>
-<pre class=" language-JavaScript"><code class="language-JavaScript">yarn add react
+<pre><code class="JavaScript">yarn add react
 yarn add react-dom
 yarn add --dev parcel-bundler
 yarn add --dev babel-preset-env
@@ -514,12 +514,12 @@ yarn add --dev babel-preset-react
 <ul>
 <li>在.babelrc中修改</li>
 </ul>
-<pre class=" language-Json"><code class="language-Json">{
-  "presets": ["env", "react"]
+<pre><code class="Json">{
+  &quot;presets&quot;: [&quot;env&quot;, &quot;react&quot;]
 }
 </code></pre>
 <p>再整理一下目录…现在应该是这样的(关键的)</p>
-<pre class=" language-Json"><code class="language-Json">node_modules
+<pre><code class="Json">node_modules
 src
     components
     containers
@@ -530,38 +530,38 @@ index.html
 package.json
 </code></pre>
 <p><strong>index.html</strong></p>
-<pre class=" language-Html"><code class="language-Html"><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Parcel-React</title>
-</head>
-<body>
-  <div id="root"></div>
-  <script src="./src/index.js"></script>
-</body>
-</html>
+<pre><code class="Html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+  &lt;title&gt;Parcel-React&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;
+  &lt;script src=&quot;./src/index.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 </code></pre>
 <p><strong>index.js</strong></p>
-<pre class=" language-JavaScript"><code class="language-JavaScript">import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+<pre><code class="JavaScript">import React from &#39;react&#39;;
+import ReactDOM from &#39;react-dom&#39;;
+import App from &#39;./App&#39;;
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(&lt;App /&gt;, document.getElementById(&#39;root&#39;));
 </code></pre>
 <p><strong>App.js</strong></p>
-<pre class=" language-JavaScript"><code class="language-JavaScript">import React, { Component } from 'react';
+<pre><code class="JavaScript">import React, { Component } from &#39;react&#39;;
 
-import './App.scss';
+import &#39;./App.scss&#39;;
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <h1>Hello Parcel-React</h1>
-      </div>
+      &lt;div className=&quot;App&quot;&gt;
+        &lt;h1&gt;Hello Parcel-React&lt;/h1&gt;
+      &lt;/div&gt;
     );
   }
 }
@@ -569,35 +569,35 @@ class App extends Component {
 export default App;
 </code></pre>
 <p><strong>App.scss</strong></p>
-<pre class=" language-Css"><code class="language-Css">$color-red: red;
+<pre><code class="Css">$color-red: red;
 $color-black: black;
 h1{
   color: $color-red;
   cursor: pointer;
-  &:hover{
+  &amp;:hover{
     color: $color-black;
   }
 }
 </code></pre>
 <p><strong>package.json</strong></p>
-<pre class=" language-Json"><code class="language-Json">{
-  "name": "parcel-test1",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "scripts": {
-    "start": "parcel index.html"
+<pre><code class="Json">{
+  &quot;name&quot;: &quot;parcel-test1&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;license&quot;: &quot;MIT&quot;,
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;parcel index.html&quot;
   },
-  "dependencies": {
-    "babel-preset-env": "^1.6.1",
-    "node-sass": "^4.8.3",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+  &quot;dependencies&quot;: {
+    &quot;babel-preset-env&quot;: &quot;^1.6.1&quot;,
+    &quot;node-sass&quot;: &quot;^4.8.3&quot;,
+    &quot;react&quot;: &quot;^16.2.0&quot;,
+    &quot;react-dom&quot;: &quot;^16.2.0&quot;
   },
-  "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-preset-react": "^6.24.1",
-    "parcel-bundler": "^1.6.2"
+  &quot;devDependencies&quot;: {
+    &quot;babel-core&quot;: &quot;^6.26.0&quot;,
+    &quot;babel-preset-react&quot;: &quot;^6.24.1&quot;,
+    &quot;parcel-bundler&quot;: &quot;^1.6.2&quot;
   }
 }
 </code></pre>

@@ -513,7 +513,7 @@
 <h3 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h3><p>React 支持一种非常特殊的属性 Ref ，你可以用来绑定到 render() 输出的任何组件上</p>
 <p>这个特殊的属性允许你引用 render() 返回的相应的支撑实例（ backing instance ）。这样就可以确保在任何时间总是拿到正确的实例</p>
 <p>例如:</p>
-<pre class=" language-JavaScript"><code class="language-JavaScript">var MyComponent = React.createClass({
+<pre><code class="JavaScript">var MyComponent = React.createClass({
   handleClick: function() {
     // 使用原生的 DOM API 获取焦点
     this.refs.myInput.focus();
@@ -521,21 +521,21 @@
   render: function() {
     //  当组件插入到 DOM 后，ref 属性添加一个组件的引用于到 this.refs
     return (
-      <div>
-        <input type="text" ref="myInput" />
-        <input
-          type="button"
-          value="点我输入框获取焦点"
+      &lt;div&gt;
+        &lt;input type=&quot;text&quot; ref=&quot;myInput&quot; /&gt;
+        &lt;input
+          type=&quot;button&quot;
+          value=&quot;点我输入框获取焦点&quot;
           onClick={this.handleClick}
-        />
-      </div>
+        /&gt;
+      &lt;/div&gt;
     );
   }
 });
 
 ReactDOM.render(
-  <MyComponent />,
-  document.getElementById('example')
+  &lt;MyComponent /&gt;,
+  document.getElementById(&#39;example&#39;)
 );
 </code></pre>
 <h3 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h3><p>在某些场景下，你想在整个组件树中传递数据，但却不想手动地在每一层传递属性。你可以直接在 React 中使用<code>context</code> API解决上述问题</p>
@@ -560,14 +560,14 @@ ReactDOM.render(
 <li>Inherbitance Inversion（ii）HOC继承被包裹组件<code>WrappedComponent</code></li>
 </ul>
 <p>例子:</p>
-<pre class=" language-JavaScript"><code class="language-JavaScript">// Target 是一个组件，它作为参数传给了Hoc这个函数
+<pre><code class="JavaScript">// Target 是一个组件，它作为参数传给了Hoc这个函数
 function Hoc(Target) {
   class Wrap extends Component {
     render() {
       return (
-          <div className='wrap'>
-            <Target />
-          </div>
+          &lt;div className=&#39;wrap&#39;&gt;
+            &lt;Target /&gt;
+          &lt;/div&gt;
       );
     }
   }

@@ -488,22 +488,22 @@ yarn add webpack -D
   &quot;webpack-cli&quot;: &quot;^2.0.12&quot;,
 }
 </code></pre><h4 id="入口"><a href="#入口" class="headerlink" title="入口"></a>入口</h4><p>随意创建<code>./src/index.js</code>，此为webpack默认入口文件，若想更改可以对webpack配置文件进行修改</p>
-<pre class=" language-JSON"><code class="language-JSON">module.exports = {
-  entry: './src/index.js' 
+<pre><code class="JSON">module.exports = {
+  entry: &#39;./src/index.js&#39; 
 }
 
 // 上述配置等同于
 module.exports = {
   entry: {
-    main: './src/index.js'
+    main: &#39;./src/index.js&#39;
   }
 }
 
 // 或者配置多个入口
 module.exports = {
   entry: {
-    foo: './src/page-foo.js',
-    bar: './src/page-bar.js', 
+    foo: &#39;./src/page-foo.js&#39;,
+    bar: &#39;./src/page-bar.js&#39;, 
     // ...
   }
 }
@@ -512,8 +512,8 @@ module.exports = {
 module.exports = {
   entry: {
     main: [
-      './src/foo.js',
-      './src/bar.js'
+      &#39;./src/foo.js&#39;,
+      &#39;./src/bar.js&#39;
     ]
   }
 }
@@ -522,15 +522,15 @@ module.exports = {
 <p>我们可以把 loader 理解为是一个转换器，负责把某种文件格式的内容转换成 webpack 可以支持打包的模块</p>
 </blockquote>
 <p>在module.rules中进行修改</p>
-<pre class=" language-Json"><code class="language-Json">module: {
+<pre><code class="Json">module: {
   // ...
   rules: [
     {
       test: /\.jsx?/, // 匹配文件路径的正则表达式，通常我们都是匹配文件类型后缀
       include: [
-        path.resolve(__dirname, 'src') // 指定哪些路径下的文件需要经过 loader 处理
+        path.resolve(__dirname, &#39;src&#39;) // 指定哪些路径下的文件需要经过 loader 处理
       ],
-      use: 'babel-loader', // 指定使用的 loader
+      use: &#39;babel-loader&#39;, // 指定使用的 loader
     },
   ],
 }
@@ -539,7 +539,7 @@ module.exports = {
 <h4 id="plugin"><a href="#plugin" class="headerlink" title="plugin"></a>plugin</h4><blockquote>
 <p>模块代码转换的工作由 loader 来处理，除此之外的其他任何工作都可以交由 plugin 来完成，只需在配置中通过 plugins 字段添加新的 plugin 即可</p>
 </blockquote>
-<pre class=" language-Json"><code class="language-Json">const UglifyPlugin = require('uglifyjs-webpack-plugin')
+<pre><code class="Json">const UglifyPlugin = require(&#39;uglifyjs-webpack-plugin&#39;)
 
 module.exports = {
   plugins: [
@@ -550,23 +550,23 @@ module.exports = {
 <h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><blockquote>
 <p>webpack 的输出即指 webpack 最终构建出来的静态文件，使用output字段进行修改</p>
 </blockquote>
-<pre class=" language-Json"><code class="language-Json">module.exports = {
+<pre><code class="Json">module.exports = {
   // ...
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, &#39;dist&#39;),
+    filename: &#39;bundle.js&#39;,
   },
 }
 
 // 或者多个入口生成不同文件
 module.exports = {
   entry: {
-    foo: './src/foo.js',
-    bar: './src/bar.js',
+    foo: &#39;./src/foo.js&#39;,
+    bar: &#39;./src/bar.js&#39;,
   },
   output: {
-    filename: '[name].js',
-    path: __dirname + '/dist',
+    filename: &#39;[name].js&#39;,
+    path: __dirname + &#39;/dist&#39;,
   },
 }
 
@@ -574,21 +574,21 @@ module.exports = {
 module.exports = {
   // ...
   output: {
-    filename: '[name].js',
-    path: __dirname + '/dist/[hash]',
+    filename: &#39;[name].js&#39;,
+    path: __dirname + &#39;/dist/[hash]&#39;,
   },
 }
 </code></pre>
 <h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>创建一个简单的配置文件webpack.config.js</p>
-<pre class=" language-Json"><code class="language-Json">const path = require('path')
-const UglifyPlugin = require('uglifyjs-webpack-plugin')
+<pre><code class="Json">const path = require(&#39;path&#39;)
+const UglifyPlugin = require(&#39;uglifyjs-webpack-plugin&#39;)
 
 module.exports = {
-  entry: './src/index.js',
+  entry: &#39;./src/index.js&#39;,
 
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, &#39;dist&#39;),
+    filename: &#39;bundle.js&#39;,
   },
 
   module: {
@@ -596,9 +596,9 @@ module.exports = {
       {
         test: /\.jsx?/,
         include: [
-          path.resolve(__dirname, 'src')
+          path.resolve(__dirname, &#39;src&#39;)
         ],
-        use: 'babel-loader',
+        use: &#39;babel-loader&#39;,
       },
     ],
   },
@@ -606,11 +606,11 @@ module.exports = {
   // 代码模块路径解析的配置
   resolve: {
     modules: [
-      "node_modules",
-      path.resolve(__dirname, 'src')
+      &quot;node_modules&quot;,
+      path.resolve(__dirname, &#39;src&#39;)
     ],
 
-    extensions: [".wasm", ".mjs", ".js", ".json", ".jsx"],
+    extensions: [&quot;.wasm&quot;, &quot;.mjs&quot;, &quot;.js&quot;, &quot;.json&quot;, &quot;.jsx&quot;],
   },
 
   plugins: [

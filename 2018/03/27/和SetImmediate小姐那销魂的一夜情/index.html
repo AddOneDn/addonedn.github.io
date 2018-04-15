@@ -504,12 +504,12 @@
 <li>check: 执行setImmediate()设定的回调。</li>
 <li>close callbacks: 执行比如socket.on(‘close’, …)的回调。</li>
 </ul>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><pre class=" language-JavaScript"><code class="language-JavaScript">setTimeout(function timeout () {
-  console.log('timeout');
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><pre><code class="JavaScript">setTimeout(function timeout () {
+  console.log(&#39;timeout&#39;);
 },0);
 
 setImmediate(function immediate () {
-  console.log('immediate');
+  console.log(&#39;immediate&#39;);
 });
 </code></pre>
 <blockquote>
