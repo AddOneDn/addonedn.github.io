@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[React源码阅读一(+1白话)]]></title>
+    <url>%2F2018%2F04%2F18%2FReact%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-1%E7%99%BD%E8%AF%9D%2F</url>
+    <content type="text"><![CDATA[背景感觉自己还是太菜了，所以想着阅读一下React的源码，拔高一下自己。 开始这里先自己用parcel简单搭建了一个React环境又随便写了点组件 组件import React, { Component } from &#39;react&#39;; import { Switch, Route } from &#39;react-router-dom&#39; import MyNav from &#39;../components/MyNav&#39; import QAList from &#39;../components/QAList&#39; import Login from &#39;../components/Login&#39; import Register from &#39;../components/Register&#39; class MainContainer extends Component { componentDidMount(){ console.log(&lt;MyNav&gt;&lt;/MyNav&gt;) } render() { return ( &lt;div style={{display: 'flex',flexDirection: 'column'}}&gt; &lt;MyNav&gt;&lt;/MyNav&gt; &lt;Switch&gt; &lt;Route exact path=&#39;/login&#39; component={Login} /&gt; &lt;Route exact path=&#39;/register&#39; component={Register} /&gt; &lt;Route exact path=&#39;/&#39; component={QAList}/&gt; &lt;/Switch&gt; &lt;/div&gt; ); } } export default MainContainer; 这里随便写了一个Js, 然后打印了一下MyNav组件 很明显这是一个Js对象而不是Dom 如果在里面嵌套一个子元素…console.log(&lt;MyNav&gt;&lt;div&gt;Hello&lt;/div&gt;&lt;/MyNav&gt;) 我们会发现在props里多了一个children成员，同样也是一个JS对象 如果再多嵌套一下的话(这里写的好看点) console.log( &lt;MyNav&gt; &lt;div&gt; Hello &lt;span&gt;React&lt;/span&gt; &lt;/div&gt; &lt;/MyNav&gt; ) 可以看到这里会在props里面无限的套下去，同时如果一个元素内嵌了多个子元素的话，这些子元素在props的children里会以数组的方式存在 在这里不禁唱起：套马滴汉子你威武雄壮~ 然后我们看一下Component的源码 /* node_modules/react/cjs/react.development.js */ function Component(props, context, updater) { this.props = props; this.context = context; this.refs = emptyObject; // We initialize the default updater but the real one gets injected by the // renderer. this.updater = updater || ReactNoopUpdateQueue; } 这里没什么好说的，一个构造函数，重点是看看那个children到底是怎么个回事 /* node_modules/react/cjs/react.development.js */ function createElement(type, config, children) { var propName; // Reserved names are extracted var props = {}; var key = null; var ref = null; var self = null; var source = null; ..... // 省略 // Children can be more than one argument, and those are transferred onto // the newly allocated props object. var childrenLength = arguments.length - 2; if (childrenLength === 1) { props.children = children; } else if (childrenLength &gt; 1) { var childArray = Array(childrenLength); for (var i = 0; i &lt; childrenLength; i++) { childArray[i] = arguments[i + 2]; } { if (Object.freeze) { Object.freeze(childArray); } } props.children = childArray; } ...... //省略 return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props); } 这里var childrenLength = arguments.length - 2 判断children个数，因为一般子元素都是有一对闭合标签的，所以减2，如果只有一段文本，比如&lt;MyNav&gt;aaa&lt;/MyNav&gt;其中aaa就不是children了。 如果childrenLength === 1就直接是个成员，如果childrenLength &gt; 1就转成数组]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>React</tag>
+        <tag>源码</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[设计模式之MVC,MVP,MVVM]]></title>
     <url>%2F2018%2F04%2F16%2FMVC-MVVM-MVP%2F</url>
     <content type="text"><![CDATA[MVCMVC是模型(Model)－视图(View)－控制器(Controller)的缩写，是设计模式中最常用的软件架构 Model：模型，承载数据，并对用户提交请求进行计算的模块。其分为两类，一类称为数据承载Bean，一类称为业务处理Bean。所谓数据承载Bean是指实体类，专门承载业务数据的，如Student、User等。而业务处理Bean则是指Service或Dao对象，专门用于处理用户提交请求的 View：视图，为用户提供使用界面，与用户直接进行交互。 Controller：控制器，用于将用户请求转发给相应的Model进行处理，并处理Model的计算结果向用户提供相应响应 MVC中只有单向通信 用户通过View页面向服务端提出请求，可以是表单请求、超链接请求、AJAX请求等 服务端Controller控制器接收到请求后对请求进行解析，找到相应 的Model对用户请求进行处理 Model处理后，将处理结果再交给Controller Controller在接到处理结果后，根据处理结果找到要作为向客户端发回的响应View页面。页面经渲染（数据填充）后，再发送给客户端 MVPMVP是Model-View-Presenter，即将MVC中的控制器Controller换成了Presenter负责逻辑的处理 Presenter: 中介者，连接Model和View层 MVC和MVP的区别是：在MVP中View并不直接使用Model，它们之间的通信是通过Presenter (MVC中的Controller)来进行的，所有的交互都发生在Presenter内部，而在MVC中View会直接从Model中读取数据而不是通过 Controller 各部分之间都是双向通信 View 接收用户交互请求 View 将请求转交给 Presenter Presenter 操作Model进行数据更新 Model 通知Presenter数据发生变化 Presenter 更新View数据 MVVMMVVM是Model-View-ViewModel，和MVP的区别在于Presenter换成了ViewModel负责逻辑处理 Model 层，对应数据层的域模型，它主要做域模型的同步。通过 Ajax/fetch 等 API 完成客户端和服务端业务 Model 的同步。在层间关系里，它主要用于抽象出 ViewModel 中视图的 Model View 层，作为视图模板存在，在 MVVM 里，整个 View 是一个动态模板。除了定义结构、布局外，它展示的是 ViewModel 层的数据和状态。View 层不负责处理状态，View 层做的是 数据绑定的声明、 指令的声明、 事件绑定的声明 ViewModel 层把 View 需要的层数据暴露，并对 View 层的 数据绑定声明、 指令声明、 事件绑定声明 负责，也就是处理 View 层的具体业务逻辑。ViewModel 底层会做好绑定属性的监听。当 ViewModel 中数据变化，View 层会得到更新；而当 View 中声明了数据的双向绑定（通常是表单元素），框架也会监听 View 层（表单）值的变化。一旦值变化，View 层绑定的 ViewModel 中的数据也会得到自动更新 MVVM的优点是低耦合、可重用性、独立开发 双线数据绑定 View 接收用户交互请求 View 将请求转交给ViewModel ViewModel 操作Model数据更新 Model 更新完数据，通知ViewModel数据发生变化 ViewModel 更新View数据]]></content>
@@ -312,6 +324,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[某位小少女的散文诗-1]]></title>
+    <url>%2F2017%2F04%2F20%2FgwyhArticle3%2F</url>
+    <content type="text"><![CDATA[我 想我想把耳朵，贴在溪边的小树上。听小溪清脆地演奏，听小鸟欢快地啼叫。听啊，听——来到梦一般的仙境。我想把鼻子，放在鲜花上。闻鲜花的芳香，嗅生命的清爽。闻啊，闻——使我更加舒爽。我想把双手，装在飞机上。捉住柔软的白云，逮住太阳的光。玩啊，玩——蓝天是我的乐园。我想把自己，变成一条鱼。在海底，与小鱼嬉戏，与海藻玩耍。无忧无虑，尽情畅游。游啊，游——海底就是我的家。我想把自己，化为一只雄鹰。俯看长城的雄伟，再瞧草原的辽阔。飞啊，飞——见证祖国的欣荣繁茂。我想张开双臂，把祖国的山川揽入怀中。尽享山之静，水之美。我想有一百张，一千张嘴，来歌唱我的祖国——祖国，我为你骄傲！]]></content>
+      <categories>
+        <category>我爱的人</category>
+      </categories>
+      <tags>
+        <tag>她</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[某位小少女的作文-2]]></title>
     <url>%2F2017%2F04%2F20%2FgwyhArticle2%2F</url>
     <content type="text"><![CDATA[时光匆匆轻轻地打开书本，低声诵起了朱自清的《匆匆》：“燕子去了，有再来的时候；杨柳枯了，有再青的时候；桃花谢了，有再开的时候……”多么优美，多么富于哲理的话语，我一遍又一遍地读着、读着……屈指一算，已有四千多个日夜从我身边流过，还有三个月就要小学毕业了。如果再过三千多个日夜我就该大学毕业走向社会了，成为一个来建设祖国的建设者了。如何才能做一个合格的小学生呢？如何做才能成为一个合格的建设者呢？我们这代青少年有理想，又有抱负，但不能坐享其成。有些青年靠幻想来度日：想着以后该做什么，怎样为国家做贡献，就是不开始行动，甚至相信天上会掉下馅饼来。让时间在幻想当中白白流失了。有的人，总把事情推到明天再做，要知道“明日复明日，明日何其多。我生待明日，万事成蹉跎”啊！时光冉冉，我已从嗷嗷待哺的婴儿成长到乖巧懂事的六年级学生，时间就这样溜走――早晨，当我开始洗漱时，时间从水盆里溜走；中午，当我放学回家时，时间从脚下溜走；晚上，当我观望星空时，时间从眼前溜走……“光阴似箭，日月如梭。”每时每刻，时间都从我身边溜走，而且去而不返。“一寸光阴一寸金，寸金难买寸光阴。”这使我加倍珍惜它，把握分分秒秒。直至现在，它还在催促我长大，但是我并不感谢它，因为它在催促我长大的同时，也让生命点滴流逝。我总是追赶它，渴望与它同起同作，同止同息，但是，那却是可望而不可及的。今年的春天一定在想——去年的春天寄托了什么样的理想，明年的春天又会是一个怎样的景象？这一切我都无法作答，但愿像欧阳修所说的那样：今年花胜去年红，明年花更好，更与我同！]]></content>
@@ -323,9 +346,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[某位小少女的散文诗-1]]></title>
-    <url>%2F2017%2F04%2F20%2FgwyhArticle3%2F</url>
-    <content type="text"><![CDATA[我 想我想把耳朵，贴在溪边的小树上。听小溪清脆地演奏，听小鸟欢快地啼叫。听啊，听——来到梦一般的仙境。我想把鼻子，放在鲜花上。闻鲜花的芳香，嗅生命的清爽。闻啊，闻——使我更加舒爽。我想把双手，装在飞机上。捉住柔软的白云，逮住太阳的光。玩啊，玩——蓝天是我的乐园。我想把自己，变成一条鱼。在海底，与小鱼嬉戏，与海藻玩耍。无忧无虑，尽情畅游。游啊，游——海底就是我的家。我想把自己，化为一只雄鹰。俯看长城的雄伟，再瞧草原的辽阔。飞啊，飞——见证祖国的欣荣繁茂。我想张开双臂，把祖国的山川揽入怀中。尽享山之静，水之美。我想有一百张，一千张嘴，来歌唱我的祖国——祖国，我为你骄傲！]]></content>
+    <title><![CDATA[某位小少女的作文-1]]></title>
+    <url>%2F2017%2F04%2F20%2FgwyhArticle1%2F</url>
+    <content type="text"><![CDATA[珍爱生命 让人生更精彩一个生命从春天走过，至少它美丽过； 一个生命从夏天走过，至少它辉煌过； 一个生命从秋天走过，至少它绚烂过； 一个生命从冬天走过，至少它坚强过。吟起这首诗，我自问：“生命是什么？”它不是一场雨，雨下在地上蒸发成水汽还会再落下；它不是一棵小草，小草枯了春天还会再荣；生命是无意间爬上额间的河流，当我们懂得珍惜时，河道已很深，深深的河道里有深深的遗憾。生命犹如单行道，没有回头的机会；生命是宇宙时间，永远无法找到两个相同时刻。“人，最宝贵的东西是生命。生命属于人只有一次。”汶川地震，警察妈妈哺育受灾幼儿；玉树天灾，护士妈妈再现慈爱。珍爱生命，人生将更精彩。感悟生命从连绵上浮起，从一点一滴中渗出，在细微处藏身。生命的长河倒映着红花绿叶、飘零积雪，变迁着湖畔边丝丝色泽，并渐渐地前行。大江东去，璀璨的生命镌刻着历史的痕迹，激荡着颗颗璀璨的明珠。生活中不可能处处有鲜花，时时有掌声。在你留意生命、珍惜生命的旅程中，你会发现，当生命被生活推向极致的地方，往往会展现出一些从容之美，临乱世而不惊，处方舟而不躁，喜迎阴晴圆缺，笑傲风霜雨雪；你更会明白，只有抱着一颗常人的平常之心，去看待生命，去珍惜生命，生命才会更有意义。生命是一种神秘的力量，说它脆弱，它就像薄冰一样不堪一击；说它坚强，它又像大山一般坚韧不拔。像海伦·凯勒，她是一位双耳失聪、双目失明的残疾人，但她凭着自己的毅力和信念，凭着对生命的热爱，先后掌握了四门外语，成为哈佛大学的一名学生，你能不说这是生命所创造的奇迹吗？去追寻你的梦想，去你想去的地方，做一个你想做的人。因为，生命只有一次，亦只得一次机会去做你所想做的事。我们应让自己的生命在理智的搏击中度过，就像落叶、谢花一样，潇洒地来，潇洒地去，做到对生命无怨无悔，让生命之光永远辉煌。珍爱生命吧，哪怕生命只有一霎那，那也让它成为一种永恒！]]></content>
       <categories>
         <category>我爱的人</category>
       </categories>
@@ -342,17 +365,6 @@
       </categories>
       <tags>
         <tag>我</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[某位小少女的作文-1]]></title>
-    <url>%2F2017%2F04%2F20%2FgwyhArticle1%2F</url>
-    <content type="text"><![CDATA[珍爱生命 让人生更精彩一个生命从春天走过，至少它美丽过； 一个生命从夏天走过，至少它辉煌过； 一个生命从秋天走过，至少它绚烂过； 一个生命从冬天走过，至少它坚强过。吟起这首诗，我自问：“生命是什么？”它不是一场雨，雨下在地上蒸发成水汽还会再落下；它不是一棵小草，小草枯了春天还会再荣；生命是无意间爬上额间的河流，当我们懂得珍惜时，河道已很深，深深的河道里有深深的遗憾。生命犹如单行道，没有回头的机会；生命是宇宙时间，永远无法找到两个相同时刻。“人，最宝贵的东西是生命。生命属于人只有一次。”汶川地震，警察妈妈哺育受灾幼儿；玉树天灾，护士妈妈再现慈爱。珍爱生命，人生将更精彩。感悟生命从连绵上浮起，从一点一滴中渗出，在细微处藏身。生命的长河倒映着红花绿叶、飘零积雪，变迁着湖畔边丝丝色泽，并渐渐地前行。大江东去，璀璨的生命镌刻着历史的痕迹，激荡着颗颗璀璨的明珠。生活中不可能处处有鲜花，时时有掌声。在你留意生命、珍惜生命的旅程中，你会发现，当生命被生活推向极致的地方，往往会展现出一些从容之美，临乱世而不惊，处方舟而不躁，喜迎阴晴圆缺，笑傲风霜雨雪；你更会明白，只有抱着一颗常人的平常之心，去看待生命，去珍惜生命，生命才会更有意义。生命是一种神秘的力量，说它脆弱，它就像薄冰一样不堪一击；说它坚强，它又像大山一般坚韧不拔。像海伦·凯勒，她是一位双耳失聪、双目失明的残疾人，但她凭着自己的毅力和信念，凭着对生命的热爱，先后掌握了四门外语，成为哈佛大学的一名学生，你能不说这是生命所创造的奇迹吗？去追寻你的梦想，去你想去的地方，做一个你想做的人。因为，生命只有一次，亦只得一次机会去做你所想做的事。我们应让自己的生命在理智的搏击中度过，就像落叶、谢花一样，潇洒地来，潇洒地去，做到对生命无怨无悔，让生命之光永远辉煌。珍爱生命吧，哪怕生命只有一霎那，那也让它成为一种永恒！]]></content>
-      <categories>
-        <category>我爱的人</category>
-      </categories>
-      <tags>
-        <tag>她</tag>
       </tags>
   </entry>
 </search>

@@ -43,7 +43,7 @@
     
     <title>
         
-            某位小少女的散文诗-1 | 
+            React源码阅读一(+1白话) | 
         
         AddOne
     </title>
@@ -53,8 +53,8 @@
     <link rel="icon" href="/img/favicon.png">
 
     <meta name="format-detection" content="telephone=no"/>
-    <meta name="description" itemprop="description" content="我 想我想把耳朵，贴在溪边的小树上。听小溪清脆地演奏，听小鸟欢快地啼叫。听啊，听——来到梦一般的仙境。我想把鼻子，放在鲜花上。闻鲜花的芳香，嗅生命的清爽。">
-    <meta name="keywords" content="null,她">
+    <meta name="description" itemprop="description" content="徐嘉一的博客">
+    <meta name="keywords" content="null,React,源码">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -215,7 +215,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="AddOne">
-    <meta name="msapplication-starturl" content="http://yoursite.com/2017/04/20/gwyhArticle3/">
+    <meta name="msapplication-starturl" content="http://yoursite.com/2018/04/18/React源码阅读-1白话/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="AddOne">
@@ -230,16 +230,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://yoursite.com/2017/04/20/gwyhArticle3/">
+    <meta property="og:url" content="http://yoursite.com/2018/04/18/React源码阅读-1白话/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="某位小少女的散文诗-1 | AddOne">
+    <meta property="og:title" content="React源码阅读一(+1白话) | AddOne">
     <meta property="og:image" content="/img/favicon.png">
-    <meta property="og:description" content="我 想我想把耳朵，贴在溪边的小树上。听小溪清脆地演奏，听小鸟欢快地啼叫。听啊，听——来到梦一般的仙境。我想把鼻子，放在鲜花上。闻鲜花的芳香，嗅生命的清爽。">
-    <meta property="og:article:tag" content="她"> 
+    <meta property="og:description" content="徐嘉一的博客">
+    <meta property="og:article:tag" content="React"> <meta property="og:article:tag" content="源码"> 
 
     
-        <meta property="article:published_time" content="Thu Apr 20 2017 22:53:22 GMT+0800">
-        <meta property="article:modified_time" content="Thu Mar 15 2018 18:14:42 GMT+0800">
+        <meta property="article:published_time" content="Wed Apr 18 2018 22:33:29 GMT+0800">
+        <meta property="article:modified_time" content="Thu Apr 19 2018 00:31:08 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -247,7 +247,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://yoursite.com/2017/04/20/gwyhArticle3/index.html" />
+        <link rel="canonical" href="http://yoursite.com/2018/04/18/React源码阅读-1白话/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -259,10 +259,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "http://yoursite.com/2017/04/20/gwyhArticle3/index.html",
-    "headline": "某位小少女的散文诗-1",
-    "datePublished": "Thu Apr 20 2017 22:53:22 GMT+0800",
-    "dateModified": "Thu Mar 15 2018 18:14:42 GMT+0800",
+    "mainEntityOfPage": "http://yoursite.com/2018/04/18/React源码阅读-1白话/index.html",
+    "headline": "React源码阅读一(+1白话)",
+    "datePublished": "Wed Apr 18 2018 22:33:29 GMT+0800",
+    "dateModified": "Thu Apr 19 2018 00:31:08 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "AddOneG",
@@ -280,8 +280,8 @@
             "url": "/img/favicon.png"
         }
     },
-    "keywords": ",她null",
-    "description": "我 想我想把耳朵，贴在溪边的小树上。听小溪清脆地演奏，听小鸟欢快地啼叫。听啊，听——来到梦一般的仙境。我想把鼻子，放在鲜花上。闻鲜花的芳香，嗅生命的清爽。",
+    "keywords": ",React,源码null",
+    "description": "徐嘉一的博客",
 }
 </script>
 
@@ -346,7 +346,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#我-想"><span class="post-toc-number">1.</span> <span class="post-toc-text">我 想</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开始"><span class="post-toc-number">2.</span> <span class="post-toc-text">开始</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#组件"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">组件</span></a></li></ol></li></ol>
     </ul>
     
 
@@ -378,7 +378,7 @@
         
     
             <p class="article-headline-p">
-                某位小少女的散文诗-1
+                React源码阅读一(+1白话)
             </p>
         </div>
 
@@ -397,7 +397,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>AddOneG</strong>
-        <span>4月 20, 2017</span>
+        <span>4月 18, 2018</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -421,7 +421,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/她/">她</a>
+        <a class="post_tag-link" href="/tags/React/">React</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/源码/">源码</a>
     </ul>
     
 
@@ -441,7 +441,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=某位小少女的散文诗-1&url=http://yoursite.com/2017/04/20/gwyhArticle3/index.html&via=AddOneG" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=React源码阅读一(+1白话)&url=http://yoursite.com/2018/04/18/React源码阅读-1白话/index.html&via=AddOneG" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -459,7 +459,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=AddOne&title=某位小少女的散文诗-1&summary=徐嘉一的博客&pics=http://yoursite.com/img/favicon.ico&url=http://yoursite.com/2017/04/20/gwyhArticle3/index.html" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=AddOne&title=React源码阅读一(+1白话)&summary=徐嘉一的博客&pics=http://yoursite.com/img/favicon.ico&url=http://yoursite.com/2018/04/18/React源码阅读-1白话/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 QQ
             </li>
@@ -478,7 +478,117 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h2 id="我-想"><a href="#我-想" class="headerlink" title="我 想"></a>我 想</h2><p>我想把耳朵，<br>贴在溪边的小树上。<br>听小溪清脆地演奏，<br>听小鸟欢快地啼叫。<br>听啊，听——<br>来到梦一般的仙境。<br>我想把鼻子，<br>放在鲜花上。<br>闻鲜花的芳香，<br>嗅生命的清爽。<br><a id="more"></a><br>闻啊，闻——<br>使我更加舒爽。<br>我想把双手，<br>装在飞机上。<br>捉住柔软的白云，<br>逮住太阳的光。<br>玩啊，玩——<br>蓝天是我的乐园。<br>我想把自己，<br>变成一条鱼。<br>在海底，与小鱼嬉戏，<br>与海藻玩耍。<br>无忧无虑，尽情畅游。<br>游啊，游——<br>海底就是我的家。<br>我想把自己，<br>化为一只雄鹰。<br>俯看长城的雄伟，<br>再瞧草原的辽阔。<br>飞啊，飞——<br>见证祖国的欣荣繁茂。<br>我想张开双臂，<br>把祖国的山川揽入怀中。<br>尽享山之静，水之美。<br>我想有一百张，一千张嘴，<br>来歌唱我的祖国——<br>祖国，我为你骄傲！</p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>感觉自己还是太菜了，所以想着阅读一下React的源码，拔高一下自己。</p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>这里先自己用parcel简单搭建了一个React环境又随便写了点组件</p>
+<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><pre><code class="Javascript">import React, { Component } from &#39;react&#39;;
+import { Switch, Route } from &#39;react-router-dom&#39;
+
+import MyNav from &#39;../components/MyNav&#39;
+import QAList from &#39;../components/QAList&#39;
+import Login from &#39;../components/Login&#39;
+import Register from &#39;../components/Register&#39;
+
+class MainContainer extends Component {
+
+  componentDidMount(){
+    console.log(&lt;MyNav&gt;&lt;/MyNav&gt;)
+  }
+
+  render() {
+    return (
+      &lt;div style={{display: 'flex',flexDirection: 'column'}}&gt;
+        &lt;MyNav&gt;&lt;/MyNav&gt;
+        &lt;Switch&gt;
+          &lt;Route exact path=&#39;/login&#39; component={Login} /&gt;
+          &lt;Route exact path=&#39;/register&#39; component={Register} /&gt;
+          &lt;Route exact path=&#39;/&#39; component={QAList}/&gt;   
+        &lt;/Switch&gt;
+      &lt;/div&gt;
+
+    );
+  }
+}
+
+export default MainContainer;
+</code></pre>
+<p>这里随便写了一个<code>Js</code>, 然后打印了一下<code>MyNav</code>组件</p>
+<p><img src="http://p5sf6v0wz.bkt.clouddn.com/react1-1.png" alt="react1-1"></p>
+<p>很明显这是一个<code>Js</code>对象而不是<code>Dom</code></p>
+<p>如果在里面嵌套一个子元素…<br><code>console.log(&lt;MyNav&gt;&lt;div&gt;Hello&lt;/div&gt;&lt;/MyNav&gt;)</code></p>
+<p><img src="http://p5sf6v0wz.bkt.clouddn.com/react1-2.png" alt="react1-2"></p>
+<p>我们会发现在<code>props</code>里多了一个<code>children</code>成员，同样也是一个<code>JS</code>对象</p>
+<p>如果再多嵌套一下的话(这里写的好看点)</p>
+<pre><code class="Javascript">console.log(
+  &lt;MyNav&gt;
+    &lt;div&gt;
+      Hello
+      &lt;span&gt;React&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/MyNav&gt;
+)
+</code></pre>
+<p><img src="http://p5sf6v0wz.bkt.clouddn.com/react1-3.png" alt="react1-3"></p>
+<p>可以看到这里会在<code>props</code>里面无限的套下去，同时如果一个元素内嵌了多个子元素的话，这些子元素在<code>props</code>的<code>children</code>里会以数组的方式存在</p>
+<blockquote>
+<p>在这里不禁唱起：套马滴汉子你威武雄壮~</p>
+</blockquote>
+<p>然后我们看一下<code>Component</code>的源码</p>
+<pre><code class="Javascript">/* 
+  node_modules/react/cjs/react.development.js
+*/
+
+function Component(props, context, updater) {
+  this.props = props;
+  this.context = context;
+  this.refs = emptyObject;
+  // We initialize the default updater but the real one gets injected by the
+  // renderer.
+  this.updater = updater || ReactNoopUpdateQueue;
+}
+</code></pre>
+<p>这里没什么好说的，一个构造函数，重点是看看那个<code>children</code>到底是怎么个回事</p>
+<pre><code class="Javascript">/* 
+  node_modules/react/cjs/react.development.js
+*/
+
+function createElement(type, config, children) {
+  var propName;
+
+  // Reserved names are extracted
+  var props = {};
+
+  var key = null;
+  var ref = null;
+  var self = null;
+  var source = null;
+
+  ..... // 省略
+
+  // Children can be more than one argument, and those are transferred onto
+  // the newly allocated props object.
+  var childrenLength = arguments.length - 2;
+  if (childrenLength === 1) {
+    props.children = children;
+  } else if (childrenLength &gt; 1) {
+    var childArray = Array(childrenLength);
+    for (var i = 0; i &lt; childrenLength; i++) {
+      childArray[i] = arguments[i + 2];
+    }
+    {
+      if (Object.freeze) {
+        Object.freeze(childArray);
+      }
+    }
+    props.children = childArray;
+  }
+
+  ...... //省略
+
+  return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props);
+}
+</code></pre>
+<p>这里<code>var childrenLength = arguments.length - 2</code> 判断children个数，因为一般子元素都是有一对闭合标签的，所以减2，如果只有一段文本，比如<code>&lt;MyNav&gt;aaa&lt;/MyNav&gt;</code>其中aaa就不是children了。</p>
+<p>如果<code>childrenLength === 1</code>就直接是个成员，如果<code>childrenLength &gt; 1</code>就转成数组</p>
 
         
     
@@ -516,7 +626,7 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     var gitment = new Gitment({
-        id: 'Thu Apr 20 2017 22:53:22 GMT+0800', // 可选。默认为 location.href
+        id: 'Wed Apr 18 2018 22:33:29 GMT+0800', // 可选。默认为 location.href
         owner: 'addonedn',
         repo: 'addonedn.github.io',
         oauth: {
@@ -534,21 +644,13 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2017/04/22/css垂直居中/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2017/04/20/gwyhArticle2/" id="post_nav-older" class="next-content">
+        <a href="/2018/04/16/MVC-MVVM-MVP/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
