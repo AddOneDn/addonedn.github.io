@@ -43,7 +43,7 @@
     
     <title>
         
-            React源码阅读一(+1白话) | 
+            React源码自阅读(长篇) | 
         
         AddOne
     </title>
@@ -232,14 +232,14 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com/2018/04/18/React源码阅读-1白话/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="React源码阅读一(+1白话) | AddOne">
+    <meta property="og:title" content="React源码自阅读(长篇) | AddOne">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="徐嘉一的博客">
     <meta property="og:article:tag" content="React"> <meta property="og:article:tag" content="源码"> 
 
     
         <meta property="article:published_time" content="Wed Apr 18 2018 22:33:29 GMT+0800">
-        <meta property="article:modified_time" content="Thu Apr 19 2018 00:31:08 GMT+0800">
+        <meta property="article:modified_time" content="Thu Apr 19 2018 15:24:00 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -260,9 +260,9 @@
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "mainEntityOfPage": "http://yoursite.com/2018/04/18/React源码阅读-1白话/index.html",
-    "headline": "React源码阅读一(+1白话)",
+    "headline": "React源码自阅读(长篇)",
     "datePublished": "Wed Apr 18 2018 22:33:29 GMT+0800",
-    "dateModified": "Thu Apr 19 2018 00:31:08 GMT+0800",
+    "dateModified": "Thu Apr 19 2018 15:24:00 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "AddOneG",
@@ -378,7 +378,7 @@
         
     
             <p class="article-headline-p">
-                React源码阅读一(+1白话)
+                React源码自阅读(长篇)
             </p>
         </div>
 
@@ -441,7 +441,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=React源码阅读一(+1白话)&url=http://yoursite.com/2018/04/18/React源码阅读-1白话/index.html&via=AddOneG" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=React源码自阅读(长篇)&url=http://yoursite.com/2018/04/18/React源码阅读-1白话/index.html&via=AddOneG" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -459,7 +459,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=AddOne&title=React源码阅读一(+1白话)&summary=徐嘉一的博客&pics=http://yoursite.com/img/favicon.ico&url=http://yoursite.com/2018/04/18/React源码阅读-1白话/index.html" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=AddOne&title=React源码自阅读(长篇)&summary=徐嘉一的博客&pics=http://yoursite.com/img/favicon.ico&url=http://yoursite.com/2018/04/18/React源码阅读-1白话/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 QQ
             </li>
@@ -481,12 +481,8 @@
         <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>感觉自己还是太菜了，所以想着阅读一下React的源码，拔高一下自己。</p>
 <h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>这里先自己用parcel简单搭建了一个React环境又随便写了点组件</p>
 <h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><pre><code class="Javascript">import React, { Component } from &#39;react&#39;;
-import { Switch, Route } from &#39;react-router-dom&#39;
 
 import MyNav from &#39;../components/MyNav&#39;
-import QAList from &#39;../components/QAList&#39;
-import Login from &#39;../components/Login&#39;
-import Register from &#39;../components/Register&#39;
 
 class MainContainer extends Component {
 
@@ -496,15 +492,9 @@ class MainContainer extends Component {
 
   render() {
     return (
-      &lt;div style={{display: 'flex',flexDirection: 'column'}}&gt;
+      &lt;div&gt;
         &lt;MyNav&gt;&lt;/MyNav&gt;
-        &lt;Switch&gt;
-          &lt;Route exact path=&#39;/login&#39; component={Login} /&gt;
-          &lt;Route exact path=&#39;/register&#39; component={Register} /&gt;
-          &lt;Route exact path=&#39;/&#39; component={QAList}/&gt;   
-        &lt;/Switch&gt;
       &lt;/div&gt;
-
     );
   }
 }
@@ -532,7 +522,17 @@ export default MainContainer;
 <blockquote>
 <p>在这里不禁唱起：套马滴汉子你威武雄壮~</p>
 </blockquote>
-<p>然后我们看一下<code>Component</code>的源码</p>
+<p>那我们不如就顺着这个问题深入，先看一下<code>React.js</code> </p>
+<pre><code class="Javascript">const React = {
+  ...... //省略
+
+  Component,
+  createElement: __DEV__ ? createElementWithValidation : createElement,
+
+  ...... //省略
+}
+</code></pre>
+<p>我们先看一下<code>Component</code></p>
 <pre><code class="Javascript">/* 
   node_modules/react/cjs/react.development.js
 */
@@ -546,7 +546,11 @@ function Component(props, context, updater) {
   this.updater = updater || ReactNoopUpdateQueue;
 }
 </code></pre>
+<blockquote>
+<p>组件<code>extends</code>的<code>Components</code>就是继承的这玩意</p>
+</blockquote>
 <p>这里没什么好说的，一个构造函数，重点是看看那个<code>children</code>到底是怎么个回事</p>
+<p>然后看一哈<code>createElement</code></p>
 <pre><code class="Javascript">/* 
   node_modules/react/cjs/react.development.js
 */
@@ -587,8 +591,110 @@ function createElement(type, config, children) {
   return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props);
 }
 </code></pre>
-<p>这里<code>var childrenLength = arguments.length - 2</code> 判断children个数，因为一般子元素都是有一对闭合标签的，所以减2，如果只有一段文本，比如<code>&lt;MyNav&gt;aaa&lt;/MyNav&gt;</code>其中aaa就不是children了。</p>
-<p>如果<code>childrenLength === 1</code>就直接是个成员，如果<code>childrenLength &gt; 1</code>就转成数组</p>
+<p>东西都在这里，代码也很容易理解，这里初始化了一堆东西（你可以很清晰的看到<code>children</code>的处理方式)，最后用<code>ReactElement</code>这个工厂函数返回一个<code>React</code>元素</p>
+<blockquote>
+<p><code>Object.freeze</code>这里就不讲了 有兴趣的去百度一哈</p>
+</blockquote>
+<p>那么问题来了..<code>Component</code>是继承来的，那这个<code>createElement</code>是什么时候执行的呢?</p>
+<p>常规思路是在<code>render</code>里, 那就去看一下</p>
+<pre><code class="Javascript">var ReactMount = {
+
+  /**入口render方法
+   * @param {ReactElement} nextElement 要插入到DOM中的组件
+   * @param {DOMElement} container 要插入到的容器
+   * @param {?function} callback 回调
+   * @return {ReactComponent} Component instance rendered in `container`.返回ReactComponent
+   */
+  render: function (nextElement, container, callback) {
+    return ReactMount._renderSubtreeIntoContainer(
+      null,
+      nextElement,
+      container,
+      callback,
+    );
+  },
+
+  ......
+  /**
+   * 将ReactElement插入DOM中，并返回ReactElement对应的ReactComponent。
+   * ReactElement是React元素在内存中的表示形式，可以理解为一个数据类，包含type，key，refs，props等成员变量
+   * ReactComponent是React元素的操作类，包含mountComponent(), updateComponent()等很多操作组件的方法
+   */
+  _renderSubtreeIntoContainer: function (
+    parentComponent,
+    nextElement,
+    container,
+    callback,
+  ) {
+    callback = callback === undefined ? null : callback;
+
+    var nextWrappedElement = React.createElement(TopLevelWrapper, {
+      child: nextElement,
+    });
+  }
+
+  ......
+}
+</code></pre>
+<p>在<code>render</code>里可以看到用<code>React</code>的成员方法<code>createElement</code>创建了一个元素返回给了<code>nextWrappedElement</code></p>
+<p>我们跟踪一下<code>nextWrappedElement</code></p>
+<pre><code class="Javascript">// 获取要插入到的容器的前一次的ReactComponent，这是为了做DOM diff
+var prevComponent = getTopLevelWrapperInContainer(container);
+
+if (prevComponent) {
+  var prevWrappedElement = prevComponent._currentElement;
+  var prevElement = prevWrappedElement.props.child;
+
+  // shouldUpdateReactComponent方法判断是否需要更新,它只对同一DOM层级，type相同，key(如果有)相同的组件做DOM diff，
+  if (shouldUpdateReactComponent(prevElement, nextElement)) {
+    var publicInst = prevComponent._renderedComponent.getPublicInstance();
+    var updatedCallback =
+      callback &amp;&amp;
+      function () {
+        validateCallback(callback);
+        callback.call(publicInst);
+      };
+    ReactMount._updateRootComponent(
+      prevComponent,
+      nextWrappedElement,
+      nextContext,
+      container,
+      updatedCallback,
+    );
+    return publicInst;
+  } else {
+    //直接unmount
+    ReactMount.unmountComponentAtNode(container);
+  }
+  // 对于ReactDOM.render()调用，prevComponent为null
+  var reactRootElement = getReactRootElementInContainer(container);
+  var containerHasReactMarkup =
+    reactRootElement &amp;&amp; !!internalGetID(reactRootElement);
+  var containerHasNonRootReactChild = hasNonRootReactChild(container);
+
+  var shouldReuseMarkup =
+    containerHasReactMarkup &amp;&amp;
+    !prevComponent &amp;&amp;
+    !containerHasNonRootReactChild;
+
+  var component = ReactMount._renderNewRootComponent(
+    nextWrappedElement,
+    container,
+    shouldReuseMarkup,
+    nextContext,
+    callback,
+  )._renderedComponent.getPublicInstance();
+  return component;
+}
+</code></pre>
+<p>简单梳理一下这个函数: 先拿到前一次的<code>ReactComponent</code>做<code>dom diff</code>，然后<code>shouldUpdateReactComponent</code>判断一下是否需要更新，如果需要的话就<code>diff</code>之后<code>_updateRootComponent</code>，否则直接卸载；然后调用<code>_renderNewRootComponent</code>渲染新的组件，这两个函数都有上文提到的<code>nextWrappedElement</code>作为参数</p>
+<blockquote>
+<p>到这里问题差不多就解决啦，不过我决定弄个图来直观的表现一哈</p>
+</blockquote>
+<p><img src="http://p5sf6v0wz.bkt.clouddn.com/react-component.png" alt="react-component"></p>
+<blockquote>
+<p>未完待续</p>
+</blockquote>
 
         
     
