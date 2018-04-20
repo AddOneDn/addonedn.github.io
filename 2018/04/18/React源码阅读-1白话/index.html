@@ -239,7 +239,7 @@
 
     
         <meta property="article:published_time" content="Wed Apr 18 2018 22:33:29 GMT+0800">
-        <meta property="article:modified_time" content="Fri Apr 20 2018 00:41:51 GMT+0800">
+        <meta property="article:modified_time" content="Fri Apr 20 2018 23:19:51 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -262,7 +262,7 @@
     "mainEntityOfPage": "http://yoursite.com/2018/04/18/React源码阅读-1白话/index.html",
     "headline": "React源码自阅读(长篇)",
     "datePublished": "Wed Apr 18 2018 22:33:29 GMT+0800",
-    "dateModified": "Fri Apr 20 2018 00:41:51 GMT+0800",
+    "dateModified": "Fri Apr 20 2018 23:19:51 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "AddOneG",
@@ -504,7 +504,8 @@ export default MainContainer;
 <p>这里随便写了一个<code>Js</code>, 然后打印了一下<code>MyNav</code>组件</p>
 <p><img src="http://p5sf6v0wz.bkt.clouddn.com/react1-1.png" alt="react1-1"></p>
 <p>很明显这是一个<code>Js</code>对象而不是<code>Dom</code></p>
-<p>如果在里面嵌套一个子元素…<br><code>console.log(&lt;MyNav&gt;&lt;div&gt;Hello&lt;/div&gt;&lt;/MyNav&gt;)</code></p>
+<p>如果在里面嵌套一个子元素…</p>
+<p><code>console.log(&lt;MyNav&gt;&lt;div&gt;Hello&lt;/div&gt;&lt;/MyNav&gt;)</code></p>
 <p><img src="http://p5sf6v0wz.bkt.clouddn.com/react1-2.png" alt="react1-2"></p>
 <p>我们会发现在<code>props</code>里多了一个<code>children</code>成员，同样也是一个<code>JS</code>对象</p>
 <p>如果再多嵌套一下的话(这里写的好看点)</p>
@@ -760,13 +761,59 @@ if (prevComponent) {
 <p>事务就是把方法用<code>wrapper</code>封装起来，再通过事务的<code>perform</code>方法进行调用，从图里可以看出在执行被包裹的方法前后分别执行<code>initialize</code>和<code>close</code>，一组<code>initialize</code>和<code>close</code>方法称为一个<code>wrapper</code>，事务支持多个<code>wrapper</code>叠加</p>
 <p>上文的<code>perform(callback)</code>即<code>perform(enqueueUpdate)</code>，这里再放一张网上随便偷来的流程图帮助理解</p>
 <p><img src="http://p5sf6v0wz.bkt.clouddn.com/react-setState-preform.png" alt=""></p>
+<p>我们看一下上文的两个<code>wrapper</code></p>
+<pre><code class="Javascript">var RESET_BATCHED_UPDATES = {
+  initialize: emptyFunction,
+  close: function(){
+    ReactDefaultBatchingStrategy.isBatchingUpdates = false
+  }
+}
+
+var FLUSH_BATCHED_UPDATES = {
+  initialize: emptyFunction,
+  close: function(){
+    ReactUpdates.flushBatchedUpdates.bind(ReactUpdates)
+  }
+}
+</code></pre>
 <p><code>RESET_BATCHED_UPDATES</code>即是一个<code>wrapper</code>，从图可以看出它应该是用来修改<code>isBatchingUpdates</code>的值，需要更新的时候设置为更新，更新结束后恢复状态，这样不仅可以节省渲染，还能防止<code>enqueueUpdate</code>的递归调用导致死循环</p>
 <blockquote>
 <p>那么在<code>dirtyComponents</code>中是如何进行组件更新的呢?</p>
 </blockquote>
-<p>这里涉及到另一个<code>wrapper</code>即<code>FLUSH_BATCHED_UPDATES</code></p>
+<p>这里涉及到另一个<code>wrapper</code>即<code>FLUSH_BATCHED_UPDATES</code>，我们看一下<code>flushBatchedUpdates</code></p>
+<pre><code class="Javascript">var flushBatchedUpdates = function() {
+  while(dirtyComponents.length || asapEnqueued){
+    if(dirtyComponents.length){
+      var transaction = ReactUpdatesFlushTransaction.getPooled()
+      transaction.perform(runBatchedUpdates,null,transaction)
+      ReactUpdatesFlushTransaction.release(transaction)
+    }
+    ......
+  }
+}
+</code></pre>
+<p><code>flushBatchedUpdates</code>遍历了<code>dirtyComponents</code>，然后用事务执行<code>runBatchedUpdates</code>方法</p>
+<p>搜了一下，这个函数主要执行以下两步</p>
+<ul>
+<li>一是通过执行<code>updateComponent</code>方法来更新组件</li>
+<li>二是若<code>setState</code>方法传入了回调函数则将回调函数存入<code>callbackQueue</code>队列</li>
+</ul>
+<p>先看一下<code>updateComponent</code>源码</p>
+<p><img src="http://p5sf6v0wz.bkt.clouddn.com/react-updateComponent.png" alt=""></p>
+<p>能看到两个比较重要的函数名<code>componentWillReceiveProps</code>和<code>shouldComponentUpdate</code>，但是根据<code>nextState</code>让我们先看一下<code>_processPendingState</code>这个函数</p>
+<p><img src="http://p5sf6v0wz.bkt.clouddn.com/processPendingState.png" alt=""></p>
+<p>理解一下:</p>
+<ul>
+<li>更新队列为<code>null</code>则直接返回原来<code>state</code></li>
+<li>若队列不为<code>null</code>则返回(大于<code>1</code>则合并)</li>
+</ul>
+<p>在<code>updateComponent</code>中，如果<code>shouldUpdate</code>为<code>true</code>,则执行<code>_performComponentUpdate</code></p>
+<p><img src="http://p5sf6v0wz.bkt.clouddn.com/performComponentUpdate.png" alt=""></p>
+<p>这里能看到<code>componentWillUpdate</code>这个生命周期函数，没什么深入的必要，我们看看上文中最后的更新函数<code>_updateRenderedComponent</code></p>
+<p><img src="http://p5sf6v0wz.bkt.clouddn.com/updateRenderedComponent.png" alt=""></p>
+<p>拿到新旧组件信息后传给<code>shouldUpdateReactComponent</code>，根据返回值<code>true or false</code>决定是更新旧组件还是卸载旧组件挂载新组件</p>
 <blockquote>
-<p>今天先到这，该睡觉了</p>
+<p>未完待续</p>
 </blockquote>
 
         
