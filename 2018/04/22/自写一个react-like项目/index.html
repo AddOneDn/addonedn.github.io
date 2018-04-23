@@ -239,7 +239,7 @@
 
     
         <meta property="article:published_time" content="Sun Apr 22 2018 23:40:24 GMT+0800">
-        <meta property="article:modified_time" content="Sun Apr 22 2018 23:53:23 GMT+0800">
+        <meta property="article:modified_time" content="Mon Apr 23 2018 23:52:23 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -262,7 +262,7 @@
     "mainEntityOfPage": "http://yoursite.com/2018/04/22/自写一个react-like项目/index.html",
     "headline": "自写一个react-like项目",
     "datePublished": "Sun Apr 22 2018 23:40:24 GMT+0800",
-    "dateModified": "Sun Apr 22 2018 23:53:23 GMT+0800",
+    "dateModified": "Mon Apr 23 2018 23:52:23 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "AddOneG",
@@ -346,7 +346,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开始"><span class="post-toc-number">2.</span> <span class="post-toc-text">开始</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开始"><span class="post-toc-number">2.</span> <span class="post-toc-text">开始</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#组件"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">组件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#渲染"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">渲染</span></a></li></ol></li></ol>
     </ul>
     
 
@@ -478,9 +478,252 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>之前自学了一阵子<code>React</code>源码(<a href="https://addonedn.github.io/2018/04/18/React%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-1%E7%99%BD%E8%AF%9D/" target="_blank" rel="noopener">文章</a>)，感觉自己对<code>Component</code>和<code>setState</code>，所以这里决定写一个<code>React-Like</code>项目加深一下对<code>React</code>的理解</p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>之前自学了一阵子<code>React</code>源码(<a href="https://addonedn.github.io/2018/04/18/React%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-1%E7%99%BD%E8%AF%9D/" target="_blank" rel="noopener">文章</a>)，感觉自己对<code>Component</code>和<code>setState</code>,所以这里决定写一个<code>React-Like</code>项目加深一下对<code>React</code>的理解</p>
 <h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><blockquote>
-<p>改天整理</p>
+<p>项目使用了<code>transform-react-jsx</code>来进行<code>JSX</code>和<code>JS</code>的转换</p>
+</blockquote>
+<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><p>既然是写<code>React</code>，那就先定义一下<code>React</code>基本结构</p>
+<pre><code class="Javascript">// src/react/index.js
+import Component from &#39;./Component.js&#39;
+import createElement from &#39;./CreateReactElement.js&#39;
+
+const React = {
+    Component,
+    createElement
+}
+
+export default React;
+</code></pre>
+<p>其中<code>Component</code>为基本组件作为父类,<code>createElement</code>来创建组件</p>
+<pre><code class="Javascript">// src/react/Component.js
+import { enqueueSetState } from &#39;./StateQueue&#39;
+
+class Component {
+  constructor(props){
+    this.isComponent = true // 是否为组件
+    this.isReplace = false // 是否是更新的组件
+    this.props = props
+    this.state = {}
+  }
+
+  setState(partialState){
+    enqueueSetState(partialState, this)
+  }
+}
+
+export default Component;
+</code></pre>
+<p>这里进行了一些基本的初始化, 还定义了<code>setState</code>方法，其中调用了<code>enqueueSetState</code>(后话)进行组件更新</p>
+<pre><code class="Javascript">// src/react/CreateReactElement.js
+
+function createElement(tag, attrs, children){
+
+  var props = {}
+  var attrs = attrs || {}
+
+  const childrenLength = arguments.length - 2;
+
+  if (childrenLength === 1) {
+    props.children = children;
+  } else if (childrenLength &gt; 1) {
+    var childArray = Array(childrenLength);
+    for (let i = 0; i &lt; childrenLength; i++) {
+      childArray[i] = arguments[i + 2];
+    }
+    props.children = childArray;
+  }
+
+  return {
+    tag,
+    attrs,
+    props,
+    key: attrs.key || null
+  }
+}
+
+export default createElement;
+</code></pre>
+<p>这里同样进行一些初始化操作，但是对传进来的<code>children</code>进行了特殊的处理，利用<code>arguments</code>获得<code>children</code>长度，之后决定是转化成数组还是直接写到<code>porps</code>上去，最后将所有属性作为对象返回，当用户创建<code>React</code>对象时会自动调用这个函数</p>
+<h3 id="渲染"><a href="#渲染" class="headerlink" title="渲染"></a>渲染</h3><p>同样我们先定义一个<code>ReactDom</code>对象</p>
+<pre><code class="Javascript">// src/react-dom/index.js
+
+import render from &#39;./Render&#39;
+
+const ReactDOM = {
+  render: ( nextElement, container ) =&gt; {
+      return render( nextElement, container );
+  }
+}
+
+export default ReactDOM;
+</code></pre>
+<p>在这里定义了一个大名鼎鼎的<code>render</code>函数，传入两个参数分别为当前的元素和要插入的容器，然后调用<code>Render</code>文件中的<code>render</code>方法</p>
+<pre><code class="Javascript">// src/react-dom/Render.js
+
+import {
+  createComponent,
+  setComponentProps
+} from &#39;./Diff&#39;
+import setAttribute from &#39;./Dom&#39;
+
+/**入口render方法
+ * @param {ReactElement} nextElement 要插入到DOM中的组件
+ * @param {DOMElement} container 要插入到的容器
+ */
+export function render(nextElement, container){
+
+  if(nextElement == null || container == null) return;
+
+  if(nextElement.isComponent){
+    const component = nextElement;
+
+    if (component._container) {
+      if (component.componentWillUpdate){
+        component.componentWillUpdate();
+      } else if (component.componentWillMount) {
+        component.componentWillMount();
+      }
+    }
+
+    component._container = container;
+
+    nextElement = component.render()
+  }
+
+  const type = typeof nextElement
+
+  if(type === &#39;string&#39; || type === &#39;number&#39;){
+    let textNode = document.createTextNode(nextElement);
+    return container.appendChild(textNode);
+  }
+
+  if(typeof nextElement.tag === &#39;function&#39;){
+    let component = createComponent(nextElement.tag, nextElement.attrs)
+    setComponentProps(component,nextElement.attrs, container)
+    return render(component.base, container);
+  }
+
+  const dom = document.createElement(nextElement.tag)
+
+  if(nextElement.attrs){
+    Object.keys(nextElement.attrs).map(key =&gt; {
+      setAttribute(key, nextElement.attrs[key], dom)
+    })
+  }
+
+  if(nextElement.props){
+    if(typeof nextElement.props.children == &#39;object&#39;){
+      nextElement.props.children.forEach(item =&gt; {
+        render(item, dom)
+      })
+    }else{
+      render(nextElement.props.children, dom)
+    }
+  }
+
+  if(nextElement._component){
+    if(nextElement._component.isReplace){
+      var arr = Array.from(nextElement._component.parentNode.childNodes)
+      arr.map((item,index) =&gt; {
+        if(isSameDom(item,dom)){
+          return container.replaceChild(dom, nextElement._component.parentNode.children[index])
+        }
+      })
+    }
+  }
+  return container.appendChild(dom)
+}
+
+function isSameDom(item, dom){
+  return (item.nodeName == dom.nodeName &amp;&amp; item.nodeType == dom.nodeType &amp;&amp; item.nextSibling == dom.nextSibling)
+}
+
+export default render;
+</code></pre>
+<p><br>代码比较长，我们这里分段分析一下</p>
+<pre><code class="Javascript">const type = typeof nextElement
+
+if(type === &#39;string&#39; || type === &#39;number&#39;){
+  let textNode = document.createTextNode(nextElement);
+  return container.appendChild(textNode);
+}
+</code></pre>
+<p>如果元素类型为<code>string</code>或<code>number</code>则直接创建<code>TextNode</code>并直接<code>append</code>到<code>container</code>中里</p>
+<pre><code class="Javascript">if(typeof nextElement.tag === &#39;function&#39;){
+  let component = createComponent(nextElement.tag, nextElement.attrs)
+  setComponentProps(component,nextElement.attrs, container)
+  return render(component.base, container);
+}
+</code></pre>
+<p>如果元素的<code>tag</code>类型为<code>function</code>即为<code>React</code>组件，则调用<code>Diff</code>中的方法来创建组件(后话)</p>
+<pre><code class="Javascript">const dom = document.createElement(nextElement.tag)
+
+if(nextElement.attrs){
+  Object.keys(nextElement.attrs).map(key =&gt; {
+    setAttribute(key, nextElement.attrs[key], dom)
+  })
+}
+</code></pre>
+<p>如果都不是的话即为普通元素，则直接调用<code>document.createElement</code>创建<code>Dom</code>，之后遍历<code>attrs</code>调用<code>setAttribute</code>来设置属性，<code>Object.keys</code>将对象转化成数组方便遍历，接下来我们看一下<code>setAttribute</code>方法</p>
+<pre><code class="Javascript">function setAttribute(key, value, dom){
+  if(key === &#39;className&#39;){
+    key = &#39;class&#39;
+  }
+
+  if(typeof value === &#39;function&#39;){
+    dom[key.toLowerCase()] = value || &#39;&#39;;
+  }else if(key === &#39;style&#39;){
+    if(typeof value === &#39;string&#39;){
+      dom.style.cssText = value || &#39;&#39;;
+    }else if(typeof value === &#39;object&#39;){
+      for (let name in value) {
+        dom.style[name] = typeof value[name] === &#39;number&#39; ? value[name] + &#39;px&#39; : value[name];
+      }
+    }
+  }else{
+    if(value){
+      dom.setAttribute(key, value);
+    }else{
+      dom.removeAttribute(key, value);
+    }
+  }
+}
+
+export default setAttribute;
+</code></pre>
+<ul>
+<li>先将<code>className</code>转化为<code>class</code></li>
+<li>若绑定的类型为<code>function</code>则转化成小写后写入<code>dom</code>属性</li>
+<li>若<code>key</code>为<code>style</code>，则分类讨论，若属性为<code>string</code>则写入<code>cssText</code>，若为<code>object</code>则判断其是否为<code>number</code>，若是则自动在后面添加<code>px</code>，然后写入<code>style</code></li>
+<li>若为其他则直接调用原生<code>setAttribute</code>方法</li>
+<li>若属性值为空则在<code>dom</code>上删除该属性</li>
+</ul>
+<pre><code class="Javascript">if(nextElement.props){
+  if(typeof nextElement.props.children == &#39;object&#39;){
+    nextElement.props.children.forEach(item =&gt; {
+      render(item, dom)
+    })
+  }else{
+    render(nextElement.props.children, dom)
+  }
+}
+</code></pre>
+<p>顺着<code>render</code>往下看，这里遍历元素的子元素递归渲染</p>
+<pre><code class="Javascript">if(nextElement._component){
+  if(nextElement._component.isReplace){
+    var arr = Array.from(nextElement._component.parentNode.childNodes)
+    arr.map((item,index) =&gt; {
+      if(isSameDom(item,dom)){
+        return container.replaceChild(dom, nextElement._component.parentNode.children[index])
+      }
+    })
+  }
+}
+return container.appendChild(dom)
+</code></pre>
+<p>最后判断两次<code>render</code>的组件是否为同一个，若为同一个则调用<code>replaceChild</code>方法进行替换，否则<code>appendChild</code>到容器中</p>
+<blockquote>
+<p>未完待续</p>
 </blockquote>
 
         
