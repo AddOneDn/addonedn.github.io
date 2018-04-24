@@ -239,7 +239,7 @@
 
     
         <meta property="article:published_time" content="Sun Apr 22 2018 23:40:24 GMT+0800">
-        <meta property="article:modified_time" content="Mon Apr 23 2018 23:52:23 GMT+0800">
+        <meta property="article:modified_time" content="Tue Apr 24 2018 23:57:44 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -262,7 +262,7 @@
     "mainEntityOfPage": "http://yoursite.com/2018/04/22/自写一个react-like项目/index.html",
     "headline": "自写一个react-like项目",
     "datePublished": "Sun Apr 22 2018 23:40:24 GMT+0800",
-    "dateModified": "Mon Apr 23 2018 23:52:23 GMT+0800",
+    "dateModified": "Tue Apr 24 2018 23:57:44 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "AddOneG",
@@ -346,7 +346,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开始"><span class="post-toc-number">2.</span> <span class="post-toc-text">开始</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#组件"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">组件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#渲染"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">渲染</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开始"><span class="post-toc-number">2.</span> <span class="post-toc-text">开始</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#组件"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">组件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#渲染"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">渲染</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#State更新"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">State更新</span></a></li></ol></li></ol>
     </ul>
     
 
@@ -722,9 +722,133 @@ export default setAttribute;
 return container.appendChild(dom)
 </code></pre>
 <p>最后判断两次<code>render</code>的组件是否为同一个，若为同一个则调用<code>replaceChild</code>方法进行替换，否则<code>appendChild</code>到容器中</p>
+<p>回到上面<code>nextElement.tag === &#39;function&#39;</code>中，其中有两个函数<code>createComponent</code>和<code>setComponentProps</code></p>
+<pre><code class="Javascript">// src/react-dom/Diff.js
+
+export function createComponent(component, props){
+  let instance;
+  if(component.prototype &amp;&amp; component.prototype.render){
+    instance = new component(props)
+  }else{
+    instance = new component(props)
+    instance.constructor = component
+    instance.render = function() {
+      return this.constructor(props)
+    }
+  }
+
+  return instance;
+}
+</code></pre>
+<p>第一个<code>if</code>判断是不是<code>class</code>创建的组件，若是则直接<code>new</code>一个，若不是则为函数返回组件，调整一下<code>constructor</code>以及<code>render</code>方法，然后将新组件返回</p>
+<pre><code class="Javascript">// src/react-dom/Diff.js
+
+export function setComponentProps(component, props, container){
+  if (!component.base){
+    if (component.componentWillMount) 
+      component.componentWillMount();
+    }else if(component.componentWillReceiveProps){
+        component.componentWillReceiveProps(props);
+  }
+
+  component.props = props;
+  component.parentNode = container
+
+  renderComponent(component, container)
+}
+</code></pre>
+<p>首先判断组件的<code>base</code>是否存在，若存在则判断是否为初次挂载，否则判断是否为接受新的<code>props</code>，然后将<code>props</code>即<code>render</code>中的<code>attrs</code>和<code>container</code>作为成员添加到<code>component</code>上，<code>parentNode</code>用来定位父元素方便更新，然后调用<code>renderComponent</code>进行组件挂载或者更新</p>
+<pre><code class="Javascript">// src/react-dom/Diff.js
+
+export function renderComponent(component, container){
+  let base;
+
+  if ( component.base &amp;&amp; component.componentWillUpdate ) {
+    component.componentWillUpdate();
+  }
+
+  base = component.render()
+
+  if (component.base) {
+    if (component.componentDidUpdate){
+      component.componentDidUpdate();
+    }
+  }else if(component.componentDidMount) {
+    component.componentDidMount();
+  }
+
+  component.base = base;
+  base._component = component;
+
+  if(!container){
+    component.isReplace = true
+    render(base, component.parentNode)
+  }
+}
+</code></pre>
+<p><code>base</code>为<code>createComponent</code>中的<code>component</code>渲染后结果，然后进行一下简单的生命周期判断，最后判断<code>container</code>是否为空，若为空则为更新组件，把<code>component.parentNode</code>作为<code>container</code>传回<code>render</code></p>
+<h3 id="State更新"><a href="#State更新" class="headerlink" title="State更新"></a>State更新</h3><p>在文章开始提到过，<code>Component</code>中的<code>setState</code>方法调用了<code>enqueueSetState</code></p>
+<pre><code class="Javascript">// src/react/StateQueue.js
+
+const batchingUpdates = [] // 需要更新的状态
+const dirtyComponent = [] // 需要更新的组件
+var isbatchingUpdates = false // 是否处于更新状态
+
+function callbackQueue(fn){
+  return Promise.resolve().then(fn);
+}
+
+export function enqueueSetState(partialState, component){
+  if(!isbatchingUpdates){
+    callbackQueue(flushBatchedUpdates)
+  }
+
+  isbatchingUpdates = true
+
+  batchingUpdates.push({
+    partialState,
+    component
+  })
+
+  if(!dirtyComponent.some(item =&gt; item === component)){
+    dirtyComponent.push(component)
+  }
+}
+</code></pre>
+<p><code>isbatchingUpdates</code>判断事务是否处于更新状态(初始值为<code>false</code>)，若不为更新则调用<code>callbackQueue</code>来执行<code>flushBatchedUpdates</code>函数来更新组件，然后设置更新状态为<code>true</code>，将当前状态和组件添加到<code>batchingUpdates</code>中，最后判断<code>dirtyComponent</code>中是否有当前组件，若无则添加进去</p>
 <blockquote>
-<p>未完待续</p>
+<p><code>callbackQueue</code>使用了<code>Promise</code>来达到延时模拟<code>setState</code>的功能</p>
 </blockquote>
+<pre><code class="Javascript">// src/react/StateQueue.js
+
+function flushBatchedUpdates(){
+  let queueItem, componentItem;
+  while(queueItem = batchingUpdates.shift()){
+    const { partialState, component } = queueItem;
+
+    if(!component.prevState){
+      component.prevState = Object.assign({}, partialState)
+    }
+
+    if(typeof partialState == &#39;function&#39;){
+      Object.assign(component.state, partialState(component.prevState, component.props))
+    }else{
+      Object.assign(component.state, partialState)
+    }
+
+    component.prevState = component.state
+  }
+
+  while(componentItem = dirtyComponent.shift()){
+    renderComponent(componentItem)
+  }
+
+  isbatchingUpdates = false
+}
+</code></pre>
+<p>遍历<code>batchingUpdates</code>数组排头(<code>shift</code>自查)，获取其中组件和状态，判断组件的前一个状态，若无之前的状态，则将空对象和当前状态合并设为该组件的初始状态，若💰一状态为<code>function</code>，则调用该函数并将返回值和之前状态合并，若不为函数则直接合并，然后设置组件的上一状态为其之前的状态，最后遍历<code>dirtyComponent</code>更新组件，完成后设置<code>isbatchingUpdates</code>为<code>false</code></p>
+<p>至此，基本功能完成</p>
+<p>代码请移步<a href="https://github.com/AddOneDn/react-like" target="_blank" rel="noopener">GitHub仓库</a></p>
 
         
     
