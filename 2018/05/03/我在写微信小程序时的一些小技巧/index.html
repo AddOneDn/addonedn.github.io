@@ -239,7 +239,7 @@
 
     
         <meta property="article:published_time" content="Thu May 03 2018 19:32:12 GMT+0800">
-        <meta property="article:modified_time" content="Thu May 03 2018 20:40:12 GMT+0800">
+        <meta property="article:modified_time" content="Thu May 03 2018 22:49:51 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -262,7 +262,7 @@
     "mainEntityOfPage": "http://yoursite.com/2018/05/03/我在写微信小程序时的一些小技巧/index.html",
     "headline": "我在写微信小程序时用到的一些小知识",
     "datePublished": "Thu May 03 2018 19:32:12 GMT+0800",
-    "dateModified": "Thu May 03 2018 20:40:12 GMT+0800",
+    "dateModified": "Thu May 03 2018 22:49:51 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "AddOneG",
@@ -346,7 +346,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#自定义的使用"><span class="post-toc-number">2.</span> <span class="post-toc-text">自定义的使用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一键换肤"><span class="post-toc-number">3.</span> <span class="post-toc-text">一键换肤</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#加载更多"><span class="post-toc-number">4.</span> <span class="post-toc-text">加载更多</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#下拉刷新"><span class="post-toc-number">5.</span> <span class="post-toc-text">下拉刷新</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#自定义组件的使用"><span class="post-toc-number">2.</span> <span class="post-toc-text">自定义组件的使用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一键换肤"><span class="post-toc-number">3.</span> <span class="post-toc-text">一键换肤</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#加载更多"><span class="post-toc-number">4.</span> <span class="post-toc-text">加载更多</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#下拉刷新"><span class="post-toc-number">5.</span> <span class="post-toc-text">下拉刷新</span></a></li></ol>
     </ul>
     
 
@@ -479,12 +479,12 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>一直以来进行了比较多的微信小程序开发… 总会接触到一些和官方组件或<code>api</code>相关或其无法解决的需求，于是决定在这里小小的整理一下自己的实现(次序不分先后)</p>
-<h2 id="自定义的使用"><a href="#自定义的使用" class="headerlink" title="自定义的使用"></a>自定义的使用</h2><ol>
+<h2 id="自定义组件的使用"><a href="#自定义组件的使用" class="headerlink" title="自定义组件的使用"></a>自定义组件的使用</h2><ul>
 <li><p>创建<br>右键新建<code>Component</code></p>
 </li>
 <li><p>引用<br>在你需要引用的文件的<code>json</code>中定义</p>
 </li>
-</ol>
+</ul>
 <pre><code class="Json">&quot;注释&quot;: &quot;前面为组件名，后面为路径，这里仅供参考&quot;
 
 {
@@ -494,9 +494,9 @@
   }
 }
 </code></pre>
-<ol>
+<ul>
 <li>传入属性</li>
-</ol>
+</ul>
 <p>在组件的<code>js</code>中定义你需要的属性名,类型及默认值</p>
 <pre><code class="Javascript">properties: {
   theme: {
