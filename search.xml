@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[我在写微信小程序时用到的一些小知识]]></title>
+    <url>%2F2018%2F05%2F03%2F%E6%88%91%E5%9C%A8%E5%86%99%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%97%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7%2F</url>
+    <content type="text"><![CDATA[背景一直以来进行了比较多的微信小程序开发… 总会接触到一些和官方组件或api相关或其无法解决的需求，于是决定在这里小小的整理一下自己的实现(次序不分先后) 自定义的使用 创建右键新建Component 引用在你需要引用的文件的json中定义 &quot;注释&quot;: &quot;前面为组件名，后面为路径，这里仅供参考&quot; { &quot;usingComponents&quot;: { &quot;Menu&quot;: &quot;../Components/Menu/Menu&quot;, &quot;Loading&quot;: &quot;../Components/Loading/Loading&quot; } } 传入属性 在组件的js中定义你需要的属性名,类型及默认值 properties: { theme: { type: String, value: &#39;gray&#39; } ... }, 注意properties为父组件要传入的数据，组件自身状态还是在data中 然后在wxml中引用即可 &lt;Menu theme=&quot;{{theme}}&quot;&gt;&lt;/Menu&gt; 一键换肤先创建一个color.wxss来存你的皮肤样式(文件名和位置随意) /* 黑色主题 */ .bg-black{ background-color: #363636; } .col-black-title{ color: #ffffff; } .col-black-name{ color: #c3c3c3; } class名中必须带一个标志来区分不同主题，推荐使用颜色的英文名..然后在app.wxss中引用 // ~ 为你的文件路径 @import &#39;~/color.wxss&#39;; 之后在app.js的globalData中定义一个字段储存你当前主题 globalData: { themeArr: [&#39;gray&#39;, &#39;black&#39;, &#39;green&#39;, &#39;orange&#39;, &#39;pink&#39;, &#39;blue&#39;], theme: &#39;black&#39; // gray, black, green, orange, pink, blue } 然后在js里引用app.js，然后在onLoad里获取theme后setData即可，这里贴上wxml和wxss &lt;Menu theme=&quot;{{theme}}&quot;&gt;&lt;/Menu&gt; &lt;block wx:for=&quot;{{themeArr}}&quot; wx:key=&quot;{{index}}&quot;&gt; &lt;view class=&quot;theme-view-item bg-{{item}} select-{{item == theme}}&quot; bindtap=&#39;changeTheme&#39; data-theme=&quot;{{item}}&quot; &gt;&lt;/view&gt; &lt;/block&gt; .theme-view-item{ width: 80rpx; height: 40rpx; margin: 20rpx; border-radius: 10rpx; } .select-true{ transform: scale(1.2,1.2); } var app = getApp() Page({ data: { theme: &#39;&#39;, themeArr: app.globalData.themeArr }, onLoad: function (options) { this.setData({ theme: app.globalData.theme }) }, changeTheme(e){ var theme = e.currentTarget.dataset.theme app.globalData.theme = theme this.setData({ theme: theme }) } }) 来个效果图 加载更多使用scroll-view &lt;scroll-view scroll-y bindscrolltolower=&#39;toLow&#39; style=&quot;height: {{height}}px&quot; &gt; scroll-y允许纵向滚动，bindscrolltolower定义了滚动到底部时应该执行的函数，style中使用了js中获取的屏幕可用高度 使用scroll-y需要指定scroll的高度 onLoad: function (options) { wx.getSystemInfo({ success: (res) =&gt; { this.setData({ height: res.windowHeight }) } }) }, toLow(){ this.setData({ isLoading: true }) }, 然后在scroll下面放你的loading组件就可以了.. &lt;scroll-view scroll-y bindscrolltolower=&#39;toLow&#39; style=&quot;height: {{height}}px&quot; &gt; ...... &lt;view hidden=&quot;{{!isLoading}}&quot;&gt; &lt;Loading&gt;&lt;/Loading&gt; &lt;/view&gt; &lt;/scroll-view&gt; 下拉刷新这个功能用到的都是官方的api，先在app.json中定义允许下拉刷新 &quot;window&quot;: { ...... &quot;enablePullDownRefresh&quot;: true } 然后在你的js文件中定义相应的函数 onPullDownRefresh: function () { ...... wx.stopPullDownRefresh() }, 这个点可以看官方文档]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>微信小程序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[关于在mac上使用vscode编写markdown出现控制字符问题]]></title>
     <url>%2F2018%2F04%2F25%2F%E5%85%B3%E4%BA%8E%E5%9C%A8mac%E4%B8%8A%E4%BD%BF%E7%94%A8vscode%E7%BC%96%E5%86%99markdown%E5%87%BA%E7%8E%B0%E6%8E%A7%E5%88%B6%E5%AD%97%E7%AC%A6%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[背景如题….遇到过无数次，所以今天终于决定解决一下 问题先放一个问题图 这是我的一篇GitHub上的README文件，能看到有好几个莫名的特殊字符 在网上搜了一下，在vscode设置中开启 //控制编辑器是否应呈现控制字符 &quot;editor.renderControlCharacters&quot;: true 然后就能看到这个鬼畜的东西 能看到那个小小的BS，搜了一下发现它是ASCII码中的退格符的Unicode表示法(所有ASCII控制字符都有一个图形外观)，其实这个Bug是chromium的，但是因为vscode底层是electron，electron底层又用的chromium，就导致vscode也有了这个Bug 至于什么情况会发生呢？ 你需要满足以下几条条件: 使用Mac 在Mac上使用vscode(其他编辑器不知道有没有这个Bug) 在上面两种条件满足的情况下写markdown文件 在上面三种条件满足的情况下开启preview，就像这样 凑齐这几个条件真是难为我了 解决方案 去掉上文四个条件中的至少一条 开启&quot;editor.renderControlCharacters&quot;: true，看到这玩意就删掉 本文资料来源于知乎Mac 上的 VSCode 编写 Markdown 总是出现隐藏字符？]]></content>
@@ -261,8 +273,8 @@
       </categories>
       <tags>
         <tag>前端</tag>
-        <tag>面试</tag>
         <tag>JavaScript</tag>
+        <tag>面试</tag>
       </tags>
   </entry>
   <entry>
@@ -369,17 +381,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[某位小少女的作文-1]]></title>
-    <url>%2F2017%2F04%2F20%2FgwyhArticle1%2F</url>
-    <content type="text"><![CDATA[珍爱生命 让人生更精彩一个生命从春天走过，至少它美丽过； 一个生命从夏天走过，至少它辉煌过； 一个生命从秋天走过，至少它绚烂过； 一个生命从冬天走过，至少它坚强过。吟起这首诗，我自问：“生命是什么？”它不是一场雨，雨下在地上蒸发成水汽还会再落下；它不是一棵小草，小草枯了春天还会再荣；生命是无意间爬上额间的河流，当我们懂得珍惜时，河道已很深，深深的河道里有深深的遗憾。生命犹如单行道，没有回头的机会；生命是宇宙时间，永远无法找到两个相同时刻。“人，最宝贵的东西是生命。生命属于人只有一次。”汶川地震，警察妈妈哺育受灾幼儿；玉树天灾，护士妈妈再现慈爱。珍爱生命，人生将更精彩。感悟生命从连绵上浮起，从一点一滴中渗出，在细微处藏身。生命的长河倒映着红花绿叶、飘零积雪，变迁着湖畔边丝丝色泽，并渐渐地前行。大江东去，璀璨的生命镌刻着历史的痕迹，激荡着颗颗璀璨的明珠。生活中不可能处处有鲜花，时时有掌声。在你留意生命、珍惜生命的旅程中，你会发现，当生命被生活推向极致的地方，往往会展现出一些从容之美，临乱世而不惊，处方舟而不躁，喜迎阴晴圆缺，笑傲风霜雨雪；你更会明白，只有抱着一颗常人的平常之心，去看待生命，去珍惜生命，生命才会更有意义。生命是一种神秘的力量，说它脆弱，它就像薄冰一样不堪一击；说它坚强，它又像大山一般坚韧不拔。像海伦·凯勒，她是一位双耳失聪、双目失明的残疾人，但她凭着自己的毅力和信念，凭着对生命的热爱，先后掌握了四门外语，成为哈佛大学的一名学生，你能不说这是生命所创造的奇迹吗？去追寻你的梦想，去你想去的地方，做一个你想做的人。因为，生命只有一次，亦只得一次机会去做你所想做的事。我们应让自己的生命在理智的搏击中度过，就像落叶、谢花一样，潇洒地来，潇洒地去，做到对生命无怨无悔，让生命之光永远辉煌。珍爱生命吧，哪怕生命只有一霎那，那也让它成为一种永恒！]]></content>
-      <categories>
-        <category>我爱的人</category>
-      </categories>
-      <tags>
-        <tag>她</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[addone]]></title>
     <url>%2F2017%2F04%2F20%2Faddone%2F</url>
     <content type="text"><![CDATA[欢迎各位来到我的简单博客 其实这里什么都没有2333333333333333]]></content>
@@ -388,6 +389,17 @@
       </categories>
       <tags>
         <tag>我</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[某位小少女的作文-1]]></title>
+    <url>%2F2017%2F04%2F20%2FgwyhArticle1%2F</url>
+    <content type="text"><![CDATA[珍爱生命 让人生更精彩一个生命从春天走过，至少它美丽过； 一个生命从夏天走过，至少它辉煌过； 一个生命从秋天走过，至少它绚烂过； 一个生命从冬天走过，至少它坚强过。吟起这首诗，我自问：“生命是什么？”它不是一场雨，雨下在地上蒸发成水汽还会再落下；它不是一棵小草，小草枯了春天还会再荣；生命是无意间爬上额间的河流，当我们懂得珍惜时，河道已很深，深深的河道里有深深的遗憾。生命犹如单行道，没有回头的机会；生命是宇宙时间，永远无法找到两个相同时刻。“人，最宝贵的东西是生命。生命属于人只有一次。”汶川地震，警察妈妈哺育受灾幼儿；玉树天灾，护士妈妈再现慈爱。珍爱生命，人生将更精彩。感悟生命从连绵上浮起，从一点一滴中渗出，在细微处藏身。生命的长河倒映着红花绿叶、飘零积雪，变迁着湖畔边丝丝色泽，并渐渐地前行。大江东去，璀璨的生命镌刻着历史的痕迹，激荡着颗颗璀璨的明珠。生活中不可能处处有鲜花，时时有掌声。在你留意生命、珍惜生命的旅程中，你会发现，当生命被生活推向极致的地方，往往会展现出一些从容之美，临乱世而不惊，处方舟而不躁，喜迎阴晴圆缺，笑傲风霜雨雪；你更会明白，只有抱着一颗常人的平常之心，去看待生命，去珍惜生命，生命才会更有意义。生命是一种神秘的力量，说它脆弱，它就像薄冰一样不堪一击；说它坚强，它又像大山一般坚韧不拔。像海伦·凯勒，她是一位双耳失聪、双目失明的残疾人，但她凭着自己的毅力和信念，凭着对生命的热爱，先后掌握了四门外语，成为哈佛大学的一名学生，你能不说这是生命所创造的奇迹吗？去追寻你的梦想，去你想去的地方，做一个你想做的人。因为，生命只有一次，亦只得一次机会去做你所想做的事。我们应让自己的生命在理智的搏击中度过，就像落叶、谢花一样，潇洒地来，潇洒地去，做到对生命无怨无悔，让生命之光永远辉煌。珍爱生命吧，哪怕生命只有一霎那，那也让它成为一种永恒！]]></content>
+      <categories>
+        <category>我爱的人</category>
+      </categories>
+      <tags>
+        <tag>她</tag>
       </tags>
   </entry>
 </search>
