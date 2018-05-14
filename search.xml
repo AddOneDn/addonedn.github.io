@@ -52,7 +52,7 @@
   <entry>
     <title><![CDATA[计算机组成-程序的转换及机器级表示]]></title>
     <url>%2F2018%2F05%2F05%2F%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90-%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%BD%AC%E6%8D%A2%E5%8F%8A%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA%2F</url>
-    <content type="text"><![CDATA[AT&amp;T汇编指令学习(GCC) 源/目的操作数顺序:AT&amp;T语法格式表示为:opcode src, dest: “操作码 源, 目标” 操作数长度标识:在AT&amp;T语法中,通过在指令后添加后缀来指明该指令运算对象的尺寸.后缀 b 指明运算对象是一个字节(byte)后缀 w 指明运算对象是一个字(word)后缀 l 指明运算对象是一个双字(long) 常数/立即数格式 在AT&amp;T语法中 对立即数,须在其前加前缀 $ 来指明 在常数前也必须加一个前缀字符 * 内存寻址方式 SECTION:DISP(BASE, INDEX, SCALE)，段:偏移量(基地址,变址,比例因子) 基本的行内汇编格式 asm(&quot;statements&quot;)例如：asm(&quot;nop&quot;); `asm(“movl %eax,%ebx”);asm 和 asm是完全一样的. 如果有多行汇编，则每一行都要加上\n\t` 常用指令 数据传送指令：move,push,pop 加载有效地址指令：leal 一元操作指令：inc(加1),dec(减1)，neg(取负)，not(取补) 二元操作指令：add,sub,imul,idivl(有符号除法),xor,or,and 移位指令：sal(左移),shl,sar(算数右移),shr(逻辑右移) 跳转指令：jmp,je,jne,js,jns,jg,jl,ja,jb,jbe… 几道题第一题对于以下 AT&amp;T格式汇编指令，根据操作数的长度确定对应指令助记符中的长度后缀，并说明每个操作数的寻址方式12345678mov 8(%ebp, %ebx, 4), %axmov %al, 12(%ebp)add (, %ebx, 4), %ebxor (%ebx), %dhpush $0xF8mov $0xFFF0, %eaxtest %cx,%cxlea 8(%ebx, %esi), %eax 参考答案 12345678w，基址+比例变址+偏移，寄存器b，寄存器，基址+偏移l，比例变址，寄存器b，基址，寄存器l，立即数，栈l，立即数，寄存器w，寄存器，寄存器l，基址+变址+偏移，寄存器 第二题假设x和ptr声明如下 123src_type x;dst_type ptr;*ptr = (dst_type)x; 若 x 存储在寄存器 EAX 或 AX 或 AL 中，ptr 存储在寄存器 EDX 中，写出实现上述赋值语句的机器级代码。要求用 AT&amp;T 格式汇编指令表示机器级代码 src_type dst_type 机器级表示 1234567char int movsbl %al, (%edx)int char movb %al, (%edx)int unsigned movl %eax, (%edx)short int movswl %ax, (%edx)unsigned char unsigned movzbl %al, (%edx)char unsigned movsbl %al, (%edx)int int movl %eax, (%edx) 关于Mov movb,movw,movl 分别表示：传送字节，传送字，传送双字 movsbw,movsbl,movswl,将做了符号扩展的字节传送到字，将做了符号扩展的字节传送到双字，将做了符号扩展的字传送到双字 movzbw,movzbl,movzwl,将做了零扩展的字节传送到字,将做了零扩展的字节传送到双字,将做了零扩展的字传送到双字]]></content>
+    <content type="text"><![CDATA[AT&amp;T汇编指令学习(GCC) 源/目的操作数顺序:AT&amp;T语法格式表示为:opcode src, dest: “操作码 源, 目标” 操作数长度标识:在AT&amp;T语法中,通过在指令后添加后缀来指明该指令运算对象的尺寸.后缀 b 指明运算对象是一个字节(byte)后缀 w 指明运算对象是一个字(word)后缀 l 指明运算对象是一个双字(long) 常数/立即数格式 在AT&amp;T语法中 对立即数,须在其前加前缀 $ 来指明 在常数前也必须加一个前缀字符 * 内存寻址方式 SECTION:DISP(BASE, INDEX, SCALE)，段:偏移量(基地址,变址,比例因子) 用法: 这里用leal举例 1234567891011leal 6(%eax), %edx //把eax的值+6放入edx中leal (%eax, %ecx), %edx //把eax+ecx的值装入edx中leal (%eax, %ecx, 4), %edx //把eax + 4*ecx的值装入edx中leal 7(%eax, %eax, 8), %edx //把9*eax +7的值装入edx中leal 0xA(,%eax,4), %edx //把4*eax + 10的值装入edx中leal 9(%eax, %ecx, 2), %edx //把eax + 2*ecx+ 9的值装入edx中 movl用法与leal相同，只不过movl是赋值，leal是赋地址 基本的行内汇编格式 asm(&quot;statements&quot;)例如：asm(&quot;nop&quot;); `asm(“movl %eax,%ebx”);asm 和 asm是完全一样的. 如果有多行汇编，则每一行都要加上\n\t` 常用指令 数据传送指令：move,push,pop 加载有效地址指令：leal 一元操作指令：inc(加1),dec(减1)，neg(取负)，not(取补) 二元操作指令：add,sub,imul,idivl(有符号除法),xor,or,and 移位指令：sal(左移),shl,sar(算数右移),shr(逻辑右移) 跳转指令：jmp,je,jne,js,jns,jg,jl,ja,jb,jbe… 常用指令用法 inc D，加1。 dec D，减1。 neg D，取负数。 not D，取反。 dd S, D，D= D +S，加。 sub S, D，D= D –S，减。 imul S, D，D= D * S， 乘。 xor S, D，D = D ^ S， 异或。 or S, D，D = D | S，或。 and S, D，D = D &amp; S，与。 关于偏移量和对齐方式 对齐方式介绍 123456789101112131415161718struct MyStruct &#123; char dda; //偏移量为0，满足对齐方式，dda占用1个字节； /* 下一个可用的地址的偏移量为1，不是sizeof(double)=8 的倍数，需要补足7个字节才能使偏移量变为8（满足对齐方式）， 因此VC自动填充7个字节，dda1存放在偏移量为8的地址上，它占用8个字节*/ double dda1;/*int type； //下一个可用的地址的偏移量为16，是sizeof(int)=4的倍 //数，满足int的对齐方式，所以不需要VC自动填充，type存 //放在偏移量为16的地址上，它占用4个字节。 &#125;； //所有成员变量都分配了空间，空间总的大小为1+7+8+4=20，不是结构 //的节边界数（即结构中占用最大空间的类型所占用的字节数sizeof //(double)=8）的倍数，所以需要填充4个字节，以满足结构的大小为 //sizeof(double)=8的倍数。 几道题第一题对于以下 AT&amp;T格式汇编指令，根据操作数的长度确定对应指令助记符中的长度后缀，并说明每个操作数的寻址方式12345678mov 8(%ebp, %ebx, 4), %axmov %al, 12(%ebp)add (, %ebx, 4), %ebxor (%ebx), %dhpush $0xF8mov $0xFFF0, %eaxtest %cx,%cxlea 8(%ebx, %esi), %eax 参考答案 12345678w，基址+比例变址+偏移，寄存器b，寄存器，基址+偏移l，比例变址，寄存器b，基址，寄存器l，立即数，栈l，立即数，寄存器w，寄存器，寄存器l，基址+变址+偏移，寄存器 第二题假设x和ptr声明如下 123src_type x;dst_type ptr;*ptr = (dst_type)x; 若 x 存储在寄存器 EAX 或 AX 或 AL 中，ptr 存储在寄存器 EDX 中，写出实现上述赋值语句的机器级代码。要求用 AT&amp;T 格式汇编指令表示机器级代码 src_type dst_type 机器级表示 1234567char int movsbl %al, (%edx)int char movb %al, (%edx)int unsigned movl %eax, (%edx)short int movswl %ax, (%edx)unsigned char unsigned movzbl %al, (%edx)char unsigned movsbl %al, (%edx)int int movl %eax, (%edx) 关于Mov movb,movw,movl 分别表示：传送字节，传送字，传送双字 movsbw,movsbl,movswl,将做了符号扩展的字节传送到字，将做了符号扩展的字节传送到双字，将做了符号扩展的字传送到双字 movzbw,movzbl,movzwl,将做了零扩展的字节传送到字,将做了零扩展的字节传送到双字,将做了零扩展的字传送到双字]]></content>
       <categories>
         <category>计算机组成原理</category>
       </categories>
@@ -335,8 +335,8 @@
       </categories>
       <tags>
         <tag>前端</tag>
-        <tag>JavaScript</tag>
         <tag>面试</tag>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -435,17 +435,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[addone]]></title>
-    <url>%2F2017%2F04%2F20%2Faddone%2F</url>
-    <content type="text"><![CDATA[欢迎各位来到我的简单博客 其实这里什么都没有2333333333333333]]></content>
-      <categories>
-        <category>关于我</category>
-      </categories>
-      <tags>
-        <tag>我</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[某位小少女的作文-1]]></title>
     <url>%2F2017%2F04%2F20%2FgwyhArticle1%2F</url>
     <content type="text"><![CDATA[珍爱生命 让人生更精彩一个生命从春天走过，至少它美丽过； 一个生命从夏天走过，至少它辉煌过； 一个生命从秋天走过，至少它绚烂过； 一个生命从冬天走过，至少它坚强过。吟起这首诗，我自问：“生命是什么？”它不是一场雨，雨下在地上蒸发成水汽还会再落下；它不是一棵小草，小草枯了春天还会再荣；生命是无意间爬上额间的河流，当我们懂得珍惜时，河道已很深，深深的河道里有深深的遗憾。生命犹如单行道，没有回头的机会；生命是宇宙时间，永远无法找到两个相同时刻。“人，最宝贵的东西是生命。生命属于人只有一次。”汶川地震，警察妈妈哺育受灾幼儿；玉树天灾，护士妈妈再现慈爱。珍爱生命，人生将更精彩。感悟生命从连绵上浮起，从一点一滴中渗出，在细微处藏身。生命的长河倒映着红花绿叶、飘零积雪，变迁着湖畔边丝丝色泽，并渐渐地前行。大江东去，璀璨的生命镌刻着历史的痕迹，激荡着颗颗璀璨的明珠。生活中不可能处处有鲜花，时时有掌声。在你留意生命、珍惜生命的旅程中，你会发现，当生命被生活推向极致的地方，往往会展现出一些从容之美，临乱世而不惊，处方舟而不躁，喜迎阴晴圆缺，笑傲风霜雨雪；你更会明白，只有抱着一颗常人的平常之心，去看待生命，去珍惜生命，生命才会更有意义。生命是一种神秘的力量，说它脆弱，它就像薄冰一样不堪一击；说它坚强，它又像大山一般坚韧不拔。像海伦·凯勒，她是一位双耳失聪、双目失明的残疾人，但她凭着自己的毅力和信念，凭着对生命的热爱，先后掌握了四门外语，成为哈佛大学的一名学生，你能不说这是生命所创造的奇迹吗？去追寻你的梦想，去你想去的地方，做一个你想做的人。因为，生命只有一次，亦只得一次机会去做你所想做的事。我们应让自己的生命在理智的搏击中度过，就像落叶、谢花一样，潇洒地来，潇洒地去，做到对生命无怨无悔，让生命之光永远辉煌。珍爱生命吧，哪怕生命只有一霎那，那也让它成为一种永恒！]]></content>
@@ -454,6 +443,17 @@
       </categories>
       <tags>
         <tag>她</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[addone]]></title>
+    <url>%2F2017%2F04%2F20%2Faddone%2F</url>
+    <content type="text"><![CDATA[欢迎各位来到我的简单博客 其实这里什么都没有2333333333333333]]></content>
+      <categories>
+        <category>关于我</category>
+      </categories>
+      <tags>
+        <tag>我</tag>
       </tags>
   </entry>
   <entry>
