@@ -15,7 +15,7 @@
   <entry>
     <title><![CDATA[Js技术题自写]]></title>
     <url>%2F2018%2F06%2F07%2FJs%E6%8A%80%E6%9C%AF%E9%A2%98%E8%87%AA%E5%86%99%2F</url>
-    <content type="text"><![CDATA[背景之前有赞视频面的时候觉得自己Coding起来有些Api不熟悉，这里每天可能更新至少一道Js题目来锻炼自己的逻辑和Api掌握力 1写一个方法，在一个未知对象中，找出所有的“李鹏”,并console.log输出: 对应值当前所在对象 当前对象有多少个目标值 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758const tar = &#123; a:&#123; b:&#123; c:&#123; d:&#123; e:&#123; name:"百度" &#125; &#125;, l:&#123; name:"李鹏", age: "李鹏" &#125; &#125; &#125; &#125;, d:"90", e:"90", l:&#123; a:&#123; b:&#123; c:&#123; version:"1.0.0.1", name:"李鹏" &#125; &#125; &#125; &#125;, f:&#123; name:"李鹏", update:"2017年03月20日" &#125;&#125;function getTar(tar, search)&#123; let count = 0 // 记录目标数 let path = [] // 记录所在对象 function _deep(tar)&#123; Object.keys(tar).map(item =&gt; &#123; if(Object.prototype.toString.call(tar[item]) === '[object Object]')&#123; path.push(item) _deep(tar[item]) // 如果是对象则递归遍历并将对象名加入path &#125;else if(tar[item] === search)&#123; count++ console.log(path) //找到则打印路径 &#125; &#125;) path.pop() // 遍历完一个对象的所有成员后回溯路径 &#125; _deep(tar) // 初始遍历 console.log(count)&#125;getTar(tar,'李鹏') 输出 12345["a", "b", "c", "l"]["a", "b", "c", "l"]["l", "a", "b", "c"]["f"]4 2找出数组arr中重复出现过的元素 123input: [1,2,4,4,3,3,1,5,3].sort()output: [1,3,4] 1234567891011121314const arr = [1,2,4,4,3,3,1,5,3].sort()function seleteDup(arr)&#123; let res = [] arr.map(item =&gt; &#123; if(arr.indexOf(item) != arr.lastIndexOf(item) &amp;&amp; res.indexOf(item) === -1)&#123; res.push(item) //第一次出现的位置和最后一次出现的位置不相等 并且res数组中没有 则添加 &#125; &#125;) console.log(res)&#125;seleteDup(arr) 3不使用循环，创建一个长度为100的数组，并使数组的每个值等于它的下标 1234567891011121314// 先创建一个长为100的数组然后Object.keys拿到字符数组, 需要转化为数字let temp = Object.keys(Array.apply(null, &#123;length:100&#125;))let arr = temp.map(item =&gt; &#123; return +temp;&#125;)// Array.keys拿到迭代器然后转为数组let arr = Array.from(new Array(100).keys())// 方法与第一种类似 同样为字符数组 需要转化let temp = Object.keys(Array.from(&#123;length:100&#125;))// es6扩展运算符let arr = [...Array(100).keys()]]]></content>
+    <content type="text"><![CDATA[背景之前有赞视频面的时候觉得自己Coding起来有些Api不熟悉，这里每天可能更新至少一道Js题目来锻炼自己的逻辑和Api掌握力 1写一个方法，在一个未知对象中，找出所有的“李鹏”,并console.log输出: 对应值当前所在对象 当前对象有多少个目标值 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758const tar = &#123; a:&#123; b:&#123; c:&#123; d:&#123; e:&#123; name:"百度" &#125; &#125;, l:&#123; name:"李鹏", age: "李鹏" &#125; &#125; &#125; &#125;, d:"90", e:"90", l:&#123; a:&#123; b:&#123; c:&#123; version:"1.0.0.1", name:"李鹏" &#125; &#125; &#125; &#125;, f:&#123; name:"李鹏", update:"2017年03月20日" &#125;&#125;function getTar(tar, search)&#123; let count = 0 // 记录目标数 let path = [] // 记录所在对象 function _deep(tar)&#123; Object.keys(tar).map(item =&gt; &#123; if(Object.prototype.toString.call(tar[item]) === '[object Object]')&#123; path.push(item) _deep(tar[item]) // 如果是对象则递归遍历并将对象名加入path &#125;else if(tar[item] === search)&#123; count++ console.log(path) //找到则打印路径 &#125; &#125;) path.pop() // 遍历完一个对象的所有成员后回溯路径 &#125; _deep(tar) // 初始遍历 console.log(count)&#125;getTar(tar,'李鹏') 输出 12345["a", "b", "c", "l"]["a", "b", "c", "l"]["l", "a", "b", "c"]["f"]4 2找出数组arr中重复出现过的元素 123input: [1,2,4,4,3,3,1,5,3].sort()output: [1,3,4] 1234567891011121314const arr = [1,2,4,4,3,3,1,5,3].sort()function seleteDup(arr)&#123; let res = [] arr.map(item =&gt; &#123; if(arr.indexOf(item) != arr.lastIndexOf(item) &amp;&amp; res.indexOf(item) === -1)&#123; res.push(item) //第一次出现的位置和最后一次出现的位置不相等 并且res数组中没有 则添加 &#125; &#125;) console.log(res)&#125;seleteDup(arr) 3不使用循环，创建一个长度为100的数组，并使数组的每个值等于它的下标 1234567891011121314// 先创建一个长为100的数组然后Object.keys拿到字符数组, 需要转化为数字let temp = Object.keys(Array.apply(null, &#123;length:100&#125;))let arr = temp.map(item =&gt; &#123; return +temp;&#125;)// Array.keys拿到迭代器然后转为数组let arr = Array.from(new Array(100).keys())// 方法与第一种类似 同样为字符数组 需要转化let temp = Object.keys(Array.from(&#123;length:100&#125;))// es6扩展运算符let arr = [...Array(100).keys()] 4解析 URL 中的 queryString，返回一个对象返回值示例：12345&#123; name: 'coder', age: '20'. callback: 'https://youzan.com?name=test'&#125; 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849const testURL = 'https://www.youzan.com?name=coder&amp;age=20&amp;callback=https%3A%2F%2Fyouzan.com%3Fname%3Dtest&amp;arr[]=1&amp;arr[]=2&amp;test=%7B%22b%22%3A%22bbb%22%2C%22c%22%3A%22ccc%22%2C%22d%22%3A%7B%22f%22%3A%22f%22%7D%7D';function isObj(decodeTemp, parent)&#123; if(decodeTemp.indexOf('&#123;') !== 0 || decodeTemp.lastIndexOf('&#125;') !== decodeTemp.length - 1)&#123; return null; &#125; let obj = &#123;&#125; let tempObj = decodeTemp.slice(1, decodeTemp.length - 1) let tempObjArr = tempObj.split(',') tempObjArr.map(item =&gt; &#123; console.log(item) let objArr = item.slice(1, item.length - 1).split(':') console.log(objArr) let key = objArr[0].slice(0, objArr[0].length - 1) let res = isObj(objArr[1].slice(1), obj) obj[key] = res ? res : objArr[1].slice(1) &#125;) console.log(obj) return obj;&#125;function parseQueryString(url) &#123; let temp = url.split('?') let arr = temp[1].split('&amp;') let paramObj = &#123;&#125; arr.map(item =&gt; &#123; let temp = item.split('=') let decodeTemp = decodeURIComponent(temp[1]) // 解码 let key = temp[0]; if(key.indexOf('[]') &gt; -1)&#123; key = key.slice(0, key.length - 2) // 获取数组名 const keys = Object.keys(paramObj) if(keys.indexOf(key) &gt; -1)&#123; paramObj[key].push(temp[1]) // 如果已经存在该数组则push &#125;else&#123; paramObj[key] = [temp[1]] &#125; &#125;else&#123; let res = isObj(decodeTemp, paramObj) paramObj[temp[0]] = res ? res : decodeTemp &#125; &#125;) console.log(paramObj) return paramObj;&#125;parseQueryString(testURL) 这里对嵌套的对象的处理有些问题 待修改]]></content>
       <categories>
         <category>Javascript</category>
       </categories>
@@ -92,8 +92,8 @@
         <category>设计模式</category>
       </categories>
       <tags>
-        <tag>学习</tag>
         <tag>设计模式</tag>
+        <tag>学习</tag>
       </tags>
   </entry>
   <entry>
@@ -210,8 +210,8 @@
         <category>设计模式</category>
       </categories>
       <tags>
-        <tag>学习</tag>
         <tag>设计模式</tag>
+        <tag>学习</tag>
       </tags>
   </entry>
   <entry>
@@ -483,9 +483,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[某位小少女的作文-2]]></title>
-    <url>%2F2017%2F04%2F20%2FgwyhArticle2%2F</url>
-    <content type="text"><![CDATA[时光匆匆轻轻地打开书本，低声诵起了朱自清的《匆匆》：“燕子去了，有再来的时候；杨柳枯了，有再青的时候；桃花谢了，有再开的时候……”多么优美，多么富于哲理的话语，我一遍又一遍地读着、读着……屈指一算，已有四千多个日夜从我身边流过，还有三个月就要小学毕业了。如果再过三千多个日夜我就该大学毕业走向社会了，成为一个来建设祖国的建设者了。如何才能做一个合格的小学生呢？如何做才能成为一个合格的建设者呢？我们这代青少年有理想，又有抱负，但不能坐享其成。有些青年靠幻想来度日：想着以后该做什么，怎样为国家做贡献，就是不开始行动，甚至相信天上会掉下馅饼来。让时间在幻想当中白白流失了。有的人，总把事情推到明天再做，要知道“明日复明日，明日何其多。我生待明日，万事成蹉跎”啊！时光冉冉，我已从嗷嗷待哺的婴儿成长到乖巧懂事的六年级学生，时间就这样溜走――早晨，当我开始洗漱时，时间从水盆里溜走；中午，当我放学回家时，时间从脚下溜走；晚上，当我观望星空时，时间从眼前溜走……“光阴似箭，日月如梭。”每时每刻，时间都从我身边溜走，而且去而不返。“一寸光阴一寸金，寸金难买寸光阴。”这使我加倍珍惜它，把握分分秒秒。直至现在，它还在催促我长大，但是我并不感谢它，因为它在催促我长大的同时，也让生命点滴流逝。我总是追赶它，渴望与它同起同作，同止同息，但是，那却是可望而不可及的。今年的春天一定在想——去年的春天寄托了什么样的理想，明年的春天又会是一个怎样的景象？这一切我都无法作答，但愿像欧阳修所说的那样：今年花胜去年红，明年花更好，更与我同！]]></content>
+    <title><![CDATA[某位小少女的作文-1]]></title>
+    <url>%2F2017%2F04%2F20%2FgwyhArticle1%2F</url>
+    <content type="text"><![CDATA[珍爱生命 让人生更精彩一个生命从春天走过，至少它美丽过； 一个生命从夏天走过，至少它辉煌过； 一个生命从秋天走过，至少它绚烂过； 一个生命从冬天走过，至少它坚强过。吟起这首诗，我自问：“生命是什么？”它不是一场雨，雨下在地上蒸发成水汽还会再落下；它不是一棵小草，小草枯了春天还会再荣；生命是无意间爬上额间的河流，当我们懂得珍惜时，河道已很深，深深的河道里有深深的遗憾。生命犹如单行道，没有回头的机会；生命是宇宙时间，永远无法找到两个相同时刻。“人，最宝贵的东西是生命。生命属于人只有一次。”汶川地震，警察妈妈哺育受灾幼儿；玉树天灾，护士妈妈再现慈爱。珍爱生命，人生将更精彩。感悟生命从连绵上浮起，从一点一滴中渗出，在细微处藏身。生命的长河倒映着红花绿叶、飘零积雪，变迁着湖畔边丝丝色泽，并渐渐地前行。大江东去，璀璨的生命镌刻着历史的痕迹，激荡着颗颗璀璨的明珠。生活中不可能处处有鲜花，时时有掌声。在你留意生命、珍惜生命的旅程中，你会发现，当生命被生活推向极致的地方，往往会展现出一些从容之美，临乱世而不惊，处方舟而不躁，喜迎阴晴圆缺，笑傲风霜雨雪；你更会明白，只有抱着一颗常人的平常之心，去看待生命，去珍惜生命，生命才会更有意义。生命是一种神秘的力量，说它脆弱，它就像薄冰一样不堪一击；说它坚强，它又像大山一般坚韧不拔。像海伦·凯勒，她是一位双耳失聪、双目失明的残疾人，但她凭着自己的毅力和信念，凭着对生命的热爱，先后掌握了四门外语，成为哈佛大学的一名学生，你能不说这是生命所创造的奇迹吗？去追寻你的梦想，去你想去的地方，做一个你想做的人。因为，生命只有一次，亦只得一次机会去做你所想做的事。我们应让自己的生命在理智的搏击中度过，就像落叶、谢花一样，潇洒地来，潇洒地去，做到对生命无怨无悔，让生命之光永远辉煌。珍爱生命吧，哪怕生命只有一霎那，那也让它成为一种永恒！]]></content>
       <categories>
         <category>我爱的人</category>
       </categories>
@@ -494,9 +494,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[某位小少女的作文-1]]></title>
-    <url>%2F2017%2F04%2F20%2FgwyhArticle1%2F</url>
-    <content type="text"><![CDATA[珍爱生命 让人生更精彩一个生命从春天走过，至少它美丽过； 一个生命从夏天走过，至少它辉煌过； 一个生命从秋天走过，至少它绚烂过； 一个生命从冬天走过，至少它坚强过。吟起这首诗，我自问：“生命是什么？”它不是一场雨，雨下在地上蒸发成水汽还会再落下；它不是一棵小草，小草枯了春天还会再荣；生命是无意间爬上额间的河流，当我们懂得珍惜时，河道已很深，深深的河道里有深深的遗憾。生命犹如单行道，没有回头的机会；生命是宇宙时间，永远无法找到两个相同时刻。“人，最宝贵的东西是生命。生命属于人只有一次。”汶川地震，警察妈妈哺育受灾幼儿；玉树天灾，护士妈妈再现慈爱。珍爱生命，人生将更精彩。感悟生命从连绵上浮起，从一点一滴中渗出，在细微处藏身。生命的长河倒映着红花绿叶、飘零积雪，变迁着湖畔边丝丝色泽，并渐渐地前行。大江东去，璀璨的生命镌刻着历史的痕迹，激荡着颗颗璀璨的明珠。生活中不可能处处有鲜花，时时有掌声。在你留意生命、珍惜生命的旅程中，你会发现，当生命被生活推向极致的地方，往往会展现出一些从容之美，临乱世而不惊，处方舟而不躁，喜迎阴晴圆缺，笑傲风霜雨雪；你更会明白，只有抱着一颗常人的平常之心，去看待生命，去珍惜生命，生命才会更有意义。生命是一种神秘的力量，说它脆弱，它就像薄冰一样不堪一击；说它坚强，它又像大山一般坚韧不拔。像海伦·凯勒，她是一位双耳失聪、双目失明的残疾人，但她凭着自己的毅力和信念，凭着对生命的热爱，先后掌握了四门外语，成为哈佛大学的一名学生，你能不说这是生命所创造的奇迹吗？去追寻你的梦想，去你想去的地方，做一个你想做的人。因为，生命只有一次，亦只得一次机会去做你所想做的事。我们应让自己的生命在理智的搏击中度过，就像落叶、谢花一样，潇洒地来，潇洒地去，做到对生命无怨无悔，让生命之光永远辉煌。珍爱生命吧，哪怕生命只有一霎那，那也让它成为一种永恒！]]></content>
+    <title><![CDATA[某位小少女的作文-2]]></title>
+    <url>%2F2017%2F04%2F20%2FgwyhArticle2%2F</url>
+    <content type="text"><![CDATA[时光匆匆轻轻地打开书本，低声诵起了朱自清的《匆匆》：“燕子去了，有再来的时候；杨柳枯了，有再青的时候；桃花谢了，有再开的时候……”多么优美，多么富于哲理的话语，我一遍又一遍地读着、读着……屈指一算，已有四千多个日夜从我身边流过，还有三个月就要小学毕业了。如果再过三千多个日夜我就该大学毕业走向社会了，成为一个来建设祖国的建设者了。如何才能做一个合格的小学生呢？如何做才能成为一个合格的建设者呢？我们这代青少年有理想，又有抱负，但不能坐享其成。有些青年靠幻想来度日：想着以后该做什么，怎样为国家做贡献，就是不开始行动，甚至相信天上会掉下馅饼来。让时间在幻想当中白白流失了。有的人，总把事情推到明天再做，要知道“明日复明日，明日何其多。我生待明日，万事成蹉跎”啊！时光冉冉，我已从嗷嗷待哺的婴儿成长到乖巧懂事的六年级学生，时间就这样溜走――早晨，当我开始洗漱时，时间从水盆里溜走；中午，当我放学回家时，时间从脚下溜走；晚上，当我观望星空时，时间从眼前溜走……“光阴似箭，日月如梭。”每时每刻，时间都从我身边溜走，而且去而不返。“一寸光阴一寸金，寸金难买寸光阴。”这使我加倍珍惜它，把握分分秒秒。直至现在，它还在催促我长大，但是我并不感谢它，因为它在催促我长大的同时，也让生命点滴流逝。我总是追赶它，渴望与它同起同作，同止同息，但是，那却是可望而不可及的。今年的春天一定在想——去年的春天寄托了什么样的理想，明年的春天又会是一个怎样的景象？这一切我都无法作答，但愿像欧阳修所说的那样：今年花胜去年红，明年花更好，更与我同！]]></content>
       <categories>
         <category>我爱的人</category>
       </categories>
