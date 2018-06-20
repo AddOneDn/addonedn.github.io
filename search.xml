@@ -103,8 +103,8 @@
         <category>设计模式</category>
       </categories>
       <tags>
-        <tag>设计模式</tag>
         <tag>学习</tag>
+        <tag>设计模式</tag>
       </tags>
   </entry>
   <entry>
@@ -221,8 +221,8 @@
         <category>设计模式</category>
       </categories>
       <tags>
-        <tag>设计模式</tag>
         <tag>学习</tag>
+        <tag>设计模式</tag>
       </tags>
   </entry>
   <entry>
@@ -302,7 +302,7 @@
   <entry>
     <title><![CDATA[Parcel上手与React开发环境搭建]]></title>
     <url>%2F2018%2F03%2F25%2FParcel%E4%B8%8A%E6%89%8B%E4%B8%8EReact%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%2F</url>
-    <content type="text"><![CDATA[背景我从不关注代码之外的东西，因为我相信有人会帮我做这些… 之前上手了Parcel感觉还OK，在这里小小的整理一哈 开始操作 安装Parcel 1yarn global add parcel-bundler 创建package.json再顺便加个命令 12345yarn init -y// package.json"scripts": &#123; "start": "parcel index.html"&#125; 安装Babel 1yarn add babel-preset-env 安装node-sass 1yarn add node-sass 接着创建.babelrc 123&#123; "preset": ["env"]&#125; 安装React依赖 12345yarn add reactyarn add react-domyarn add --dev parcel-bundleryarn add --dev babel-preset-envyarn add --dev babel-preset-react 在.babelrc中修改 123&#123; "presets": ["env", "react"]&#125; 再整理一下目录…现在应该是这样的(关键的) 123456789node_modulessrc components containers App.js App.scss.babelrcindex.htmlpackage.json index.html12345678910111213&lt;!DOCTYPE html&gt;&lt;html lang="en"&gt;&lt;head&gt; &lt;meta charset="UTF-8"&gt; &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt; &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt; &lt;title&gt;Parcel-React&lt;/title&gt;&lt;/head&gt;&lt;body&gt; &lt;div id="root"&gt;&lt;/div&gt; &lt;script src="./src/index.js"&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt; index.js12345import React from 'react';import ReactDOM from 'react-dom';import App from './App';ReactDOM.render(&lt;App /&gt;, document.getElementById('root')); App.js123456789101112131415import React, &#123; Component &#125; from 'react';import './App.scss';class App extends Component &#123; render() &#123; return ( &lt;div className="App"&gt; &lt;h1&gt;Hello Parcel-React&lt;/h1&gt; &lt;/div&gt; ); &#125;&#125;export default App; App.scss123456789$color-red: red;$color-black: black;h1&#123; color: $color-red; cursor: pointer; &amp;:hover&#123; color: $color-black; &#125;&#125; package.json1234567891011121314151617181920&#123; "name": "parcel-test1", "version": "1.0.0", "main": "index.js", "license": "MIT", "scripts": &#123; "start": "parcel index.html" &#125;, "dependencies": &#123; "babel-preset-env": "^1.6.1", "node-sass": "^4.8.3", "react": "^16.2.0", "react-dom": "^16.2.0" &#125;, "devDependencies": &#123; "babel-core": "^6.26.0", "babel-preset-react": "^6.24.1", "parcel-bundler": "^1.6.2" &#125;&#125; 最后npm run一哈 舒服了，终于可以不用手脚架了，自己动手丰衣足食 有什么其他依赖再自己yarn add或npm install就好啦]]></content>
+    <content type="text"><![CDATA[背景我从不关注代码之外的东西，因为我相信有人会帮我做这些… 之前上手了Parcel感觉还OK，在这里小小的整理一哈 开始操作 安装Parcel 1yarn global add parcel-bundler 创建package.json再顺便加个命令 12345yarn init -y// package.json"scripts": &#123; "start": "parcel index.html"&#125; 安装Babel 1yarn add babel-preset-env 安装node-sass 1yarn add node-sass 接着创建.babelrc 123&#123; "preset": ["env"]&#125; 安装React依赖 12345yarn add reactyarn add react-domyarn add --dev parcel-bundleryarn add --dev babel-preset-envyarn add --dev babel-preset-react 在.babelrc中修改 123&#123; "presets": ["env", "react"]&#125; 让React内部Class支持箭头函数 1npm install --save-dev babel-plugin-transform-class-properties 在.babelrc中添加 1234"presets": ["env", "react"],"plugins": [ ["transform-class-properties", &#123; "spec": true &#125;] ] 再整理一下目录…现在应该是这样的(关键的) 123456789node_modulessrc components containers App.js App.scss.babelrcindex.htmlpackage.json index.html12345678910111213&lt;!DOCTYPE html&gt;&lt;html lang="en"&gt;&lt;head&gt; &lt;meta charset="UTF-8"&gt; &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt; &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt; &lt;title&gt;Parcel-React&lt;/title&gt;&lt;/head&gt;&lt;body&gt; &lt;div id="root"&gt;&lt;/div&gt; &lt;script src="./src/index.js"&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt; index.js12345import React from 'react';import ReactDOM from 'react-dom';import App from './App';ReactDOM.render(&lt;App /&gt;, document.getElementById('root')); App.js123456789101112131415import React, &#123; Component &#125; from 'react';import './App.scss';class App extends Component &#123; render() &#123; return ( &lt;div className="App"&gt; &lt;h1&gt;Hello Parcel-React&lt;/h1&gt; &lt;/div&gt; ); &#125;&#125;export default App; App.scss123456789$color-red: red;$color-black: black;h1&#123; color: $color-red; cursor: pointer; &amp;:hover&#123; color: $color-black; &#125;&#125; package.json1234567891011121314151617181920&#123; "name": "parcel-test1", "version": "1.0.0", "main": "index.js", "license": "MIT", "scripts": &#123; "start": "parcel index.html" &#125;, "dependencies": &#123; "babel-preset-env": "^1.6.1", "node-sass": "^4.8.3", "react": "^16.2.0", "react-dom": "^16.2.0" &#125;, "devDependencies": &#123; "babel-core": "^6.26.0", "babel-preset-react": "^6.24.1", "parcel-bundler": "^1.6.2" &#125;&#125; 最后npm run一哈 舒服了，终于可以不用手脚架了，自己动手丰衣足食 有什么其他依赖再自己yarn add或npm install就好啦]]></content>
       <categories>
         <category>React</category>
       </categories>
