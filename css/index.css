@@ -159,9 +159,10 @@ figure.highlight {
 }
 blockquote {
   margin: 0;
-  padding: 0 0.6rem;
-  border-left: 0.2rem solid #dfe2e5;
+  padding: 0.1rem 0.6rem;
+  border-left: 0.2rem solid #65b687;
   color: #6a737d;
+  background-color: #f0f8f3;
 }
 pre,
 code {
@@ -169,8 +170,8 @@ code {
 }
 code {
   padding: 0.1rem 0.2rem;
-  background: rgba(27,31,35,0.05);
-  color: #1f2d3d;
+  background: #f8f8f8;
+  color: #fa8f4d;
   word-wrap: break-word;
   font-size: 14px;
 }
