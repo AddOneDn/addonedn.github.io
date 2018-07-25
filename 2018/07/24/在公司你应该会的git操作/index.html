@@ -1,0 +1,99 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="在公司你应该会的git操作"><meta name="keywords" content="Git"><meta name="author" content="AddOneG,undefined"><meta name="copyright" content="AddOneG"><title>在公司你应该会的git操作 | AddOneG</title><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.3"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  localSearch: undefined
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基础"><span class="toc-number">1.</span> <span class="toc-text">基础</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#进阶"><span class="toc-number">2.</span> <span class="toc-text">进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-reset"><span class="toc-number">2.1.</span> <span class="toc-text">git reset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-revert"><span class="toc-number">2.2.</span> <span class="toc-text">git revert</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-stash"><span class="toc-number">2.3.</span> <span class="toc-text">git stash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-rebase"><span class="toc-number">2.4.</span> <span class="toc-text">git rebase</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="http://p5sf6v0wz.bkt.clouddn.com/avatar.jpg"></div><div class="author-info__name text-center">AddOneG</div><div class="author-info__description text-center">心似双丝网，中有千千结</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">49</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">31</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">22</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">友情链接</div><a class="author-info-links__name text-center" href="https://blog.triplez.cn/" target="_blank">TripleZ</a><a class="author-info-links__name text-center" href="http://karlrixon.link/" target="_blank">karlrixon</a><a class="author-info-links__name text-center" href="http://qrzbing.cn/" target="_blank">a-Lie-Z</a><a class="author-info-links__name text-center" href="https://primykq.top/" target="_blank">Primykq</a><a class="author-info-links__name text-center" href="https://blog.zeddyu.info/" target="_blank">Zedd</a><a class="author-info-links__name text-center" href="https://yuwenjie.cc/" target="_blank">Seiry</a><a class="author-info-links__name text-center" href="https://mountainlovers.github.io/" target="_blank">Mountain_lovers</a><a class="author-info-links__name text-center" href="https://blog.rexskz.info/" target="_blank">Rex</a></div></div></div><div id="content-outer"><div class="plain" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">AddOneG</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page" href="/">主页</a><a class="site-page" href="/archives">时间轴</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a></span></div></div><div class="layout" id="content-inner"><article id="post"><div class="plain" id="post-title">在公司你应该会的git操作</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-07-24</time><span class="post-meta__separator">|</span><i class="fa fa-inbox" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Git/"> Git</a><span class="post-meta__separator">|</span><span class="post-meta-wordcount"><span>Word count: </span><span class="word-count">1,379</span><span class="post-meta__separator">|</span><span>Reading time: 5 min</span></span></div><div id="post-content"><h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><ul>
+<li>git clone</li>
+<li>git pull</li>
+<li>git push</li>
+</ul>
+<ol>
+<li>git push -u origin master , 这里就是把 master （默认 git 分支）推送到 origin， -u也就是–set-upstream, 代表的是更新 默认推送的地方，这里就是默认以后git pull和git push时，都是推送和拉自 origin</li>
+<li>–force 强推</li>
+</ol>
+<ul>
+<li>git status</li>
+<li>git add</li>
+<li>git commit</li>
+<li>git checkout</li>
+</ul>
+<ol>
+<li>如果当前分支有未commit代码，且checkout -b到其他分支，修改的代码会带过去</li>
+</ol>
+<ul>
+<li>git merge</li>
+</ul>
+<ol>
+<li>git merge aaa  – master // 合并aaa到master分支</li>
+</ol>
+<ul>
+<li>git log</li>
+<li>git diff</li>
+</ul>
+<blockquote>
+<p>这些不会的就退出公司吧</p>
+</blockquote>
+<h1 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h1><h2 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h2><p><img src="http://p5sf6v0wz.bkt.clouddn.com/reset.png" alt=""></p>
+<blockquote>
+<p>git <strong> reset </strong> [–soft | –mixed [-N] | –hard | –merge | –keep] [-q] ___ [ commit版本号 ] || HEAD^n</p>
+</blockquote>
+<p>分支被合并后，使用reset不留痕迹的回退，但是会修改历史版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">--soft 回退后a分支修改的代码被保留并标记为add的状态（git status 是绿色的状态）</span><br><span class="line">--mixed 重置索引，但不重置工作树，更改后的文件标记为未提交（add）的状态。默认操作。</span><br><span class="line">--hard 重置索引和工作树，并且a分支修改的所有文件和中间的提交，没提交的代码都被丢弃了。</span><br><span class="line">--merge 和--hard类似，只不过如果在执行reset命令之前你有改动一些文件并且未提交，merge会保留你的这些修改，hard则不会。【注：如果你的这些修改add过或commit过，merge和hard都将删除你的提交】</span><br><span class="line">--keep 和--hard类似，执行reset之前改动文件如果是a分支修改了的，会提示你修改了相同的文件，不能合并。如果不是a分支修改的文件，会移除缓存区。git status还是可以看到保持了这些修改。</span><br></pre></td></tr></table></figure>
+<p><img src="http://p5sf6v0wz.bkt.clouddn.com/reset-b.png" alt=""></p>
+<p>如果没有给出提交点的版本号，那么默认用HEAD。这样，分支指向不变，但是索引会回滚到最后一次提交</p>
+<p><img src="http://p5sf6v0wz.bkt.clouddn.com/reset-c.png" alt=""></p>
+<blockquote>
+<p>reset会清除commit，如果代码已经被push到远程，如果进行reset会使基于这个commit的所有commit消失，所以这种情况不允许reset</p>
+</blockquote>
+<h2 id="git-revert"><a href="#git-revert" class="headerlink" title="git revert"></a>git revert</h2><p><img src="http://p5sf6v0wz.bkt.clouddn.com/revert.png" alt=""></p>
+<blockquote>
+<p>git <strong> revert </strong> [ commit版本号 ] || HEAD^n</p>
+</blockquote>
+<ol>
+<li>git revert是用一次新的commit来回滚之前的commit，git reset是直接删除指定的commit</li>
+<li>git reset 是把HEAD向后移动了一下，而git revert是HEAD继续前进，只是新的commit的内容和要revert的内容正好相反，能够抵消要被revert的内容</li>
+</ol>
+<blockquote>
+<p>如果回退分支的代码以后还需要的话用git revert，如果分支彻底没用了就用git reset</p>
+</blockquote>
+<h2 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h2><p>真对你有未commit代码却要切换分支时，用 git stash保存当前工作进度，会把暂存区和工作区的改动保存起来。执行完这个命令后，在运行git status命令，就会发现当前是一个干净的工作区</p>
+<ol>
+<li>git stash list 显示保存进度的列表</li>
+<li>git stash drop [stash_id] 删除一个存储的进度。如果不指定stash_id，则默认删除最新的存储进度</li>
+<li>git stash clear 删除所有存储的进度</li>
+<li>git stash pop [–index] [stash_id]<ul>
+<li>git stash pop 恢复最新的进度到工作区。git默认会把工作区和暂存区的改动都恢复到工作区</li>
+<li>git stash pop –index 恢复最新的进度到工作区和暂存区。（尝试将原来暂存区的改动还恢复到暂存区）</li>
+<li>git stash pop stash@{1}恢复指定的进度到工作区。stash_id是通过git stash list命令得到的 通过git stash pop命令恢复进度后，会删除当前进度</li>
+</ul>
+</li>
+</ol>
+<h2 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git rebase A B</span><br><span class="line"></span><br><span class="line">Reapply commits from one branch on top of another branch.</span><br><span class="line">Commonly used to &quot;move&quot; an entire branch to another base, creating copies of the commits in the new location.</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>把 A 分支 rebase 到 B 分支，也就是把 A 的 commit 与 B 的合并，并且保留 B 独有的 commit</p>
+</blockquote>
+<p>比如git pull addone master(将addone仓库的master分支与本地分支合并)相当于</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git fetch origin          //把 origin 仓库的东西都拉下来本地</span><br><span class="line">git rebase addone/master //把 addone 的 master 分支 rebase 到当前分支</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>pull 的时候， 当出现冲突而你解决掉后，会有多余的merge信息（ commit message ），推荐在自己的分支开发时，永远使用 fetch，rebase </p>
+</blockquote>
+<blockquote>
+<p>git rebase -i HEAD^n</p>
+</blockquote>
+<p>将最近3次提交合并，进入交互式界面：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">pick 0194373 skill-third-party: Change PKG_CONFIG_PATH and LD_LIBRARY_PATH.</span><br><span class="line">pick 4eb9b97 skill-third-party: Add default include library.</span><br><span class="line">pick 37f37e4 mind: Add comments for understanding.</span><br><span class="line">pick 84c413a install skill: Fix skill pkg relative path.</span><br><span class="line"></span><br><span class="line"># Rebase 986e234..84c413a onto 986e234 (4 commands)</span><br><span class="line">#</span><br><span class="line"># Commands:</span><br><span class="line"># p, pick = use commit</span><br><span class="line"># r, reword = use commit, but edit the commit message</span><br><span class="line"># e, edit = use commit, but stop for amending</span><br><span class="line"># s, squash = use commit, but meld into previous commit</span><br><span class="line"># f, fixup = like &quot;squash&quot;, but discard this commit&apos;s log message</span><br><span class="line"># x, exec = run command (the rest of the line) using shell</span><br><span class="line"># d, drop = remove commit</span><br><span class="line">#</span><br><span class="line"># These lines can be re-ordered; they are executed from top to bottom.</span><br><span class="line">#</span><br><span class="line"># If you remove a line here THAT COMMIT WILL BE LOST.</span><br><span class="line">#</span><br><span class="line"># However, if you remove everything, the rebase will be aborted.</span><br><span class="line">#</span><br><span class="line"># Note that empty commits are commented out</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>pick：保留该commit（缩写:p）</li>
+<li>reword：保留该commit，但我需要修改该commit的注释（缩写:r）</li>
+<li>edit：保留该commit, 但我要停下来修改该提交(不仅仅修改注释)（缩写:e）</li>
+<li>squash：将该commit和前一个commit合并（缩写:s）</li>
+<li>fixup：将该commit和前一个commit合并，但我不要保留该提交的注释信息（缩写:f）</li>
+<li>exec：执行shell命令（缩写:x）</li>
+<li>drop：我要丢弃该commit（缩写:d)</li>
+</ul>
+<p>需要修改时，把上面四个补丁最前面的 pick 改成对应操作（如 reword，fixup ），然后保存退出即可</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">AddOneG</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2018/07/24/在公司你应该会的git操作/">http://yoursite.com/2018/07/24/在公司你应该会的git操作/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Git/">Git</a></div><nav id="pagination"><div class="next-post pull-right"><a href="/2018/07/19/Promise精读/"><span>Promise精读</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2017 - 2018 By AddOneG</div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="/js/third-party/anime.min.js"></script><script src="/js/third-party/jquery.min.js"></script><script src="/js/third-party/jquery.fancybox.min.js"></script><script src="/js/third-party/velocity.min.js"></script><script src="/js/third-party/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.5.3"></script><script src="/js/fancybox.js?version=1.5.3"></script><script src="/js/sidebar.js?version=1.5.3"></script><script src="/js/copy.js?version=1.5.3"></script><script src="/js/fireworks.js?version=1.5.3"></script><script src="/js/transition.js?version=1.5.3"></script><script src="/js/scroll.js?version=1.5.3"></script><script src="/js/head.js?version=1.5.3"></script></body></html>
